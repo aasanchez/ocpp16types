@@ -1,0 +1,16 @@
+linters:
+  enable:
+    - revive
+    - staticcheck
+    - gofmt
+    - goimports
+
+linters-settings:
+  revive:
+    rules:
+      - name: exported
+        disabled: false
+      - name: var-naming
+        arguments:
+          - allowList:
+              - "Id"
