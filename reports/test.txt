@@ -22,7 +22,7 @@
 --- PASS: ExampleNewInteger_invalid (0.00s)
 PASS
 coverage: 6.1% of statements in github.com/aasanchez/ocpp16types
-ok  	github.com/aasanchez/ocpp16types	0.237s	coverage: 6.1% of statements in github.com/aasanchez/ocpp16types
+ok  	github.com/aasanchez/ocpp16types	0.239s	coverage: 6.1% of statements in github.com/aasanchez/ocpp16types
 === RUN   TestAuthorizationStatus_IsValid_Accepted
 === PAUSE TestAuthorizationStatus_IsValid_Accepted
 === RUN   TestAuthorizationStatus_IsValid_Blocked
@@ -685,669 +685,669 @@ ok  	github.com/aasanchez/ocpp16types	0.237s	coverage: 6.1% of statements in git
 === PAUSE TestValueFormat_String_Raw
 === RUN   TestValueFormat_String_SignedData
 === PAUSE TestValueFormat_String_SignedData
+=== CONT  TestUnitOfMeasure_IsValid_K
 === CONT  TestAuthorizationStatus_IsValid_Accepted
+--- PASS: TestUnitOfMeasure_IsValid_K (0.00s)
 --- PASS: TestAuthorizationStatus_IsValid_Accepted (0.00s)
+=== CONT  TestMeasurand_IsValid_PowerActiveExport
+--- PASS: TestMeasurand_IsValid_PowerActiveExport (0.00s)
+=== CONT  TestMeasurand_IsValid_CurrentOffered
+--- PASS: TestMeasurand_IsValid_CurrentOffered (0.00s)
+=== CONT  TestMeasurand_IsValid_CurrentImport
+--- PASS: TestMeasurand_IsValid_CurrentImport (0.00s)
+=== CONT  TestMeasurand_IsValid_CurrentExport
+--- PASS: TestMeasurand_IsValid_CurrentExport (0.00s)
+=== CONT  TestLocation_String_Outlet
+--- PASS: TestLocation_String_Outlet (0.00s)
+=== CONT  TestLocation_String_Inlet
+--- PASS: TestLocation_String_Inlet (0.00s)
+=== CONT  TestLocation_String_EV
+--- PASS: TestLocation_String_EV (0.00s)
+=== CONT  TestLocation_String_Cable
+--- PASS: TestLocation_String_Cable (0.00s)
+=== CONT  TestLocation_String_Body
+--- PASS: TestLocation_String_Body (0.00s)
+=== CONT  TestLocation_IsValid_Lowercase
+--- PASS: TestLocation_IsValid_Lowercase (0.00s)
+=== CONT  TestLocation_IsValid_Unknown
+--- PASS: TestLocation_IsValid_Unknown (0.00s)
+=== CONT  TestLocation_IsValid_Empty
+--- PASS: TestLocation_IsValid_Empty (0.00s)
+=== CONT  TestLocation_IsValid_Outlet
+--- PASS: TestLocation_IsValid_Outlet (0.00s)
+=== CONT  TestLocation_IsValid_Inlet
+--- PASS: TestLocation_IsValid_Inlet (0.00s)
+=== CONT  TestLocation_IsValid_EV
+--- PASS: TestLocation_IsValid_EV (0.00s)
+=== CONT  TestUnitOfMeasure_String_VAR
+--- PASS: TestUnitOfMeasure_String_VAR (0.00s)
+=== CONT  TestLocation_IsValid_Cable
+--- PASS: TestLocation_IsValid_Cable (0.00s)
+=== CONT  TestUnitOfMeasure_String_KVA
+--- PASS: TestUnitOfMeasure_String_KVA (0.00s)
+=== CONT  TestLocation_IsValid_Body
+--- PASS: TestLocation_IsValid_Body (0.00s)
+=== CONT  TestUnitOfMeasure_String_VA
+--- PASS: TestUnitOfMeasure_String_VA (0.00s)
+=== CONT  TestUnitOfMeasure_String_KW
+--- PASS: TestUnitOfMeasure_String_KW (0.00s)
+=== CONT  TestInteger_String
+--- PASS: TestInteger_String (0.00s)
+=== CONT  TestUnitOfMeasure_String_W
+--- PASS: TestUnitOfMeasure_String_W (0.00s)
+=== CONT  TestNewInteger_Overflow
+--- PASS: TestNewInteger_Overflow (0.00s)
+=== CONT  TestUnitOfMeasure_String_KWh
+--- PASS: TestUnitOfMeasure_String_KWh (0.00s)
+=== CONT  TestUnitOfMeasure_String_Wh
+=== CONT  TestMeasurand_IsValid_Frequency
+=== CONT  TestUnitOfMeasure_IsValid_Lowercase
+=== CONT  TestNewInteger_Max
+=== CONT  TestUnitOfMeasure_IsValid_Unknown
+=== CONT  TestNewInteger_Zero
+=== CONT  TestUnitOfMeasure_IsValid_Empty
+=== CONT  TestNewInteger
+=== CONT  TestIdToken_String
+=== CONT  TestIdToken_Value
+=== CONT  TestUnitOfMeasure_IsValid_Hz
+=== CONT  TestUnitOfMeasure_IsValid_Celsius
+=== CONT  TestNewIdToken
+=== CONT  TestIdTagInfo_String
+=== CONT  TestIdTagInfo_ParentIdTag_Nil
+=== CONT  TestIdTagInfo_ExpiryDate_Nil
+=== CONT  TestMeasurand_IsValid_EnergyReactiveImportInterval
+=== CONT  TestIdTagInfo_WithExpiryDate
+=== CONT  TestMeasurand_IsValid_EnergyReactiveExportInterval
+=== CONT  TestNewIdTagInfo_AllStatuses
+=== CONT  TestNewIdTagInfo_Accepted
+=== CONT  TestErrInvalidValue_Message
+=== CONT  TestErrEmptyValue_Message
+=== CONT  TestMeasurand_IsValid_EnergyActiveImportInterval
+=== CONT  TestErrEmptyValue_NotNil
+=== CONT  TestMeasurand_IsValid_EnergyActiveExportInterval
+=== CONT  TestNewDateTime_NonUTC
+=== CONT  TestMeasurand_IsValid_EnergyReactiveImportRegister
+=== CONT  TestNewDateTime_InvalidFormat
+=== CONT  TestNewDateTime_Empty
+=== CONT  TestMeasurand_IsValid_EnergyReactiveExportRegister
+=== CONT  TestNewDateTime
+=== CONT  TestCiString500Type_String
+=== CONT  TestNewCiString500_TestValue
+=== CONT  TestNewCiString500_TooLong
+=== CONT  TestNewCiString500_Empty
+=== CONT  TestNewCiString500Type
+=== CONT  TestNewCiString255_TestValue
+=== CONT  TestCiString255Type_String
+=== CONT  TestUnitOfMeasure_IsValid_V
+=== CONT  TestNewCiString255_TooLong
+=== CONT  TestNewCiString255_Empty
+=== CONT  TestCiString50Type_String
+=== CONT  TestNewCiString255Type
+=== CONT  TestNewCiString50_TooLong
+=== CONT  TestNewCiString50_Empty
+=== CONT  TestNewCiString50Type
+=== CONT  TestNewInteger_Negative
+=== CONT  TestCiString25Type_String
 === CONT  TestNewCiString25_TestValue
---- PASS: TestNewCiString25_TestValue (0.00s)
 === CONT  TestNewCiString25_TooLong
-=== CONT  TestPhase_IsValid_L1
+=== CONT  TestIdTagInfo_WithParentIdTag
+=== CONT  TestNewCiString25Type
+=== CONT  TestNewIdTagInfo_InvalidStatus
+=== CONT  TestNewCiString20_TestValue
+=== CONT  TestNewCiString20_Empty
+=== CONT  TestNewCiString20Type
+=== CONT  TestChargingSchedulePeriod_String
+=== CONT  TestCiString20Type_String
+=== CONT  TestChargingSchedulePeriod_Getters
 === CONT  TestNewChargingSchedulePeriod_NilPhases
 === CONT  TestNewChargingSchedulePeriod_InvalidPhases
 === CONT  TestNewChargingSchedulePeriod_InvalidStartPeriod
-=== CONT  TestNewChargingSchedulePeriod_WithPhases
 === CONT  TestNewChargingSchedulePeriod_Valid
-=== CONT  TestChargingSchedule_String
-=== CONT  TestChargingSchedule_Getters
+=== CONT  TestNewChargingSchedulePeriod_WithPhases
+=== CONT  TestNewCiString20_TooLong
 === CONT  TestNewChargingSchedule_MultipleErrors
+=== CONT  TestDateTime_String
 === CONT  TestNewChargingSchedule_NilOptionals
-=== CONT  TestNewChargingSchedule_WithOptionals
 === CONT  TestNewChargingSchedule_EmptyPeriods
+=== CONT  TestMeasurand_IsValid_EnergyActiveImportRegister
 === CONT  TestNewChargingSchedule_InvalidRateUnit
-=== CONT  TestNewChargingSchedule_Valid
-=== CONT  TestChargingRateUnit_String_Amperes
+=== CONT  TestNewChargingSchedule_WithOptionals
 === CONT  TestChargingRateUnit_String_Watts
 === CONT  TestChargingRateUnit_IsValid_Lowercase
-=== CONT  TestChargingRateUnit_IsValid_Unknown
-=== CONT  TestChargingRateUnit_IsValid_Empty
-=== CONT  TestChargingRateUnit_IsValid_Amperes
-=== CONT  TestChargingRateUnit_IsValid_Watts
-=== CONT  TestChargingProfilePurposeType_String_TxProfile
-=== CONT  TestChargingProfilePurposeType_String_TxDefaultProfile
---- PASS: TestNewCiString25_TooLong (0.00s)
---- PASS: TestPhase_IsValid_L1 (0.00s)
---- PASS: TestNewChargingSchedulePeriod_NilPhases (0.00s)
+--- PASS: TestUnitOfMeasure_String_Wh (0.00s)
+=== CONT  TestNewCiString50_TestValue
 === CONT  TestNewCiString25_Empty
-=== CONT  TestChargingProfilePurposeType_IsValid_Lowercase
-=== CONT  TestChargingProfilePurposeType_IsValid_Unknown
-=== CONT  TestNewCiString25Type
-=== CONT  TestCiString20Type_String
-=== CONT  TestChargingProfilePurposeType_IsValid_TxDefaultProfile
-=== CONT  TestChargingProfilePurposeType_IsValid_ChargePointMaxProfile
-=== CONT  TestNewCiString20_TestValue
-=== CONT  TestChargePointStatus_String_Unavailable
-=== CONT  TestNewCiString20_TooLong
-=== CONT  TestChargePointStatus_String_Finishing
-=== CONT  TestNewCiString20_Empty
-=== CONT  TestChargePointStatus_String_SuspendedEVSE
-=== CONT  TestChargePointStatus_String_SuspendedEV
-=== CONT  TestChargePointStatus_String_Charging
-=== CONT  TestNewCiString20Type
-=== CONT  TestChargePointStatus_String_Preparing
-=== CONT  TestPhase_IsValid_SinglePhase
-=== CONT  TestCiString25Type_String
-=== CONT  TestNewMeterValue_Getters
-=== CONT  TestMeterValue_String
-=== CONT  TestNewMeterValue_EmptySampledValues
-=== CONT  TestNewMeterValue_InvalidTimestamp
-=== CONT  TestChargePointStatus_IsValid_Lowercase
-=== CONT  TestNewMeterValue_Valid
-=== CONT  TestChargingSchedulePeriod_Getters
-=== CONT  TestChargePointStatus_IsValid_Unknown
-=== CONT  TestMeasurand_String_SoC
-=== CONT  TestChargePointStatus_IsValid_Empty
-=== CONT  TestMeasurand_String_RPM
-=== CONT  TestMeasurand_String_PowerReactiveImport
-=== CONT  TestMeasurand_String_Temperature
-=== CONT  TestChargePointStatus_IsValid_Faulted
-=== CONT  TestMeasurand_String_PowerOffered
-=== CONT  TestMeasurand_String_PowerFactor
---- PASS: TestNewChargingSchedulePeriod_InvalidPhases (0.00s)
---- PASS: TestNewChargingSchedulePeriod_InvalidStartPeriod (0.00s)
-=== CONT  TestChargingProfilePurposeType_IsValid_Empty
-=== CONT  TestMeasurand_String_PowerActiveExport
-=== CONT  TestMeasurand_String_Frequency
-=== CONT  TestChargePointStatus_IsValid_Unavailable
-=== CONT  TestMeasurand_String_EnergyReactiveImportInterval
-=== CONT  TestMeasurand_String_EnergyReactiveExportInterval
-=== CONT  TestChargePointStatus_IsValid_Reserved
-=== CONT  TestMeasurand_String_EnergyActiveImportInterval
-=== CONT  TestChargingProfilePurposeType_IsValid_TxProfile
-=== CONT  TestMeasurand_String_EnergyReactiveImportRegister
-=== CONT  TestChargePointStatus_String_Faulted
-=== CONT  TestChargePointStatus_IsValid_Finishing
-=== CONT  TestMeasurand_String_EnergyReactiveExportRegister
-=== CONT  TestMeasurand_String_EnergyActiveImportRegister
-=== CONT  TestChargePointStatus_IsValid_SuspendedEVSE
-=== CONT  TestChargingSchedulePeriod_String
-=== CONT  TestChargePointStatus_String_Available
-=== CONT  TestMeasurand_String_CurrentImport
-=== CONT  TestMeasurand_String_CurrentExport
-=== CONT  TestMeasurand_String_Voltage
-=== CONT  TestChargingProfilePurposeType_String_ChargePointMaxProfile
-=== CONT  TestMeasurand_IsValid_Empty
-=== CONT  TestChargePointStatus_IsValid_Charging
-=== CONT  TestMeasurand_IsValid_Voltage
-=== CONT  TestChargePointStatus_IsValid_Preparing
-=== CONT  TestMeasurand_IsValid_Temperature
-=== CONT  TestMeasurand_IsValid_SoC
-=== CONT  TestMeasurand_IsValid_RPM
-=== CONT  TestMeasurand_String_PowerReactiveExport
-=== CONT  TestMeasurand_IsValid_PowerReactiveImport
-=== CONT  TestMeasurand_IsValid_PowerReactiveExport
-=== CONT  TestChargePointStatus_IsValid_Available
-=== CONT  TestMeasurand_IsValid_PowerFactor
-=== CONT  TestMeasurand_IsValid_PowerOffered
-=== CONT  TestMeasurand_IsValid_PowerActiveExport
-=== CONT  TestChargePointErrorCode_String_WeakSignal
-=== CONT  TestMeasurand_IsValid_Frequency
---- PASS: TestNewChargingSchedulePeriod_WithPhases (0.00s)
---- PASS: TestNewChargingSchedulePeriod_Valid (0.00s)
---- PASS: TestChargingSchedule_String (0.00s)
-=== CONT  TestMeasurand_String_EnergyActiveExportInterval
-=== CONT  TestMeasurand_IsValid_EnergyReactiveExportInterval
-=== CONT  TestMeasurand_IsValid_EnergyActiveImportInterval
-=== CONT  TestChargePointErrorCode_String_UnderVoltage
-=== CONT  TestChargePointStatus_String_Reserved
-=== CONT  TestMeasurand_IsValid_EnergyReactiveImportRegister
-=== CONT  TestMeasurand_IsValid_EnergyReactiveExportRegister
-=== CONT  TestMeasurand_IsValid_EnergyActiveImportRegister
-=== CONT  TestChargePointErrorCode_String_ResetFailure
-=== CONT  TestMeasurand_String_EnergyActiveExportRegister
-=== CONT  TestMeasurand_IsValid_CurrentOffered
-=== CONT  TestMeasurand_IsValid_CurrentImport
-=== CONT  TestMeasurand_IsValid_CurrentExport
-=== CONT  TestChargePointErrorCode_String_ReaderFailure
-=== CONT  TestMeasurand_String_CurrentOffered
-=== CONT  TestLocation_String_Inlet
-=== CONT  TestMeasurand_IsValid_Lowercase
-=== CONT  TestChargePointStatus_IsValid_SuspendedEV
-=== CONT  TestLocation_String_Body
-=== CONT  TestChargePointErrorCode_String_PowerSwitchFailure
-=== CONT  TestLocation_IsValid_Lowercase
-=== CONT  TestLocation_IsValid_Unknown
-=== CONT  TestChargePointErrorCode_String_PowerMeterFailure
-=== CONT  TestMeasurand_IsValid_Unknown
-=== CONT  TestLocation_IsValid_Outlet
-=== CONT  TestChargePointErrorCode_String_OverVoltage
-=== CONT  TestLocation_IsValid_Inlet
-=== CONT  TestLocation_IsValid_EV
-=== CONT  TestChargePointErrorCode_String_OverCurrentFailure
-=== CONT  TestLocation_IsValid_Cable
-=== CONT  TestChargePointErrorCode_String_OtherError
-=== CONT  TestLocation_IsValid_Body
-=== CONT  TestMeasurand_String_PowerActiveImport
-=== CONT  TestInteger_String
-=== CONT  TestChargePointErrorCode_String_InternalError
-=== CONT  TestMeasurand_IsValid_PowerActiveImport
-=== CONT  TestChargePointErrorCode_String_HighTemperature
-=== CONT  TestMeasurand_IsValid_EnergyReactiveImportInterval
-=== CONT  TestNewInteger_Max
---- PASS: TestChargingSchedule_Getters (0.00s)
-=== CONT  TestChargePointErrorCode_String_GroundFailure
---- PASS: TestNewChargingSchedule_MultipleErrors (0.00s)
---- PASS: TestChargePointErrorCode_String_GroundFailure (0.00s)
-=== CONT  TestNewInteger_Zero
-=== CONT  TestMeasurand_IsValid_EnergyActiveExportInterval
-=== CONT  TestChargePointErrorCode_String_EVCommunicationError
-=== CONT  TestNewInteger
-=== CONT  TestMeasurand_IsValid_EnergyActiveExportRegister
-=== CONT  TestChargePointErrorCode_String_NoError
-=== CONT  TestChargePointErrorCode_IsValid_Lowercase
-=== CONT  TestIdToken_Value
-=== CONT  TestChargePointErrorCode_IsValid_Unknown
-=== CONT  TestChargePointErrorCode_String_ConnectorLockFailure
-=== CONT  TestChargePointErrorCode_IsValid_Empty
-=== CONT  TestIdTagInfo_String
-=== CONT  TestLocation_String_EV
-=== CONT  TestChargePointErrorCode_IsValid_WeakSignal
-=== CONT  TestChargePointErrorCode_IsValid_UnderVoltage
-=== CONT  TestIdTagInfo_ExpiryDate_Nil
-=== CONT  TestIdTagInfo_WithParentIdTag
-=== CONT  TestIdTagInfo_ParentIdTag_Nil
-=== CONT  TestIdTagInfo_WithExpiryDate
-=== CONT  TestChargePointErrorCode_String_LocalListConflict
-=== CONT  TestChargePointErrorCode_IsValid_ReaderFailure
-=== CONT  TestNewIdTagInfo_InvalidStatus
-=== CONT  TestChargePointErrorCode_IsValid_PowerSwitchFailure
-=== CONT  TestChargePointErrorCode_IsValid_PowerMeterFailure
-=== CONT  TestNewIdTagInfo_AllStatuses
-=== CONT  TestChargePointErrorCode_IsValid_OverVoltage
-=== CONT  TestNewInteger_Negative
-=== CONT  TestErrInvalidValue_Message
-=== CONT  TestChargePointErrorCode_IsValid_OverCurrentFailure
---- PASS: TestNewChargingSchedule_WithOptionals (0.00s)
-=== CONT  TestChargePointErrorCode_IsValid_OtherError
---- PASS: TestNewChargingSchedule_EmptyPeriods (0.00s)
-=== CONT  TestErrEmptyValue_Message
-=== CONT  TestErrInvalidValue_NotNil
-=== CONT  TestLocation_String_Outlet
-=== CONT  TestChargePointErrorCode_IsValid_InternalError
-=== CONT  TestDateTime_String
-=== CONT  TestIdToken_String
-=== CONT  TestNewIdToken
-=== CONT  TestChargePointErrorCode_IsValid_GroundFailure
-=== CONT  TestNewDateTime_InvalidFormat
-=== CONT  TestLocation_IsValid_Empty
-=== CONT  TestChargePointErrorCode_IsValid_EVCommunicationError
-=== CONT  TestLocation_String_Cable
-=== CONT  TestChargePointErrorCode_IsValid_NoError
-=== CONT  TestNewDateTime
-=== CONT  TestChargePointErrorCode_IsValid_ResetFailure
-=== CONT  TestAuthorizationStatus_String_ConcurrentTx
-=== CONT  TestAuthorizationStatus_String_Invalid
-=== CONT  TestCiString500Type_String
-=== CONT  TestAuthorizationStatus_String_Expired
-=== CONT  TestNewCiString500_TooLong
-=== CONT  TestNewIdTagInfo_Accepted
-=== CONT  TestAuthorizationStatus_String_Blocked
---- PASS: TestNewChargingSchedule_InvalidRateUnit (0.00s)
---- PASS: TestNewChargingSchedule_Valid (0.00s)
---- PASS: TestChargingRateUnit_String_Amperes (0.00s)
-=== CONT  TestAuthorizationStatus_String_Accepted
---- PASS: TestChargingRateUnit_String_Watts (0.00s)
-=== CONT  TestNewCiString500Type
-=== CONT  TestAuthorizationStatus_IsValid_Lowercase
-=== CONT  TestNewCiString500_Empty
-=== CONT  TestNewCiString255_TestValue
-=== CONT  TestChargePointErrorCode_IsValid_HighTemperature
-=== CONT  TestAuthorizationStatus_IsValid_Expired
-=== CONT  TestNewDateTime_NonUTC
-=== CONT  TestChargePointErrorCode_IsValid_ConnectorLockFailure
-=== CONT  TestAuthorizationStatus_IsValid_Blocked
-=== CONT  TestNewCiString255_Empty
-=== CONT  TestNewCiString255Type
-=== CONT  TestNewDateTime_Empty
-=== CONT  TestAuthorizationStatus_IsValid_Empty
-=== CONT  TestStopReason_IsValid_Local
 === CONT  TestValueFormat_String_SignedData
+=== CONT  TestChargingRateUnit_IsValid_Empty
 === CONT  TestValueFormat_String_Raw
 === CONT  TestValueFormat_IsValid_Lowercase
+=== CONT  TestChargingRateUnit_IsValid_Watts
+=== CONT  TestChargingRateUnit_IsValid_Amperes
 === CONT  TestValueFormat_IsValid_Unknown
-=== CONT  TestNewCiString50_TestValue
+=== CONT  TestChargingProfilePurposeType_String_TxProfile
 === CONT  TestValueFormat_IsValid_Empty
-=== CONT  TestValueFormat_IsValid_SignedData
+=== CONT  TestChargingProfilePurposeType_String_TxDefaultProfile
+=== CONT  TestChargingProfilePurposeType_String_ChargePointMaxProfile
+=== CONT  TestChargingSchedule_Getters
 === CONT  TestValueFormat_IsValid_Raw
-=== CONT  TestNewCiString50_TooLong
-=== CONT  TestUnitOfMeasure_String_Hz
+=== CONT  TestChargingProfilePurposeType_IsValid_Lowercase
 === CONT  TestUnitOfMeasure_String_Celsius
-=== CONT  TestNewCiString50_Empty
+=== CONT  TestChargingProfilePurposeType_IsValid_Unknown
 === CONT  TestUnitOfMeasure_String_K
+=== CONT  TestMeasurand_IsValid_EnergyActiveExportRegister
+=== CONT  TestChargingProfilePurposeType_IsValid_Empty
 === CONT  TestUnitOfMeasure_String_V
-=== CONT  TestUnitOfMeasure_String_A
-=== CONT  TestCiString50Type_String
-=== CONT  TestUnitOfMeasure_String_KVAR
-=== CONT  TestUnitOfMeasure_String_VAR
-=== CONT  TestUnitOfMeasure_String_KVA
-=== CONT  TestUnitOfMeasure_String_VA
-=== CONT  TestReadingContext_IsValid_Lowercase
-=== CONT  TestUnitOfMeasure_String_KW
-=== CONT  TestStopReason_IsValid_HardReset
-=== CONT  TestUnitOfMeasure_String_W
-=== CONT  TestNewCiString500_TestValue
-=== CONT  TestUnitOfMeasure_String_Wh
-=== CONT  TestChargePointErrorCode_IsValid_LocalListConflict
-=== CONT  TestStopReason_IsValid_EVDisconnected
-=== CONT  TestErrEmptyValue_NotNil
-=== CONT  TestStopReason_IsValid_EmergencyStop
---- PASS: TestChargingRateUnit_IsValid_Lowercase (0.00s)
---- PASS: TestChargingRateUnit_IsValid_Unknown (0.00s)
---- PASS: TestChargingRateUnit_IsValid_Empty (0.00s)
---- PASS: TestChargingRateUnit_IsValid_Amperes (0.00s)
---- PASS: TestChargingRateUnit_IsValid_Watts (0.00s)
---- PASS: TestChargingProfilePurposeType_String_TxProfile (0.00s)
---- PASS: TestChargingProfilePurposeType_String_TxDefaultProfile (0.00s)
---- PASS: TestNewCiString25_Empty (0.00s)
-=== CONT  TestCiString255Type_String
-=== CONT  TestStopReason_IsValid_DeAuthorized
-=== CONT  TestAuthorizationStatus_IsValid_Unknown
-=== CONT  TestUnitOfMeasure_IsValid_Hz
-=== CONT  TestSampledValue_String
-=== CONT  TestUnitOfMeasure_IsValid_Celsius
-=== CONT  TestNewSampledValue_NilOptionals
-=== CONT  TestNewSampledValue_InvalidFormat
-=== CONT  TestUnitOfMeasure_IsValid_V
-=== CONT  TestNewSampledValue_InvalidContext
-=== CONT  TestUnitOfMeasure_IsValid_A
-=== CONT  TestNewSampledValue_EmptyValue
+=== CONT  TestChargingRateUnit_String_Amperes
+=== CONT  TestChargingProfilePurposeType_IsValid_TxProfile
+=== CONT  TestChargingProfilePurposeType_IsValid_TxDefaultProfile
+=== CONT  TestChargePointStatus_String_Faulted
+=== CONT  TestChargingProfilePurposeType_IsValid_ChargePointMaxProfile
+=== CONT  TestChargePointStatus_String_Unavailable
 === CONT  TestUnitOfMeasure_IsValid_KVAR
-=== CONT  TestUnitOfMeasure_IsValid_K
+=== CONT  TestChargingRateUnit_IsValid_Unknown
 === CONT  TestUnitOfMeasure_IsValid_VAR
-=== CONT  TestNewSampledValue_MinimalValid
+=== CONT  TestChargePointStatus_String_Finishing
+=== CONT  TestErrInvalidValue_NotNil
 === CONT  TestUnitOfMeasure_IsValid_KVA
+=== CONT  TestUnitOfMeasure_IsValid_VA
+=== CONT  TestChargePointStatus_String_SuspendedEV
+=== CONT  TestUnitOfMeasure_IsValid_KW
+=== CONT  TestChargePointStatus_String_SuspendedEVSE
+=== CONT  TestChargePointStatus_String_Charging
+=== CONT  TestUnitOfMeasure_IsValid_W
+=== CONT  TestChargePointStatus_String_Preparing
+=== CONT  TestChargePointStatus_String_Available
+=== CONT  TestUnitOfMeasure_IsValid_Wh
+=== CONT  TestUnitOfMeasure_IsValid_KWh
+=== CONT  TestChargePointStatus_IsValid_Lowercase
+=== CONT  TestStopReason_String_SoftReset
+=== CONT  TestChargePointStatus_IsValid_Unknown
+=== CONT  TestNewChargingSchedule_Valid
+=== CONT  TestUnitOfMeasure_String_Hz
+=== CONT  TestChargePointStatus_IsValid_Empty
+=== CONT  TestStopReason_String_Reboot
+=== CONT  TestUnitOfMeasure_String_A
+=== CONT  TestChargePointStatus_IsValid_Faulted
+=== CONT  TestChargePointStatus_IsValid_Unavailable
+=== CONT  TestStopReason_String_Local
+=== CONT  TestChargePointStatus_IsValid_Reserved
+=== CONT  TestChargePointStatus_IsValid_Finishing
+=== CONT  TestStopReason_String_EVDisconnected
+--- PASS: TestMeasurand_IsValid_Frequency (0.00s)
+=== CONT  TestChargePointStatus_IsValid_SuspendedEVSE
+--- PASS: TestUnitOfMeasure_IsValid_Lowercase (0.00s)
+--- PASS: TestNewInteger_Max (0.00s)
+=== CONT  TestUnitOfMeasure_String_KVAR
+=== CONT  TestStopReason_String_EmergencyStop
+=== CONT  TestChargePointStatus_IsValid_Charging
+=== CONT  TestUnitOfMeasure_IsValid_A
+=== CONT  TestChargePointStatus_IsValid_Preparing
+=== CONT  TestStopReason_IsValid_Lowercase
+=== CONT  TestChargePointStatus_String_Reserved
+=== CONT  TestStopReason_IsValid_Unknown
+=== CONT  TestChargingSchedule_String
+=== CONT  TestChargePointErrorCode_String_UnderVoltage
+=== CONT  TestChargePointErrorCode_String_ResetFailure
+=== CONT  TestStopReason_IsValid_UnlockCommand
+=== CONT  TestChargePointErrorCode_String_ReaderFailure
+=== CONT  TestStopReason_IsValid_Empty
+=== CONT  TestStopReason_String_UnlockCommand
+=== CONT  TestStopReason_IsValid_Remote
+=== CONT  TestStopReason_String_Remote
+=== CONT  TestStopReason_IsValid_Reboot
+=== CONT  TestChargePointErrorCode_String_OverVoltage
+=== CONT  TestStopReason_String_Other
+=== CONT  TestChargePointErrorCode_String_OtherError
+=== CONT  TestStopReason_IsValid_PowerLoss
+=== CONT  TestChargePointErrorCode_String_LocalListConflict
+=== CONT  TestStopReason_String_HardReset
+=== CONT  TestStopReason_IsValid_Local
+=== CONT  TestChargePointErrorCode_String_InternalError
+=== CONT  TestStopReason_IsValid_HardReset
+=== CONT  TestChargePointStatus_IsValid_SuspendedEV
+=== CONT  TestChargePointErrorCode_String_HighTemperature
+=== CONT  TestStopReason_IsValid_EmergencyStop
+--- PASS: TestUnitOfMeasure_IsValid_Unknown (0.00s)
+=== CONT  TestChargePointErrorCode_String_GroundFailure
+--- PASS: TestNewInteger_Zero (0.00s)
+--- PASS: TestUnitOfMeasure_IsValid_Empty (0.00s)
+--- PASS: TestNewInteger (0.00s)
+--- PASS: TestIdToken_String (0.00s)
+--- PASS: TestIdToken_Value (0.00s)
+=== CONT  TestStopReason_String_DeAuthorized
+--- PASS: TestUnitOfMeasure_IsValid_Hz (0.00s)
+=== CONT  TestChargePointErrorCode_String_EVCommunicationError
+=== CONT  TestSampledValue_String
+=== CONT  TestChargePointErrorCode_String_ConnectorLockFailure
+=== CONT  TestNewSampledValue_NilOptionals
+=== CONT  TestStopReason_IsValid_DeAuthorized
+=== CONT  TestChargePointErrorCode_String_NoError
+=== CONT  TestNewSampledValue_InvalidFormat
+=== CONT  TestChargePointErrorCode_IsValid_Lowercase
+=== CONT  TestNewSampledValue_InvalidContext
+=== CONT  TestChargePointErrorCode_IsValid_Unknown
+=== CONT  TestChargePointErrorCode_IsValid_Empty
+--- PASS: TestUnitOfMeasure_IsValid_Celsius (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_Empty (0.00s)
+=== CONT  TestChargePointErrorCode_String_WeakSignal
+--- PASS: TestIdTagInfo_String (0.00s)
+=== CONT  TestNewSampledValue_EmptyValue
+--- PASS: TestIdTagInfo_ParentIdTag_Nil (0.00s)
+--- PASS: TestNewSampledValue_EmptyValue (0.00s)
+=== CONT  TestChargePointErrorCode_IsValid_WeakSignal
+=== CONT  TestNewSampledValue_MinimalValid
+=== CONT  TestNewSampledValue_AllFields
+=== CONT  TestChargePointErrorCode_IsValid_ResetFailure
 === CONT  TestRegistrationStatus_String_Rejected
 === CONT  TestRegistrationStatus_String_Pending
+=== CONT  TestChargePointErrorCode_IsValid_PowerSwitchFailure
 === CONT  TestRegistrationStatus_String_Accepted
-=== CONT  TestNewInteger_Overflow
-=== CONT  TestUnitOfMeasure_IsValid_VA
+=== CONT  TestChargePointErrorCode_IsValid_PowerMeterFailure
+=== CONT  TestChargePointErrorCode_IsValid_ReaderFailure
+=== CONT  TestRegistrationStatus_IsValid_Lowercase
+=== CONT  TestChargePointErrorCode_IsValid_OverVoltage
+=== CONT  TestChargePointErrorCode_String_PowerSwitchFailure
 === CONT  TestRegistrationStatus_IsValid_Unknown
-=== CONT  TestUnitOfMeasure_IsValid_KW
 === CONT  TestRegistrationStatus_IsValid_Empty
+=== CONT  TestChargePointErrorCode_String_PowerMeterFailure
 === CONT  TestRegistrationStatus_IsValid_Rejected
-=== CONT  TestUnitOfMeasure_IsValid_W
+=== CONT  TestChargePointErrorCode_IsValid_LocalListConflict
+=== CONT  TestChargePointErrorCode_IsValid_InternalError
+=== CONT  TestChargePointErrorCode_IsValid_HighTemperature
+=== CONT  TestChargePointErrorCode_IsValid_GroundFailure
+=== CONT  TestChargePointErrorCode_IsValid_EVCommunicationError
+=== CONT  TestChargePointErrorCode_IsValid_ConnectorLockFailure
+=== CONT  TestChargePointErrorCode_IsValid_NoError
+=== CONT  TestAuthorizationStatus_String_ConcurrentTx
+=== CONT  TestAuthorizationStatus_String_Invalid
+=== CONT  TestAuthorizationStatus_String_Expired
+=== CONT  TestAuthorizationStatus_String_Blocked
+=== CONT  TestChargePointErrorCode_IsValid_OtherError
+=== CONT  TestAuthorizationStatus_IsValid_Lowercase
+=== CONT  TestStopReason_IsValid_EVDisconnected
+=== CONT  TestAuthorizationStatus_IsValid_Empty
+=== CONT  TestAuthorizationStatus_IsValid_ConcurrentTx
+=== CONT  TestAuthorizationStatus_IsValid_Unknown
+=== CONT  TestAuthorizationStatus_IsValid_Expired
+=== CONT  TestAuthorizationStatus_IsValid_Blocked
 === CONT  TestRegistrationStatus_IsValid_Pending
 === CONT  TestRegistrationStatus_IsValid_Accepted
-=== CONT  TestUnitOfMeasure_IsValid_Wh
 === CONT  TestReadingContext_String_Trigger
-=== CONT  TestStopReason_String_UnlockCommand
-=== CONT  TestReadingContext_String_TransactionEnd
-=== CONT  TestNewCiString50Type
-=== CONT  TestStopReason_String_Remote
-=== CONT  TestReadingContext_String_TransactionBegin
-=== CONT  TestStopReason_String_Reboot
-=== CONT  TestUnitOfMeasure_IsValid_KWh
-=== CONT  TestUnitOfMeasure_String_KWh
-=== CONT  TestReadingContext_String_SampleClock
-=== CONT  TestStopReason_String_Other
-=== CONT  TestUnitOfMeasure_IsValid_Lowercase
-=== CONT  TestUnitOfMeasure_IsValid_Unknown
-=== CONT  TestReadingContext_String_InterruptionEnd
-=== CONT  TestStopReason_String_HardReset
-=== CONT  TestReadingContext_String_InterruptionBegin
-=== CONT  TestStopReason_String_EVDisconnected
-=== CONT  TestStopReason_String_EmergencyStop
-=== CONT  TestUnitOfMeasure_IsValid_Empty
-=== CONT  TestStopReason_IsValid_Lowercase
-=== CONT  TestStopReason_IsValid_Unknown
-=== CONT  TestStopReason_IsValid_Empty
-=== CONT  TestStopReason_IsValid_UnlockCommand
-=== CONT  TestAuthorizationStatus_IsValid_ConcurrentTx
-=== CONT  TestStopReason_IsValid_SoftReset
-=== CONT  TestStopReason_IsValid_Remote
-=== CONT  TestStopReason_IsValid_Other
-=== CONT  TestStopReason_IsValid_PowerLoss
-=== CONT  TestStopReason_IsValid_Reboot
---- PASS: TestChargingProfilePurposeType_IsValid_Lowercase (0.00s)
---- PASS: TestChargingProfilePurposeType_IsValid_Unknown (0.00s)
---- PASS: TestNewCiString25Type (0.00s)
---- PASS: TestCiString20Type_String (0.00s)
---- PASS: TestChargingProfilePurposeType_IsValid_TxDefaultProfile (0.00s)
---- PASS: TestChargingProfilePurposeType_IsValid_ChargePointMaxProfile (0.00s)
-=== CONT  TestNewCiString255_TooLong
-=== CONT  TestReadingContext_IsValid_SampleClock
-=== CONT  TestReadingContext_IsValid_Other
-=== CONT  TestRegistrationStatus_IsValid_Lowercase
-=== CONT  TestReadingContext_IsValid_InterruptionEnd
-=== CONT  TestStopReason_String_SoftReset
-=== CONT  TestReadingContext_IsValid_Trigger
-=== CONT  TestReadingContext_String_SamplePeriodic
-=== CONT  TestReadingContext_IsValid_TransactionEnd
-=== CONT  TestPhase_String_L3L1
-=== CONT  TestReadingContext_IsValid_TransactionBegin
-=== CONT  TestReadingContext_IsValid_SamplePeriodic
-=== CONT  TestPhase_String_L2L3
-=== CONT  TestStopReason_String_PowerLoss
-=== CONT  TestPhase_IsValid_Empty
-=== CONT  TestReadingContext_String_Other
-=== CONT  TestPhase_String_SinglePhase
-=== CONT  TestPhase_IsValid_Lowercase
-=== CONT  TestPhase_String_L3
-=== CONT  TestStopReason_String_Local
-=== CONT  TestPhase_String_L2
-=== CONT  TestPhase_IsValid_N
-=== CONT  TestStopReason_String_DeAuthorized
-=== CONT  TestPhase_IsValid_L2
-=== CONT  TestPhase_IsValid_L2L3
-=== CONT  TestPhase_IsValid_L3
-=== CONT  TestPhase_String_N
-=== CONT  TestAuthorizationStatus_IsValid_Invalid
---- PASS: TestNewCiString20_TestValue (0.00s)
-=== CONT  TestNewSampledValue_AllFields
-=== CONT  TestReadingContext_IsValid_Unknown
-=== CONT  TestReadingContext_IsValid_Empty
-=== CONT  TestReadingContext_IsValid_InterruptionBegin
-=== CONT  TestPhase_String_L1L2
-=== CONT  TestPhase_String_L1
-=== CONT  TestPhase_IsValid_Unknown
-=== CONT  TestPhase_IsValid_L3L1
-=== CONT  TestPhase_IsValid_L1L2
---- PASS: TestChargePointStatus_String_Unavailable (0.00s)
---- PASS: TestNewCiString20_TooLong (0.00s)
---- PASS: TestChargePointStatus_String_Finishing (0.00s)
---- PASS: TestNewCiString20_Empty (0.00s)
---- PASS: TestChargePointStatus_String_SuspendedEVSE (0.00s)
---- PASS: TestChargePointStatus_String_SuspendedEV (0.00s)
---- PASS: TestChargePointStatus_String_Charging (0.00s)
---- PASS: TestChargePointStatus_String_Preparing (0.00s)
---- PASS: TestNewCiString20Type (0.00s)
---- PASS: TestPhase_IsValid_SinglePhase (0.00s)
---- PASS: TestCiString25Type_String (0.00s)
---- PASS: TestNewMeterValue_Getters (0.00s)
---- PASS: TestMeterValue_String (0.00s)
---- PASS: TestNewMeterValue_EmptySampledValues (0.00s)
---- PASS: TestChargePointStatus_IsValid_Lowercase (0.00s)
---- PASS: TestNewMeterValue_InvalidTimestamp (0.00s)
---- PASS: TestNewMeterValue_Valid (0.00s)
---- PASS: TestChargePointStatus_IsValid_Unknown (0.00s)
---- PASS: TestChargingSchedulePeriod_Getters (0.00s)
---- PASS: TestMeasurand_String_SoC (0.00s)
---- PASS: TestChargePointStatus_IsValid_Empty (0.00s)
---- PASS: TestMeasurand_String_RPM (0.00s)
---- PASS: TestMeasurand_String_PowerReactiveImport (0.00s)
---- PASS: TestMeasurand_String_Temperature (0.00s)
---- PASS: TestChargePointStatus_IsValid_Faulted (0.00s)
---- PASS: TestMeasurand_String_PowerOffered (0.00s)
---- PASS: TestMeasurand_String_PowerFactor (0.00s)
---- PASS: TestChargingProfilePurposeType_IsValid_Empty (0.00s)
---- PASS: TestMeasurand_String_PowerActiveExport (0.00s)
---- PASS: TestMeasurand_String_Frequency (0.00s)
---- PASS: TestChargePointStatus_IsValid_Unavailable (0.00s)
---- PASS: TestMeasurand_String_EnergyReactiveImportInterval (0.00s)
---- PASS: TestMeasurand_String_EnergyReactiveExportInterval (0.00s)
---- PASS: TestChargePointStatus_IsValid_Reserved (0.00s)
---- PASS: TestMeasurand_String_EnergyActiveImportInterval (0.00s)
---- PASS: TestChargingProfilePurposeType_IsValid_TxProfile (0.00s)
---- PASS: TestMeasurand_String_EnergyReactiveImportRegister (0.00s)
---- PASS: TestChargePointStatus_String_Faulted (0.00s)
---- PASS: TestChargePointStatus_IsValid_Finishing (0.00s)
---- PASS: TestMeasurand_String_EnergyReactiveExportRegister (0.00s)
---- PASS: TestMeasurand_String_EnergyActiveImportRegister (0.00s)
---- PASS: TestChargePointStatus_IsValid_SuspendedEVSE (0.00s)
---- PASS: TestChargePointStatus_String_Available (0.00s)
---- PASS: TestMeasurand_String_CurrentImport (0.00s)
---- PASS: TestMeasurand_String_CurrentExport (0.00s)
---- PASS: TestMeasurand_String_Voltage (0.00s)
---- PASS: TestChargingSchedulePeriod_String (0.00s)
---- PASS: TestChargingProfilePurposeType_String_ChargePointMaxProfile (0.00s)
---- PASS: TestMeasurand_IsValid_Empty (0.00s)
---- PASS: TestChargePointStatus_IsValid_Charging (0.00s)
---- PASS: TestMeasurand_IsValid_Voltage (0.00s)
---- PASS: TestChargePointStatus_IsValid_Preparing (0.00s)
---- PASS: TestMeasurand_IsValid_Temperature (0.00s)
---- PASS: TestMeasurand_IsValid_SoC (0.00s)
---- PASS: TestMeasurand_IsValid_RPM (0.00s)
---- PASS: TestMeasurand_String_PowerReactiveExport (0.00s)
---- PASS: TestMeasurand_IsValid_PowerReactiveImport (0.00s)
---- PASS: TestMeasurand_IsValid_PowerReactiveExport (0.00s)
---- PASS: TestChargePointStatus_IsValid_Available (0.00s)
---- PASS: TestMeasurand_IsValid_PowerFactor (0.00s)
---- PASS: TestMeasurand_IsValid_PowerOffered (0.00s)
---- PASS: TestMeasurand_IsValid_PowerActiveExport (0.00s)
---- PASS: TestChargePointErrorCode_String_WeakSignal (0.00s)
---- PASS: TestMeasurand_IsValid_Frequency (0.00s)
---- PASS: TestMeasurand_String_EnergyActiveExportInterval (0.00s)
---- PASS: TestMeasurand_IsValid_EnergyReactiveExportInterval (0.00s)
---- PASS: TestMeasurand_IsValid_EnergyActiveImportInterval (0.00s)
---- PASS: TestChargePointErrorCode_String_UnderVoltage (0.00s)
---- PASS: TestChargePointStatus_String_Reserved (0.00s)
---- PASS: TestMeasurand_IsValid_EnergyReactiveImportRegister (0.00s)
---- PASS: TestMeasurand_IsValid_EnergyReactiveExportRegister (0.00s)
---- PASS: TestMeasurand_IsValid_EnergyActiveImportRegister (0.00s)
---- PASS: TestChargePointErrorCode_String_ResetFailure (0.00s)
---- PASS: TestMeasurand_String_EnergyActiveExportRegister (0.00s)
---- PASS: TestMeasurand_IsValid_CurrentOffered (0.00s)
---- PASS: TestMeasurand_IsValid_CurrentImport (0.00s)
---- PASS: TestMeasurand_IsValid_CurrentExport (0.00s)
---- PASS: TestChargePointErrorCode_String_ReaderFailure (0.00s)
---- PASS: TestMeasurand_String_CurrentOffered (0.00s)
---- PASS: TestLocation_String_Inlet (0.00s)
---- PASS: TestMeasurand_IsValid_Lowercase (0.00s)
---- PASS: TestChargePointStatus_IsValid_SuspendedEV (0.00s)
---- PASS: TestLocation_String_Body (0.00s)
---- PASS: TestChargePointErrorCode_String_PowerSwitchFailure (0.00s)
---- PASS: TestLocation_IsValid_Lowercase (0.00s)
---- PASS: TestLocation_IsValid_Unknown (0.00s)
---- PASS: TestChargePointErrorCode_String_PowerMeterFailure (0.00s)
---- PASS: TestMeasurand_IsValid_Unknown (0.00s)
---- PASS: TestLocation_IsValid_Outlet (0.00s)
---- PASS: TestChargePointErrorCode_String_OverVoltage (0.00s)
---- PASS: TestLocation_IsValid_Inlet (0.00s)
---- PASS: TestLocation_IsValid_EV (0.00s)
---- PASS: TestChargePointErrorCode_String_OverCurrentFailure (0.00s)
---- PASS: TestLocation_IsValid_Cable (0.00s)
---- PASS: TestChargePointErrorCode_String_OtherError (0.00s)
---- PASS: TestLocation_IsValid_Body (0.00s)
---- PASS: TestMeasurand_String_PowerActiveImport (0.00s)
---- PASS: TestInteger_String (0.00s)
---- PASS: TestChargePointErrorCode_String_InternalError (0.00s)
---- PASS: TestMeasurand_IsValid_PowerActiveImport (0.00s)
---- PASS: TestChargePointErrorCode_String_HighTemperature (0.00s)
---- PASS: TestMeasurand_IsValid_EnergyReactiveImportInterval (0.00s)
---- PASS: TestNewInteger_Max (0.00s)
---- PASS: TestNewChargingSchedule_NilOptionals (0.00s)
---- PASS: TestNewInteger_Zero (0.00s)
---- PASS: TestMeasurand_IsValid_EnergyActiveExportInterval (0.00s)
---- PASS: TestChargePointErrorCode_String_EVCommunicationError (0.00s)
---- PASS: TestNewInteger (0.00s)
---- PASS: TestMeasurand_IsValid_EnergyActiveExportRegister (0.00s)
---- PASS: TestChargePointErrorCode_String_NoError (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_Lowercase (0.00s)
---- PASS: TestIdToken_Value (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_Unknown (0.00s)
---- PASS: TestChargePointErrorCode_String_ConnectorLockFailure (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_Empty (0.00s)
---- PASS: TestIdTagInfo_String (0.00s)
---- PASS: TestLocation_String_EV (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_WeakSignal (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_UnderVoltage (0.00s)
 --- PASS: TestIdTagInfo_ExpiryDate_Nil (0.00s)
---- PASS: TestIdTagInfo_WithParentIdTag (0.00s)
---- PASS: TestIdTagInfo_ParentIdTag_Nil (0.00s)
+=== CONT  TestReadingContext_String_InterruptionBegin
+--- PASS: TestMeasurand_IsValid_EnergyReactiveImportInterval (0.00s)
+--- PASS: TestReadingContext_String_InterruptionBegin (0.00s)
+=== CONT  TestStopReason_IsValid_SoftReset
 --- PASS: TestIdTagInfo_WithExpiryDate (0.00s)
---- PASS: TestChargePointErrorCode_String_LocalListConflict (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_ReaderFailure (0.00s)
---- PASS: TestNewIdTagInfo_InvalidStatus (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_PowerSwitchFailure (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_PowerMeterFailure (0.00s)
---- PASS: TestNewIdTagInfo_AllStatuses (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_OverVoltage (0.00s)
---- PASS: TestNewInteger_Negative (0.00s)
---- PASS: TestErrInvalidValue_Message (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_OverCurrentFailure (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_OtherError (0.00s)
---- PASS: TestErrEmptyValue_Message (0.00s)
---- PASS: TestErrInvalidValue_NotNil (0.00s)
---- PASS: TestLocation_String_Outlet (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_InternalError (0.00s)
---- PASS: TestDateTime_String (0.00s)
---- PASS: TestIdToken_String (0.00s)
---- PASS: TestNewIdToken (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_GroundFailure (0.00s)
---- PASS: TestLocation_IsValid_Empty (0.00s)
---- PASS: TestNewDateTime_InvalidFormat (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_EVCommunicationError (0.00s)
---- PASS: TestLocation_String_Cable (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_NoError (0.00s)
---- PASS: TestNewDateTime (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_ResetFailure (0.00s)
---- PASS: TestAuthorizationStatus_String_ConcurrentTx (0.00s)
---- PASS: TestAuthorizationStatus_String_Invalid (0.00s)
---- PASS: TestCiString500Type_String (0.00s)
---- PASS: TestAuthorizationStatus_String_Expired (0.00s)
+=== CONT  TestReadingContext_IsValid_Lowercase
+--- PASS: TestMeasurand_IsValid_EnergyReactiveExportInterval (0.00s)
+--- PASS: TestReadingContext_IsValid_Lowercase (0.00s)
 --- PASS: TestNewIdTagInfo_Accepted (0.00s)
---- PASS: TestNewCiString500_TooLong (0.00s)
---- PASS: TestAuthorizationStatus_String_Blocked (0.00s)
---- PASS: TestAuthorizationStatus_String_Accepted (0.00s)
---- PASS: TestNewCiString500Type (0.00s)
---- PASS: TestAuthorizationStatus_IsValid_Lowercase (0.00s)
---- PASS: TestNewCiString500_Empty (0.00s)
---- PASS: TestNewCiString255_TestValue (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_HighTemperature (0.00s)
---- PASS: TestAuthorizationStatus_IsValid_Expired (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_ConnectorLockFailure (0.00s)
---- PASS: TestAuthorizationStatus_IsValid_Blocked (0.00s)
---- PASS: TestNewCiString255_Empty (0.00s)
+--- PASS: TestErrInvalidValue_Message (0.00s)
+=== CONT  TestReadingContext_IsValid_SampleClock
+=== CONT  TestChargePointErrorCode_IsValid_OverCurrentFailure
+=== CONT  TestReadingContext_String_SamplePeriodic
+=== CONT  TestReadingContext_IsValid_Empty
+=== CONT  TestReadingContext_String_SampleClock
+=== CONT  TestReadingContext_IsValid_Unknown
+=== CONT  TestReadingContext_String_Other
+=== CONT  TestReadingContext_IsValid_Trigger
+=== CONT  TestReadingContext_IsValid_TransactionEnd
+=== CONT  TestReadingContext_String_InterruptionEnd
+=== CONT  TestReadingContext_IsValid_SamplePeriodic
+=== CONT  TestReadingContext_IsValid_Other
+=== CONT  TestReadingContext_IsValid_InterruptionEnd
+=== CONT  TestAuthorizationStatus_String_Accepted
+=== CONT  TestPhase_String_L3
+=== CONT  TestReadingContext_IsValid_InterruptionBegin
+=== CONT  TestPhase_String_L2
+=== CONT  TestPhase_String_L3L1
+=== CONT  TestPhase_String_L2L3
+=== CONT  TestPhase_String_L1L2
+=== CONT  TestPhase_String_SinglePhase
+=== CONT  TestPhase_String_N
+=== CONT  TestPhase_IsValid_Lowercase
+=== CONT  TestValueFormat_IsValid_SignedData
+=== CONT  TestPhase_IsValid_Empty
+=== CONT  TestPhase_IsValid_L3
+=== CONT  TestPhase_IsValid_L3L1
+=== CONT  TestPhase_IsValid_L2
+=== CONT  TestAuthorizationStatus_IsValid_Invalid
+=== CONT  TestPhase_IsValid_L2L3
+=== CONT  TestPhase_IsValid_L1
+=== CONT  TestReadingContext_String_TransactionEnd
+=== CONT  TestPhase_IsValid_SinglePhase
+=== CONT  TestPhase_IsValid_N
+=== CONT  TestPhase_IsValid_L1L2
+=== CONT  TestNewMeterValue_Getters
+=== CONT  TestNewMeterValue_EmptySampledValues
+=== CONT  TestMeasurand_String_Voltage
+=== CONT  TestChargePointErrorCode_IsValid_UnderVoltage
+=== CONT  TestNewMeterValue_InvalidTimestamp
+=== CONT  TestMeasurand_String_SoC
+=== CONT  TestNewMeterValue_Valid
+=== CONT  TestMeasurand_String_RPM
+=== CONT  TestMeasurand_String_PowerReactiveImport
+--- PASS: TestErrEmptyValue_Message (0.00s)
+=== CONT  TestMeasurand_String_PowerReactiveExport
+--- PASS: TestMeasurand_IsValid_EnergyActiveImportInterval (0.00s)
+=== CONT  TestMeasurand_String_PowerActiveExport
+--- PASS: TestErrEmptyValue_NotNil (0.00s)
+--- PASS: TestMeasurand_String_PowerActiveExport (0.00s)
+=== CONT  TestMeasurand_String_PowerOffered
+--- PASS: TestMeasurand_IsValid_EnergyReactiveImportRegister (0.00s)
+=== CONT  TestMeasurand_String_Frequency
+--- PASS: TestNewDateTime_InvalidFormat (0.00s)
 --- PASS: TestNewDateTime_Empty (0.00s)
+=== CONT  TestChargePointErrorCode_String_OverCurrentFailure
+=== CONT  TestMeasurand_String_EnergyReactiveImportInterval
+=== CONT  TestMeasurand_String_EnergyReactiveExportInterval
+=== CONT  TestMeasurand_String_EnergyActiveExportInterval
+=== CONT  TestStopReason_String_PowerLoss
+=== CONT  TestMeasurand_String_EnergyReactiveImportRegister
+=== CONT  TestMeasurand_String_EnergyActiveImportInterval
+=== CONT  TestStopReason_IsValid_Other
+=== CONT  TestMeasurand_String_CurrentOffered
+=== CONT  TestReadingContext_IsValid_TransactionBegin
+=== CONT  TestPhase_String_L1
+=== CONT  TestMeasurand_String_CurrentExport
+=== CONT  TestPhase_IsValid_Unknown
+=== CONT  TestMeterValue_String
+=== CONT  TestMeasurand_IsValid_Empty
+=== CONT  TestMeasurand_IsValid_Temperature
+=== CONT  TestReadingContext_String_TransactionBegin
+=== CONT  TestMeasurand_IsValid_SoC
+=== CONT  TestMeasurand_IsValid_RPM
+=== CONT  TestMeasurand_String_Temperature
+=== CONT  TestMeasurand_String_PowerActiveImport
+=== CONT  TestMeasurand_IsValid_PowerFactor
+=== CONT  TestMeasurand_IsValid_PowerActiveImport
+--- PASS: TestMeasurand_IsValid_EnergyReactiveExportRegister (0.00s)
+=== CONT  TestChargePointStatus_IsValid_Available
+--- PASS: TestCiString500Type_String (0.00s)
+=== CONT  TestMeasurand_String_PowerFactor
+--- PASS: TestNewDateTime (0.00s)
+=== CONT  TestMeasurand_IsValid_Voltage
+--- PASS: TestNewCiString500_TestValue (0.00s)
+--- PASS: TestMeasurand_IsValid_Voltage (0.00s)
+=== CONT  TestMeasurand_String_CurrentImport
+=== CONT  TestMeasurand_IsValid_Unknown
+=== CONT  TestMeasurand_IsValid_PowerReactiveImport
+=== CONT  TestMeasurand_IsValid_PowerReactiveExport
+=== CONT  TestMeasurand_IsValid_PowerOffered
+=== CONT  TestMeasurand_String_EnergyReactiveExportRegister
+=== CONT  TestMeasurand_String_EnergyActiveExportRegister
+=== CONT  TestMeasurand_String_EnergyActiveImportRegister
+--- PASS: TestNewCiString500_TooLong (0.00s)
+--- PASS: TestNewCiString500_Empty (0.00s)
+--- PASS: TestNewCiString500Type (0.00s)
+=== CONT  TestMeasurand_IsValid_Lowercase
+--- PASS: TestNewCiString255_TestValue (0.00s)
+--- PASS: TestCiString255Type_String (0.00s)
+--- PASS: TestUnitOfMeasure_IsValid_V (0.00s)
+--- PASS: TestNewCiString255_Empty (0.00s)
+--- PASS: TestNewCiString255_TooLong (0.00s)
+--- PASS: TestCiString50Type_String (0.00s)
 --- PASS: TestNewCiString255Type (0.00s)
---- PASS: TestAuthorizationStatus_IsValid_Empty (0.00s)
---- PASS: TestStopReason_IsValid_Local (0.00s)
+--- PASS: TestNewCiString50_TooLong (0.00s)
+--- PASS: TestNewCiString50_Empty (0.00s)
+--- PASS: TestNewCiString50Type (0.00s)
+--- PASS: TestNewInteger_Negative (0.00s)
+--- PASS: TestCiString25Type_String (0.00s)
+--- PASS: TestNewCiString25_TestValue (0.00s)
+--- PASS: TestIdTagInfo_WithParentIdTag (0.00s)
+--- PASS: TestNewCiString25_TooLong (0.00s)
+--- PASS: TestNewCiString25Type (0.00s)
+--- PASS: TestNewIdTagInfo_InvalidStatus (0.00s)
+--- PASS: TestNewCiString20_TestValue (0.00s)
+--- PASS: TestNewCiString20_Empty (0.00s)
+--- PASS: TestNewCiString20Type (0.00s)
+--- PASS: TestCiString20Type_String (0.00s)
+--- PASS: TestChargingSchedulePeriod_Getters (0.00s)
+--- PASS: TestChargingSchedulePeriod_String (0.00s)
+--- PASS: TestNewChargingSchedulePeriod_NilPhases (0.00s)
+--- PASS: TestNewChargingSchedulePeriod_InvalidPhases (0.00s)
+--- PASS: TestNewChargingSchedulePeriod_InvalidStartPeriod (0.00s)
+--- PASS: TestNewChargingSchedulePeriod_Valid (0.00s)
+--- PASS: TestNewChargingSchedulePeriod_WithPhases (0.00s)
+--- PASS: TestNewCiString20_TooLong (0.00s)
+--- PASS: TestNewChargingSchedule_MultipleErrors (0.00s)
+--- PASS: TestNewChargingSchedule_NilOptionals (0.00s)
+--- PASS: TestDateTime_String (0.00s)
+--- PASS: TestNewChargingSchedule_EmptyPeriods (0.00s)
+--- PASS: TestMeasurand_IsValid_EnergyActiveImportRegister (0.00s)
+--- PASS: TestNewChargingSchedule_InvalidRateUnit (0.00s)
+--- PASS: TestNewChargingSchedule_WithOptionals (0.00s)
+--- PASS: TestChargingRateUnit_String_Watts (0.00s)
+--- PASS: TestChargingRateUnit_IsValid_Lowercase (0.00s)
+--- PASS: TestNewCiString50_TestValue (0.00s)
+--- PASS: TestNewDateTime_NonUTC (0.00s)
+--- PASS: TestNewCiString25_Empty (0.00s)
 --- PASS: TestValueFormat_String_SignedData (0.00s)
+--- PASS: TestChargingRateUnit_IsValid_Empty (0.00s)
 --- PASS: TestValueFormat_String_Raw (0.00s)
 --- PASS: TestValueFormat_IsValid_Lowercase (0.00s)
+--- PASS: TestChargingRateUnit_IsValid_Watts (0.00s)
+--- PASS: TestChargingRateUnit_IsValid_Amperes (0.00s)
 --- PASS: TestValueFormat_IsValid_Unknown (0.00s)
---- PASS: TestNewCiString50_TestValue (0.00s)
+--- PASS: TestChargingProfilePurposeType_String_TxProfile (0.00s)
 --- PASS: TestValueFormat_IsValid_Empty (0.00s)
---- PASS: TestValueFormat_IsValid_SignedData (0.00s)
+--- PASS: TestChargingProfilePurposeType_String_TxDefaultProfile (0.00s)
+--- PASS: TestChargingProfilePurposeType_String_ChargePointMaxProfile (0.00s)
+--- PASS: TestChargingSchedule_Getters (0.00s)
 --- PASS: TestValueFormat_IsValid_Raw (0.00s)
---- PASS: TestNewCiString50_TooLong (0.00s)
---- PASS: TestUnitOfMeasure_String_Hz (0.00s)
+--- PASS: TestChargingProfilePurposeType_IsValid_Lowercase (0.00s)
 --- PASS: TestUnitOfMeasure_String_Celsius (0.00s)
---- PASS: TestNewCiString50_Empty (0.00s)
+--- PASS: TestChargingProfilePurposeType_IsValid_Unknown (0.00s)
 --- PASS: TestUnitOfMeasure_String_K (0.00s)
+--- PASS: TestMeasurand_IsValid_EnergyActiveExportRegister (0.00s)
+--- PASS: TestChargingProfilePurposeType_IsValid_Empty (0.00s)
 --- PASS: TestUnitOfMeasure_String_V (0.00s)
---- PASS: TestUnitOfMeasure_String_A (0.00s)
---- PASS: TestCiString50Type_String (0.00s)
---- PASS: TestUnitOfMeasure_String_KVAR (0.00s)
---- PASS: TestUnitOfMeasure_String_VAR (0.00s)
---- PASS: TestUnitOfMeasure_String_KVA (0.00s)
---- PASS: TestUnitOfMeasure_String_VA (0.00s)
---- PASS: TestReadingContext_IsValid_Lowercase (0.00s)
---- PASS: TestUnitOfMeasure_String_KW (0.00s)
---- PASS: TestStopReason_IsValid_HardReset (0.00s)
---- PASS: TestUnitOfMeasure_String_W (0.00s)
---- PASS: TestNewCiString500_TestValue (0.00s)
---- PASS: TestUnitOfMeasure_String_Wh (0.00s)
---- PASS: TestChargePointErrorCode_IsValid_LocalListConflict (0.00s)
---- PASS: TestStopReason_IsValid_EVDisconnected (0.00s)
---- PASS: TestErrEmptyValue_NotNil (0.00s)
---- PASS: TestStopReason_IsValid_EmergencyStop (0.00s)
---- PASS: TestCiString255Type_String (0.00s)
---- PASS: TestStopReason_IsValid_DeAuthorized (0.00s)
---- PASS: TestAuthorizationStatus_IsValid_Unknown (0.00s)
---- PASS: TestUnitOfMeasure_IsValid_Hz (0.00s)
---- PASS: TestSampledValue_String (0.00s)
---- PASS: TestUnitOfMeasure_IsValid_Celsius (0.00s)
---- PASS: TestNewSampledValue_NilOptionals (0.00s)
---- PASS: TestNewSampledValue_InvalidFormat (0.00s)
---- PASS: TestUnitOfMeasure_IsValid_V (0.00s)
---- PASS: TestNewSampledValue_InvalidContext (0.00s)
---- PASS: TestUnitOfMeasure_IsValid_A (0.00s)
---- PASS: TestNewSampledValue_EmptyValue (0.00s)
+--- PASS: TestChargingRateUnit_String_Amperes (0.00s)
+--- PASS: TestChargingProfilePurposeType_IsValid_TxProfile (0.00s)
+--- PASS: TestChargingProfilePurposeType_IsValid_TxDefaultProfile (0.00s)
+--- PASS: TestChargePointStatus_String_Faulted (0.00s)
+--- PASS: TestChargingProfilePurposeType_IsValid_ChargePointMaxProfile (0.00s)
+--- PASS: TestChargePointStatus_String_Unavailable (0.00s)
 --- PASS: TestUnitOfMeasure_IsValid_KVAR (0.00s)
---- PASS: TestUnitOfMeasure_IsValid_K (0.00s)
+--- PASS: TestChargingRateUnit_IsValid_Unknown (0.00s)
 --- PASS: TestUnitOfMeasure_IsValid_VAR (0.00s)
---- PASS: TestNewSampledValue_MinimalValid (0.00s)
+--- PASS: TestChargePointStatus_String_Finishing (0.00s)
 --- PASS: TestUnitOfMeasure_IsValid_KVA (0.00s)
+--- PASS: TestErrInvalidValue_NotNil (0.00s)
+--- PASS: TestUnitOfMeasure_IsValid_VA (0.00s)
+--- PASS: TestChargePointStatus_String_SuspendedEV (0.00s)
+--- PASS: TestUnitOfMeasure_IsValid_KW (0.00s)
+--- PASS: TestChargePointStatus_String_SuspendedEVSE (0.00s)
+--- PASS: TestChargePointStatus_String_Charging (0.00s)
+--- PASS: TestUnitOfMeasure_IsValid_W (0.00s)
+--- PASS: TestChargePointStatus_String_Preparing (0.00s)
+--- PASS: TestChargePointStatus_String_Available (0.00s)
+--- PASS: TestUnitOfMeasure_IsValid_Wh (0.00s)
+--- PASS: TestUnitOfMeasure_IsValid_KWh (0.00s)
+--- PASS: TestChargePointStatus_IsValid_Lowercase (0.00s)
+--- PASS: TestStopReason_String_SoftReset (0.00s)
+--- PASS: TestChargePointStatus_IsValid_Unknown (0.00s)
+--- PASS: TestNewChargingSchedule_Valid (0.00s)
+--- PASS: TestUnitOfMeasure_String_Hz (0.00s)
+--- PASS: TestChargePointStatus_IsValid_Empty (0.00s)
+--- PASS: TestStopReason_String_Reboot (0.00s)
+--- PASS: TestUnitOfMeasure_String_A (0.00s)
+--- PASS: TestChargePointStatus_IsValid_Faulted (0.00s)
+--- PASS: TestChargePointStatus_IsValid_Unavailable (0.00s)
+--- PASS: TestStopReason_String_Local (0.00s)
+--- PASS: TestChargePointStatus_IsValid_Reserved (0.00s)
+--- PASS: TestChargePointStatus_IsValid_Finishing (0.00s)
+--- PASS: TestStopReason_String_EVDisconnected (0.00s)
+--- PASS: TestChargePointStatus_IsValid_SuspendedEVSE (0.00s)
+--- PASS: TestUnitOfMeasure_String_KVAR (0.00s)
+--- PASS: TestStopReason_String_EmergencyStop (0.00s)
+--- PASS: TestChargePointStatus_IsValid_Charging (0.00s)
+--- PASS: TestUnitOfMeasure_IsValid_A (0.00s)
+--- PASS: TestChargePointStatus_IsValid_Preparing (0.00s)
+--- PASS: TestStopReason_IsValid_Lowercase (0.00s)
+--- PASS: TestChargePointStatus_String_Reserved (0.00s)
+--- PASS: TestStopReason_IsValid_Unknown (0.00s)
+--- PASS: TestChargePointErrorCode_String_UnderVoltage (0.00s)
+--- PASS: TestChargingSchedule_String (0.00s)
+--- PASS: TestChargePointErrorCode_String_ResetFailure (0.00s)
+--- PASS: TestStopReason_IsValid_UnlockCommand (0.00s)
+--- PASS: TestChargePointErrorCode_String_ReaderFailure (0.00s)
+--- PASS: TestStopReason_IsValid_Empty (0.00s)
+--- PASS: TestStopReason_String_UnlockCommand (0.00s)
+--- PASS: TestStopReason_IsValid_Remote (0.00s)
+--- PASS: TestStopReason_String_Remote (0.00s)
+--- PASS: TestStopReason_IsValid_Reboot (0.00s)
+--- PASS: TestChargePointErrorCode_String_OverVoltage (0.00s)
+--- PASS: TestStopReason_String_Other (0.00s)
+--- PASS: TestChargePointErrorCode_String_OtherError (0.00s)
+--- PASS: TestStopReason_IsValid_PowerLoss (0.00s)
+--- PASS: TestChargePointErrorCode_String_LocalListConflict (0.00s)
+--- PASS: TestStopReason_String_HardReset (0.00s)
+--- PASS: TestStopReason_IsValid_Local (0.00s)
+--- PASS: TestChargePointErrorCode_String_InternalError (0.00s)
+--- PASS: TestStopReason_IsValid_HardReset (0.00s)
+--- PASS: TestChargePointStatus_IsValid_SuspendedEV (0.00s)
+--- PASS: TestChargePointErrorCode_String_HighTemperature (0.00s)
+--- PASS: TestStopReason_IsValid_EmergencyStop (0.00s)
+--- PASS: TestChargePointErrorCode_String_GroundFailure (0.00s)
+--- PASS: TestStopReason_String_DeAuthorized (0.00s)
+--- PASS: TestChargePointErrorCode_String_EVCommunicationError (0.00s)
+--- PASS: TestSampledValue_String (0.00s)
+--- PASS: TestChargePointErrorCode_String_ConnectorLockFailure (0.00s)
+--- PASS: TestNewSampledValue_NilOptionals (0.00s)
+--- PASS: TestStopReason_IsValid_DeAuthorized (0.00s)
+--- PASS: TestChargePointErrorCode_String_NoError (0.00s)
+--- PASS: TestNewSampledValue_InvalidFormat (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_Lowercase (0.00s)
+--- PASS: TestNewSampledValue_InvalidContext (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_Unknown (0.00s)
+--- PASS: TestNewIdToken (0.00s)
+--- PASS: TestChargePointErrorCode_String_WeakSignal (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_WeakSignal (0.00s)
+--- PASS: TestNewSampledValue_MinimalValid (0.00s)
+--- PASS: TestNewSampledValue_AllFields (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_ResetFailure (0.00s)
 --- PASS: TestRegistrationStatus_String_Rejected (0.00s)
 --- PASS: TestRegistrationStatus_String_Pending (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_PowerSwitchFailure (0.00s)
 --- PASS: TestRegistrationStatus_String_Accepted (0.00s)
---- PASS: TestNewInteger_Overflow (0.00s)
---- PASS: TestNewDateTime_NonUTC (0.00s)
---- PASS: TestUnitOfMeasure_IsValid_VA (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_PowerMeterFailure (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_ReaderFailure (0.00s)
+--- PASS: TestRegistrationStatus_IsValid_Lowercase (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_OverVoltage (0.00s)
+--- PASS: TestChargePointErrorCode_String_PowerSwitchFailure (0.00s)
 --- PASS: TestRegistrationStatus_IsValid_Unknown (0.00s)
---- PASS: TestUnitOfMeasure_IsValid_KW (0.00s)
 --- PASS: TestRegistrationStatus_IsValid_Empty (0.00s)
+--- PASS: TestChargePointErrorCode_String_PowerMeterFailure (0.00s)
 --- PASS: TestRegistrationStatus_IsValid_Rejected (0.00s)
---- PASS: TestUnitOfMeasure_IsValid_W (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_LocalListConflict (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_InternalError (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_HighTemperature (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_GroundFailure (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_EVCommunicationError (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_ConnectorLockFailure (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_NoError (0.00s)
+--- PASS: TestAuthorizationStatus_String_ConcurrentTx (0.00s)
+--- PASS: TestAuthorizationStatus_String_Invalid (0.00s)
+--- PASS: TestAuthorizationStatus_String_Expired (0.00s)
+--- PASS: TestAuthorizationStatus_String_Blocked (0.00s)
+--- PASS: TestAuthorizationStatus_IsValid_Lowercase (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_OtherError (0.00s)
+--- PASS: TestStopReason_IsValid_EVDisconnected (0.00s)
+--- PASS: TestAuthorizationStatus_IsValid_Empty (0.00s)
+--- PASS: TestAuthorizationStatus_IsValid_ConcurrentTx (0.00s)
+--- PASS: TestAuthorizationStatus_IsValid_Unknown (0.00s)
+--- PASS: TestAuthorizationStatus_IsValid_Expired (0.00s)
+--- PASS: TestAuthorizationStatus_IsValid_Blocked (0.00s)
 --- PASS: TestRegistrationStatus_IsValid_Pending (0.00s)
 --- PASS: TestRegistrationStatus_IsValid_Accepted (0.00s)
---- PASS: TestUnitOfMeasure_IsValid_Wh (0.00s)
 --- PASS: TestReadingContext_String_Trigger (0.00s)
---- PASS: TestStopReason_String_UnlockCommand (0.00s)
---- PASS: TestReadingContext_String_TransactionEnd (0.00s)
---- PASS: TestNewCiString50Type (0.00s)
---- PASS: TestStopReason_String_Remote (0.00s)
---- PASS: TestReadingContext_String_TransactionBegin (0.00s)
---- PASS: TestStopReason_String_Reboot (0.00s)
---- PASS: TestUnitOfMeasure_IsValid_KWh (0.00s)
---- PASS: TestUnitOfMeasure_String_KWh (0.00s)
---- PASS: TestReadingContext_String_SampleClock (0.00s)
---- PASS: TestStopReason_String_Other (0.00s)
---- PASS: TestUnitOfMeasure_IsValid_Lowercase (0.00s)
---- PASS: TestUnitOfMeasure_IsValid_Unknown (0.00s)
---- PASS: TestReadingContext_String_InterruptionEnd (0.00s)
---- PASS: TestStopReason_String_HardReset (0.00s)
---- PASS: TestReadingContext_String_InterruptionBegin (0.00s)
---- PASS: TestStopReason_String_EVDisconnected (0.00s)
---- PASS: TestStopReason_String_EmergencyStop (0.00s)
---- PASS: TestUnitOfMeasure_IsValid_Empty (0.00s)
---- PASS: TestStopReason_IsValid_Lowercase (0.00s)
---- PASS: TestStopReason_IsValid_Unknown (0.00s)
---- PASS: TestStopReason_IsValid_Empty (0.00s)
---- PASS: TestStopReason_IsValid_UnlockCommand (0.00s)
---- PASS: TestAuthorizationStatus_IsValid_ConcurrentTx (0.00s)
 --- PASS: TestStopReason_IsValid_SoftReset (0.00s)
---- PASS: TestStopReason_IsValid_Remote (0.00s)
---- PASS: TestStopReason_IsValid_Other (0.00s)
---- PASS: TestStopReason_IsValid_PowerLoss (0.00s)
---- PASS: TestStopReason_IsValid_Reboot (0.00s)
---- PASS: TestNewCiString255_TooLong (0.00s)
+--- PASS: TestNewIdTagInfo_AllStatuses (0.00s)
 --- PASS: TestReadingContext_IsValid_SampleClock (0.00s)
---- PASS: TestReadingContext_IsValid_Other (0.00s)
---- PASS: TestRegistrationStatus_IsValid_Lowercase (0.00s)
---- PASS: TestReadingContext_IsValid_InterruptionEnd (0.00s)
---- PASS: TestStopReason_String_SoftReset (0.00s)
---- PASS: TestReadingContext_IsValid_Trigger (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_OverCurrentFailure (0.00s)
 --- PASS: TestReadingContext_String_SamplePeriodic (0.00s)
---- PASS: TestReadingContext_IsValid_TransactionEnd (0.00s)
---- PASS: TestPhase_String_L3L1 (0.00s)
---- PASS: TestReadingContext_IsValid_TransactionBegin (0.00s)
---- PASS: TestReadingContext_IsValid_SamplePeriodic (0.00s)
---- PASS: TestPhase_String_L2L3 (0.00s)
---- PASS: TestStopReason_String_PowerLoss (0.00s)
---- PASS: TestPhase_IsValid_Empty (0.00s)
---- PASS: TestReadingContext_String_Other (0.00s)
---- PASS: TestPhase_String_SinglePhase (0.00s)
---- PASS: TestPhase_IsValid_Lowercase (0.00s)
---- PASS: TestPhase_String_L3 (0.00s)
---- PASS: TestStopReason_String_Local (0.00s)
---- PASS: TestPhase_String_L2 (0.00s)
---- PASS: TestPhase_IsValid_N (0.00s)
---- PASS: TestStopReason_String_DeAuthorized (0.00s)
---- PASS: TestPhase_IsValid_L2 (0.00s)
---- PASS: TestPhase_IsValid_L2L3 (0.00s)
---- PASS: TestPhase_IsValid_L3 (0.00s)
---- PASS: TestPhase_String_N (0.00s)
---- PASS: TestAuthorizationStatus_IsValid_Invalid (0.00s)
---- PASS: TestNewSampledValue_AllFields (0.00s)
---- PASS: TestReadingContext_IsValid_Unknown (0.00s)
 --- PASS: TestReadingContext_IsValid_Empty (0.00s)
+--- PASS: TestReadingContext_String_SampleClock (0.00s)
+--- PASS: TestReadingContext_IsValid_Unknown (0.00s)
+--- PASS: TestReadingContext_String_Other (0.00s)
+--- PASS: TestReadingContext_IsValid_Trigger (0.00s)
+--- PASS: TestReadingContext_IsValid_TransactionEnd (0.00s)
+--- PASS: TestReadingContext_String_InterruptionEnd (0.00s)
+--- PASS: TestReadingContext_IsValid_SamplePeriodic (0.00s)
+--- PASS: TestReadingContext_IsValid_Other (0.00s)
+--- PASS: TestReadingContext_IsValid_InterruptionEnd (0.00s)
+--- PASS: TestAuthorizationStatus_String_Accepted (0.00s)
+--- PASS: TestPhase_String_L3 (0.00s)
 --- PASS: TestReadingContext_IsValid_InterruptionBegin (0.00s)
+--- PASS: TestPhase_String_L2 (0.00s)
+--- PASS: TestPhase_String_L3L1 (0.00s)
+--- PASS: TestPhase_String_L2L3 (0.00s)
 --- PASS: TestPhase_String_L1L2 (0.00s)
---- PASS: TestPhase_String_L1 (0.00s)
---- PASS: TestPhase_IsValid_Unknown (0.00s)
+--- PASS: TestPhase_String_SinglePhase (0.00s)
+--- PASS: TestPhase_String_N (0.00s)
+--- PASS: TestPhase_IsValid_Lowercase (0.00s)
+--- PASS: TestValueFormat_IsValid_SignedData (0.00s)
+--- PASS: TestPhase_IsValid_Empty (0.00s)
+--- PASS: TestPhase_IsValid_L3 (0.00s)
 --- PASS: TestPhase_IsValid_L3L1 (0.00s)
+--- PASS: TestPhase_IsValid_L2 (0.00s)
+--- PASS: TestAuthorizationStatus_IsValid_Invalid (0.00s)
+--- PASS: TestPhase_IsValid_L2L3 (0.00s)
+--- PASS: TestPhase_IsValid_L1 (0.00s)
+--- PASS: TestReadingContext_String_TransactionEnd (0.00s)
+--- PASS: TestPhase_IsValid_SinglePhase (0.00s)
+--- PASS: TestPhase_IsValid_N (0.00s)
 --- PASS: TestPhase_IsValid_L1L2 (0.00s)
+--- PASS: TestNewMeterValue_EmptySampledValues (0.00s)
+--- PASS: TestMeasurand_String_Voltage (0.00s)
+--- PASS: TestChargePointErrorCode_IsValid_UnderVoltage (0.00s)
+--- PASS: TestNewMeterValue_Getters (0.00s)
+--- PASS: TestMeasurand_String_SoC (0.00s)
+--- PASS: TestNewMeterValue_InvalidTimestamp (0.00s)
+--- PASS: TestNewMeterValue_Valid (0.00s)
+--- PASS: TestMeasurand_String_RPM (0.00s)
+--- PASS: TestMeasurand_String_PowerReactiveImport (0.00s)
+--- PASS: TestMeasurand_String_PowerReactiveExport (0.00s)
+--- PASS: TestMeasurand_IsValid_EnergyActiveExportInterval (0.00s)
+--- PASS: TestMeasurand_String_PowerOffered (0.00s)
+--- PASS: TestMeasurand_String_Frequency (0.00s)
+--- PASS: TestChargePointErrorCode_String_OverCurrentFailure (0.00s)
+--- PASS: TestMeasurand_String_EnergyReactiveImportInterval (0.00s)
+--- PASS: TestMeasurand_String_EnergyReactiveExportInterval (0.00s)
+--- PASS: TestMeasurand_String_EnergyActiveExportInterval (0.00s)
+--- PASS: TestStopReason_String_PowerLoss (0.00s)
+--- PASS: TestMeasurand_String_EnergyReactiveImportRegister (0.00s)
+--- PASS: TestMeasurand_String_EnergyActiveImportInterval (0.00s)
+--- PASS: TestStopReason_IsValid_Other (0.00s)
+--- PASS: TestMeasurand_String_CurrentOffered (0.00s)
+--- PASS: TestReadingContext_IsValid_TransactionBegin (0.00s)
+--- PASS: TestPhase_String_L1 (0.00s)
+--- PASS: TestMeasurand_String_CurrentExport (0.00s)
+--- PASS: TestPhase_IsValid_Unknown (0.00s)
+--- PASS: TestMeterValue_String (0.00s)
+--- PASS: TestMeasurand_IsValid_Empty (0.00s)
+--- PASS: TestMeasurand_IsValid_Temperature (0.00s)
+--- PASS: TestReadingContext_String_TransactionBegin (0.00s)
+--- PASS: TestMeasurand_IsValid_SoC (0.00s)
+--- PASS: TestMeasurand_IsValid_RPM (0.00s)
+--- PASS: TestMeasurand_String_Temperature (0.00s)
+--- PASS: TestMeasurand_String_PowerActiveImport (0.00s)
+--- PASS: TestMeasurand_IsValid_PowerFactor (0.00s)
+--- PASS: TestMeasurand_IsValid_PowerActiveImport (0.00s)
+--- PASS: TestChargePointStatus_IsValid_Available (0.00s)
+--- PASS: TestMeasurand_String_PowerFactor (0.00s)
+--- PASS: TestMeasurand_String_CurrentImport (0.00s)
+--- PASS: TestMeasurand_IsValid_Unknown (0.00s)
+--- PASS: TestMeasurand_IsValid_PowerReactiveImport (0.00s)
+--- PASS: TestMeasurand_IsValid_PowerReactiveExport (0.00s)
+--- PASS: TestMeasurand_IsValid_PowerOffered (0.00s)
+--- PASS: TestMeasurand_String_EnergyReactiveExportRegister (0.00s)
+--- PASS: TestMeasurand_String_EnergyActiveExportRegister (0.00s)
+--- PASS: TestMeasurand_String_EnergyActiveImportRegister (0.00s)
+--- PASS: TestMeasurand_IsValid_Lowercase (0.00s)
 PASS
 coverage: 53.2% of statements in github.com/aasanchez/ocpp16types
-ok  	github.com/aasanchez/ocpp16types/tests	0.460s	coverage: 53.2% of statements in github.com/aasanchez/ocpp16types
+ok  	github.com/aasanchez/ocpp16types/tests	0.458s	coverage: 53.2% of statements in github.com/aasanchez/ocpp16types
 ?   	github.com/aasanchez/ocpp16types/tests_fuzz	[no test files]
