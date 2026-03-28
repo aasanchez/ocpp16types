@@ -28,9 +28,9 @@ func FuzzSampledValue(f *testing.F) {
 			return
 		}
 
-		// If no error, verify Value().Value() == input
-		if sv.Value().Value() != value {
-			t.Fatalf("Value().Value() = %q, want %q", sv.Value().Value(), value)
+		// If no error, verify Value.Value() == input
+		if sv.Value.Value() != value {
+			t.Fatalf("Value.Value() = %q, want %q", sv.Value.Value(), value)
 		}
 	})
 }

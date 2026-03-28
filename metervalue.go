@@ -6,78 +6,104 @@ import (
 	"time"
 )
 
-// MeterValueInput is the input for constructing a MeterValue.
+const (
+	// meterValueErrCountZero is the empty error count.
+	meterValueErrCountZero = 0
+)
+
+// MeterValueInput represents the raw input data for creating a MeterValue.
 type MeterValueInput struct {
-	Timestamp    string
+	// Required: The timestamp of the measurement in RFC3339 format.
+	Timestamp string
+	// Required: One or more sampled values.
 	SampledValue []SampledValueInput
 }
 
-// MeterValue represents a meter reading with sampled values.
+// MeterValue represents a collection of sampled values at a specific timestamp
+// as defined in OCPP 1.6.
 type MeterValue struct {
+	Timestamp    DateTime
+	SampledValue []SampledValue
+}
+
+// meterValueValidation holds validated fields during construction.
+type meterValueValidation struct {
 	timestamp    DateTime
 	sampledValue []SampledValue
 }
 
-// NewMeterValue constructs a MeterValue with validation.
+// NewMeterValue creates a new MeterValue from the given input.
+// It validates all fields and accumulates errors, returning them together.
 func NewMeterValue(input MeterValueInput) (MeterValue, error) {
-	var errs error
-
-	meterVal := MeterValue{
-		timestamp:    DateTime{value: time.Time{}},
-		sampledValue: nil,
+	validated, errs := validateMeterValueInput(input)
+	if errs != nil {
+		return MeterValue{}, fmt.Errorf(
+			"NewMeterValue: %w",
+			errors.Join(errs...),
+		)
 	}
 
-	// Validate timestamp
-	ts, err := NewDateTime(input.Timestamp)
+	return MeterValue{
+		Timestamp:    validated.timestamp,
+		SampledValue: validated.sampledValue,
+	}, nil
+}
+
+func validateMeterValueInput(
+	input MeterValueInput,
+) (meterValueValidation, []error) {
+	var errs []error
+
+	var validated meterValueValidation
+
+	validated.timestamp, errs = validateMeterValueTimestamp(
+		input.Timestamp,
+		errs,
+	)
+	validated.sampledValue, errs = validateMeterValueSampledValues(
+		input.SampledValue,
+		errs,
+	)
+
+	return validated, errs
+}
+
+func validateMeterValueTimestamp(
+	timestamp string,
+	errs []error,
+) (DateTime, []error) {
+	dateTime, err := NewDateTime(timestamp)
 	if err != nil {
-		errs = errors.Join(errs, err)
-	} else {
-		meterVal.timestamp = ts
+		return DateTime{value: time.Time{}}, append(
+			errs,
+			fmt.Errorf(ErrorFieldFormat, "Timestamp", err),
+		)
 	}
 
-	// Validate sampled values
-	if len(input.SampledValue) == zeroValue {
-		errs = errors.Join(errs, ErrEmptyValue)
+	return dateTime, errs
+}
+
+func validateMeterValueSampledValues(
+	sampledValues []SampledValueInput,
+	errs []error,
+) ([]SampledValue, []error) {
+	if len(sampledValues) == meterValueErrCountZero {
+		return nil, append(
+			errs,
+			fmt.Errorf(ErrorFieldFormat, "SampledValue", ErrEmptyValue),
+		)
 	}
 
-	for _, sv := range input.SampledValue {
-		sampledVal, err := NewSampledValue(sv)
+	var validValues []SampledValue
+
+	for i, svInput := range sampledValues {
+		sampledValue, err := NewSampledValue(svInput)
 		if err != nil {
-			errs = errors.Join(errs, err)
+			errs = append(errs, fmt.Errorf("sampledValue[%d]: %w", i, err))
 		} else {
-			meterVal.sampledValue = append(
-				meterVal.sampledValue,
-				sampledVal,
-			)
+			validValues = append(validValues, sampledValue)
 		}
 	}
 
-	return meterVal, errs
-}
-
-// Timestamp returns the meter reading timestamp.
-func (m MeterValue) Timestamp() DateTime {
-	return m.timestamp
-}
-
-// SampledValue returns a defensive copy of sampled values.
-func (m MeterValue) SampledValue() []SampledValue {
-	cp := make([]SampledValue, len(m.sampledValue))
-	copy(cp, m.sampledValue)
-
-	return cp
-}
-
-// String returns the string representation of MeterValue.
-func (m MeterValue) String() string {
-	return fmt.Sprintf(
-		"MeterValue{timestamp:%s, samples:%d}",
-		m.timestamp.String(),
-		len(m.sampledValue),
-	)
-}
-
-var _ fmt.Stringer = MeterValue{
-	timestamp:    DateTime{value: time.Time{}},
-	sampledValue: nil,
+	return validValues, errs
 }

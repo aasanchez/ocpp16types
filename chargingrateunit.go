@@ -1,24 +1,20 @@
 package ocpp16types
 
-// ChargingRateUnit represents the unit of a charging rate as defined
-// in OCPP 1.6.
+// ChargingRateUnit represents the unit of measure for charging rate
+// as defined in OCPP 1.6.
 type ChargingRateUnit string
 
-// Alias for shorter constant declarations.
-type cru = ChargingRateUnit
-
+// ChargingRateUnit enumeration values as defined in OCPP 1.6.
 const (
-	// ChargingRateUnitWatts indicates charging rate in Watts.
-	ChargingRateUnitWatts cru = "W"
-	// ChargingRateUnitAmperes indicates charging rate in Amperes.
-	ChargingRateUnitAmperes cru = "A"
+	ChargingRateUnitWatts   ChargingRateUnit = "W"
+	ChargingRateUnitAmperes ChargingRateUnit = "A"
 )
 
-// IsValid checks if the ChargingRateUnit value is valid per
-// OCPP 1.6.
-func (t ChargingRateUnit) IsValid() bool {
-	switch t {
-	case ChargingRateUnitWatts, ChargingRateUnitAmperes:
+// IsValid checks if the ChargingRateUnit value is valid per OCPP 1.6.
+func (c ChargingRateUnit) IsValid() bool {
+	switch c {
+	case ChargingRateUnitWatts,
+		ChargingRateUnitAmperes:
 		return true
 	default:
 		return false
@@ -26,6 +22,6 @@ func (t ChargingRateUnit) IsValid() bool {
 }
 
 // String returns the string representation of ChargingRateUnit.
-func (t ChargingRateUnit) String() string {
-	return string(t)
+func (c ChargingRateUnit) String() string {
+	return string(c)
 }

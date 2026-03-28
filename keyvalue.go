@@ -49,12 +49,7 @@ func NewKeyValue(input KeyValueInput) (KeyValue, error) {
 	}
 
 	if len(errs) > errCountZero {
-		return KeyValue{
-				key:      CiString50Type{value: ciString{value: ""}},
-				readonly: false,
-				value:    nil,
-			}, errors.Join(
-				errs...)
+		return KeyValue{}, errors.Join(errs...)
 	}
 
 	return KeyValue{

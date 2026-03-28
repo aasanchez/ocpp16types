@@ -29,5 +29,5 @@ func ExampleNewInteger_invalid() {
 		return
 	}
 	// Output:
-	// invalid value
+	// NewInteger: value: invalid value: -1 out of range (0-65535)
 }

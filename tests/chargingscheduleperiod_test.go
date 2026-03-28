@@ -136,27 +136,3 @@ func TestChargingSchedulePeriod_Getters(t *testing.T) {
 		)
 	}
 }
-
-func TestChargingSchedulePeriod_String(t *testing.T) {
-	t.Parallel()
-
-	input := st.ChargingSchedulePeriodInput{
-		StartPeriod:  testStartPeriodZero,
-		Limit:        testLimitDefault,
-		NumberPhases: nil,
-	}
-
-	csp, err := st.NewChargingSchedulePeriod(input)
-	if err != nil {
-		t.Fatalf(errUnexpectedFmt, err)
-	}
-
-	strRepr := csp.String()
-	if !containsSubstring(strRepr, "ChargingSchedulePeriod") {
-		t.Errorf(
-			st.ErrorWantContains,
-			strRepr,
-			"ChargingSchedulePeriod",
-		)
-	}
-}

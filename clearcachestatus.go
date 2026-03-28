@@ -3,20 +3,15 @@ package ocpp16types
 // ClearCacheStatus represents the result of a ClearCache request.
 type ClearCacheStatus string
 
-// Type alias for shorter const declarations.
-type ccs = ClearCacheStatus
-
 // ClearCacheStatus enumeration values as defined in OCPP 1.6.
 const (
-	// ClearCacheStatusAccepted indicates the request has been accepted.
-	ClearCacheStatusAccepted ccs = "Accepted"
-	// ClearCacheStatusRejected indicates the request has been rejected.
-	ClearCacheStatusRejected ccs = "Rejected"
+	ClearCacheStatusAccepted ClearCacheStatus = "Accepted"
+	ClearCacheStatusRejected ClearCacheStatus = "Rejected"
 )
 
 // IsValid checks if the ClearCacheStatus value is valid per OCPP 1.6.
-func (t ClearCacheStatus) IsValid() bool {
-	switch t {
+func (c ClearCacheStatus) IsValid() bool {
+	switch c {
 	case ClearCacheStatusAccepted,
 		ClearCacheStatusRejected:
 		return true
@@ -26,6 +21,6 @@ func (t ClearCacheStatus) IsValid() bool {
 }
 
 // String returns the string representation of ClearCacheStatus.
-func (t ClearCacheStatus) String() string {
-	return string(t)
+func (c ClearCacheStatus) String() string {
+	return string(c)
 }

@@ -33,9 +33,9 @@ func FuzzMeterValue(f *testing.F) {
 			return
 		}
 
-		// If no error, verify Timestamp().String() is non-empty
-		if len(mv.Timestamp().String()) == 0 {
-			t.Fatal("Timestamp().String() returned empty value")
+		// If no error, verify Timestamp.String() is non-empty
+		if len(mv.Timestamp.String()) == 0 {
+			t.Fatal("Timestamp.String() returned empty value")
 		}
 	})
 }

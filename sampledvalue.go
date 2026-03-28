@@ -5,19 +5,37 @@ import (
 	"fmt"
 )
 
-// SampledValueInput is the input for constructing a SampledValue.
+// SampledValueInput represents the raw input data for creating a SampledValue.
 type SampledValueInput struct {
-	Value     string
-	Context   *string
-	Format    *string
+	// Required: The measurement value as a string.
+	Value string
+	// Optional: The reading context.
+	Context *string
+	// Optional: The value format.
+	Format *string
+	// Optional: The type of measurement.
 	Measurand *string
-	Phase     *string
-	Location  *string
-	Unit      *string
+	// Optional: The phase of the measurement.
+	Phase *string
+	// Optional: The location of the measurement.
+	Location *string
+	// Optional: The unit of the measurement.
+	Unit *string
 }
 
-// SampledValue is a single meter value sample.
+// SampledValue represents a single sampled value as defined in OCPP 1.6.
 type SampledValue struct {
+	Value     CiString500Type
+	Context   *ReadingContext
+	Format    *ValueFormat
+	Measurand *Measurand
+	Phase     *Phase
+	Location  *Location
+	Unit      *UnitOfMeasure
+}
+
+// sampledValueValidation holds validated fields during construction.
+type sampledValueValidation struct {
 	value     CiString500Type
 	context   *ReadingContext
 	format    *ValueFormat
@@ -27,209 +45,177 @@ type SampledValue struct {
 	unit      *UnitOfMeasure
 }
 
-// NewSampledValue constructs a SampledValue with validation.
-func NewSampledValue(
+// NewSampledValue creates a new SampledValue from the given input.
+// It validates all fields and accumulates errors, returning them together.
+func NewSampledValue(input SampledValueInput) (SampledValue, error) {
+	validated, errs := validateSampledValueInput(input)
+	if errs != nil {
+		return SampledValue{}, fmt.Errorf(
+			"NewSampledValue: %w",
+			errors.Join(errs...),
+		)
+	}
+
+	return SampledValue{
+		Value:     validated.value,
+		Context:   validated.context,
+		Format:    validated.format,
+		Measurand: validated.measurand,
+		Phase:     validated.phase,
+		Location:  validated.location,
+		Unit:      validated.unit,
+	}, nil
+}
+
+func validateSampledValueInput(
 	input SampledValueInput,
-) (SampledValue, error) {
-	var errs error
+) (sampledValueValidation, []error) {
+	var errs []error
 
-	sampledVal := SampledValue{
-		value:     CiString500Type{value: ciString{value: ""}},
-		context:   nil,
-		format:    nil,
-		measurand: nil,
-		phase:     nil,
-		location:  nil,
-		unit:      nil,
-	}
+	var validated sampledValueValidation
 
-	// Validate required value field
-	val, err := NewCiString500Type(input.Value)
-	if err != nil {
-		errs = errors.Join(errs, err)
-	} else {
-		sampledVal.value = val
-	}
-
-	sampledVal.context, errs = validateContext(input.Context, errs)
-	sampledVal.format, errs = validateFormat(input.Format, errs)
-	sampledVal.measurand, errs = validateMeasurand(input.Measurand, errs)
-	sampledVal.phase, errs = validatePhase(input.Phase, errs)
-	sampledVal.location, errs = validateLocation(input.Location, errs)
-	sampledVal.unit, errs = validateUnit(input.Unit, errs)
-
-	return sampledVal, errs
-}
-
-func validateContext(input *string, errs error) (*ReadingContext, error) {
-	if input == nil {
-		return nil, errs
-	}
-
-	ctx := ReadingContext(*input)
-
-	if !ctx.IsValid() {
-		return nil, errors.Join(errs, ErrInvalidValue)
-	}
-
-	return &ctx, errs
-}
-
-func validateFormat(input *string, errs error) (*ValueFormat, error) {
-	if input == nil {
-		return nil, errs
-	}
-
-	valFmt := ValueFormat(*input)
-
-	if !valFmt.IsValid() {
-		return nil, errors.Join(errs, ErrInvalidValue)
-	}
-
-	return &valFmt, errs
-}
-
-func validateMeasurand(input *string, errs error) (*Measurand, error) {
-	if input == nil {
-		return nil, errs
-	}
-
-	measurand := Measurand(*input)
-
-	if !measurand.IsValid() {
-		return nil, errors.Join(errs, ErrInvalidValue)
-	}
-
-	return &measurand, errs
-}
-
-func validatePhase(input *string, errs error) (*Phase, error) {
-	if input == nil {
-		return nil, errs
-	}
-
-	phase := Phase(*input)
-
-	if !phase.IsValid() {
-		return nil, errors.Join(errs, ErrInvalidValue)
-	}
-
-	return &phase, errs
-}
-
-func validateLocation(input *string, errs error) (*Location, error) {
-	if input == nil {
-		return nil, errs
-	}
-
-	location := Location(*input)
-
-	if !location.IsValid() {
-		return nil, errors.Join(errs, ErrInvalidValue)
-	}
-
-	return &location, errs
-}
-
-func validateUnit(input *string, errs error) (*UnitOfMeasure, error) {
-	if input == nil {
-		return nil, errs
-	}
-
-	unit := UnitOfMeasure(*input)
-
-	if !unit.IsValid() {
-		return nil, errors.Join(errs, ErrInvalidValue)
-	}
-
-	return &unit, errs
-}
-
-// Value returns the sampled value.
-func (s SampledValue) Value() CiString500Type {
-	return s.value
-}
-
-// Context returns a copy of the reading context if set.
-func (s SampledValue) Context() *ReadingContext {
-	if s.context == nil {
-		return nil
-	}
-
-	cp := *s.context
-
-	return &cp
-}
-
-// Format returns a copy of the value format if set.
-func (s SampledValue) Format() *ValueFormat {
-	if s.format == nil {
-		return nil
-	}
-
-	cp := *s.format
-
-	return &cp
-}
-
-// Measurand returns a copy of the measurand if set.
-func (s SampledValue) Measurand() *Measurand {
-	if s.measurand == nil {
-		return nil
-	}
-
-	cp := *s.measurand
-
-	return &cp
-}
-
-// Phase returns a copy of the phase if set.
-func (s SampledValue) Phase() *Phase {
-	if s.phase == nil {
-		return nil
-	}
-
-	cp := *s.phase
-
-	return &cp
-}
-
-// Location returns a copy of the location if set.
-func (s SampledValue) Location() *Location {
-	if s.location == nil {
-		return nil
-	}
-
-	cp := *s.location
-
-	return &cp
-}
-
-// Unit returns a copy of the unit of measure if set.
-func (s SampledValue) Unit() *UnitOfMeasure {
-	if s.unit == nil {
-		return nil
-	}
-
-	cp := *s.unit
-
-	return &cp
-}
-
-// String returns the string representation of SampledValue.
-func (s SampledValue) String() string {
-	return fmt.Sprintf(
-		"SampledValue{value:%s}",
-		s.value.String(),
+	validated.value, errs = validateSampledValueValue(input.Value, errs)
+	validated.context, errs = validateSampledValueContext(input.Context, errs)
+	validated.format, errs = validateSampledValueFormat(input.Format, errs)
+	validated.measurand, errs = validateSampledValueMeasurand(
+		input.Measurand,
+		errs,
 	)
+	validated.phase, errs = validateSampledValuePhase(input.Phase, errs)
+	validated.location, errs = validateSampledValueLocation(
+		input.Location,
+		errs,
+	)
+	validated.unit, errs = validateSampledValueUnit(input.Unit, errs)
+
+	return validated, errs
 }
 
-var _ fmt.Stringer = SampledValue{
-	value:     CiString500Type{value: ciString{value: ""}},
-	context:   nil,
-	format:    nil,
-	measurand: nil,
-	phase:     nil,
-	location:  nil,
-	unit:      nil,
+func validateSampledValueValue(
+	value string,
+	errs []error,
+) (CiString500Type, []error) {
+	ciValue, err := NewCiString500Type(value)
+	if err != nil {
+		return CiString500Type{value: ciString{value: ""}}, append(
+			errs,
+			fmt.Errorf(ErrorFieldFormat, "Value", err),
+		)
+	}
+
+	return ciValue, errs
+}
+
+func validateSampledValueContext(
+	context *string,
+	errs []error,
+) (*ReadingContext, []error) {
+	if context == nil {
+		return nil, errs
+	}
+
+	readingCtx := ReadingContext(*context)
+	if !readingCtx.IsValid() {
+		return nil, append(
+			errs,
+			fmt.Errorf(ErrorFieldFormat, "Context", ErrInvalidValue),
+		)
+	}
+
+	return &readingCtx, errs
+}
+
+func validateSampledValueFormat(
+	format *string,
+	errs []error,
+) (*ValueFormat, []error) {
+	if format == nil {
+		return nil, errs
+	}
+
+	valueFormat := ValueFormat(*format)
+	if !valueFormat.IsValid() {
+		return nil, append(
+			errs,
+			fmt.Errorf(ErrorFieldFormat, "Format", ErrInvalidValue),
+		)
+	}
+
+	return &valueFormat, errs
+}
+
+func validateSampledValueMeasurand(
+	measurand *string,
+	errs []error,
+) (*Measurand, []error) {
+	if measurand == nil {
+		return nil, errs
+	}
+
+	measurandVal := Measurand(*measurand)
+	if !measurandVal.IsValid() {
+		return nil, append(
+			errs,
+			fmt.Errorf(ErrorFieldFormat, "Measurand", ErrInvalidValue),
+		)
+	}
+
+	return &measurandVal, errs
+}
+
+func validateSampledValuePhase(
+	phase *string,
+	errs []error,
+) (*Phase, []error) {
+	if phase == nil {
+		return nil, errs
+	}
+
+	phaseVal := Phase(*phase)
+	if !phaseVal.IsValid() {
+		return nil, append(
+			errs,
+			fmt.Errorf(ErrorFieldFormat, "Phase", ErrInvalidValue),
+		)
+	}
+
+	return &phaseVal, errs
+}
+
+func validateSampledValueLocation(
+	location *string,
+	errs []error,
+) (*Location, []error) {
+	if location == nil {
+		return nil, errs
+	}
+
+	locationVal := Location(*location)
+	if !locationVal.IsValid() {
+		return nil, append(
+			errs,
+			fmt.Errorf(ErrorFieldFormat, "Location", ErrInvalidValue),
+		)
+	}
+
+	return &locationVal, errs
+}
+
+func validateSampledValueUnit(
+	unit *string,
+	errs []error,
+) (*UnitOfMeasure, []error) {
+	if unit == nil {
+		return nil, errs
+	}
+
+	unitOfMeasure := UnitOfMeasure(*unit)
+	if !unitOfMeasure.IsValid() {
+		return nil, append(
+			errs,
+			fmt.Errorf(ErrorFieldFormat, "Unit", ErrInvalidValue),
+		)
+	}
+
+	return &unitOfMeasure, errs
 }

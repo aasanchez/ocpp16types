@@ -4,83 +4,63 @@ import (
 	"fmt"
 )
 
-// IdTagInfo contains authorization information for an ID token.
+// Compile-time interface verification.
+var _ fmt.Stringer = (*IdTagInfo)(nil)
+
+// IdTagInfo contains status information about an identifier.
+// It is returned in Authorize, StartTransaction, and StopTransaction responses.
 type IdTagInfo struct {
-	status      AuthorizationStatus
-	expiryDate  *DateTime
-	parentIdTag *IdToken
+	Status      AuthorizationStatus
+	ExpiryDate  *DateTime // Optional
+	ParentIdTag *IdToken  // Optional
 }
 
-// NewIdTagInfo constructs an IdTagInfo with validation.
-func NewIdTagInfo(
-	status AuthorizationStatus,
-) (IdTagInfo, error) {
+// NewIdTagInfo creates a new IdTagInfo with the given status.
+// ExpiryDate and ParentIdTag are optional and can be set separately.
+func NewIdTagInfo(status AuthorizationStatus) (IdTagInfo, error) {
 	if !status.IsValid() {
-		return IdTagInfo{
-			status:      "",
-			expiryDate:  nil,
-			parentIdTag: nil,
-		}, ErrInvalidValue
+		return IdTagInfo{}, fmt.Errorf(
+			"NewIdTagInfo: "+ErrorFieldFormat,
+			"AuthorizationStatus",
+			ErrInvalidValue,
+		)
 	}
 
 	return IdTagInfo{
-		status:      status,
-		expiryDate:  nil,
-		parentIdTag: nil,
+		Status:      status,
+		ExpiryDate:  nil,
+		ParentIdTag: nil,
 	}, nil
 }
 
-// WithExpiryDate sets the expiry date and returns a copy.
+// WithExpiryDate sets the expiry date and returns the IdTagInfo.
 func (i IdTagInfo) WithExpiryDate(expiryDate DateTime) IdTagInfo {
-	i.expiryDate = &expiryDate
+	i.ExpiryDate = &expiryDate
 
 	return i
 }
 
-// WithParentIdTag sets the parent ID token and returns a copy.
+// WithParentIdTag sets the parent ID tag and returns the IdTagInfo.
 func (i IdTagInfo) WithParentIdTag(parentIdTag IdToken) IdTagInfo {
-	i.parentIdTag = &parentIdTag
+	i.ParentIdTag = &parentIdTag
 
 	return i
 }
 
-// Status returns the authorization status.
-func (i IdTagInfo) Status() AuthorizationStatus {
-	return i.status
-}
-
-// ExpiryDate returns a copy of the expiry date if set.
-func (i IdTagInfo) ExpiryDate() *DateTime {
-	if i.expiryDate == nil {
-		return nil
-	}
-
-	cp := *i.expiryDate
-
-	return &cp
-}
-
-// ParentIdTag returns a copy of the parent ID token if set.
-func (i IdTagInfo) ParentIdTag() *IdToken {
-	if i.parentIdTag == nil {
-		return nil
-	}
-
-	cp := *i.parentIdTag
-
-	return &cp
-}
-
-// String returns the string representation of IdTagInfo.
+// String implements the fmt.Stringer interface, returning a human-readable
+// representation of the IdTagInfo for debugging purposes.
 func (i IdTagInfo) String() string {
-	return fmt.Sprintf(
-		"IdTagInfo{status:%s}",
-		i.status.String(),
-	)
-}
+	result := "IdTagInfo{Status: " + i.Status.String()
 
-var _ fmt.Stringer = IdTagInfo{
-	status:      "",
-	expiryDate:  nil,
-	parentIdTag: nil,
+	if i.ExpiryDate != nil {
+		result += ", ExpiryDate: " + i.ExpiryDate.String()
+	}
+
+	if i.ParentIdTag != nil {
+		result += ", ParentIdTag: " + i.ParentIdTag.String()
+	}
+
+	result += "}"
+
+	return result
 }

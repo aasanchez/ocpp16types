@@ -1,6 +1,8 @@
 package ocpp16types
 
-import "errors"
+import (
+	"errors"
+)
 
 // Error message format strings used throughout the types package.
 const (

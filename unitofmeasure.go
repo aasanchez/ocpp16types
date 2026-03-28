@@ -1,58 +1,66 @@
 package ocpp16types
 
-// UnitOfMeasure represents units of measurement as defined in
-// OCPP 1.6.
+// UnitOfMeasure represents the unit of a measurement as defined in OCPP 1.6.
 type UnitOfMeasure string
 
-// Alias for shorter constant declarations.
+// Alias for shorter constant names within this package.
 type uom = UnitOfMeasure
 
+// UnitOfMeasure enumeration values as defined in OCPP 1.6.
 const (
-	// UnitOfMeasureWh indicates Watt-hours.
-	UnitOfMeasureWh uom = "Wh"
-	// UnitOfMeasureKWh indicates kilowatt-hours.
-	UnitOfMeasureKWh uom = "kWh"
-	// UnitOfMeasureW indicates Watts.
-	UnitOfMeasureW uom = "W"
-	// UnitOfMeasureKW indicates kilowatts.
-	UnitOfMeasureKW uom = "kW"
-	// UnitOfMeasureVA indicates Volt-Amperes.
-	UnitOfMeasureVA uom = "VA"
-	// UnitOfMeasureKVA indicates kilovolt-amperes.
-	UnitOfMeasureKVA uom = "kVA"
-	// UnitOfMeasureVarh indicates Volt-Ampere-hours reactive.
-	UnitOfMeasureVarh uom = "varh"
-	// UnitOfMeasureKvarh indicates kilovolt-Ampere-hours reactive.
-	UnitOfMeasureKvarh uom = "kvarh"
-	// UnitOfMeasureVAR indicates Volt-Amperes reactive.
-	UnitOfMeasureVAR uom = "var"
-	// UnitOfMeasureKVAR indicates kilovolt-amperes reactive.
-	UnitOfMeasureKVAR uom = "kvar"
-	// UnitOfMeasureA indicates Amperes.
-	UnitOfMeasureA uom = "A"
-	// UnitOfMeasureV indicates Volts.
-	UnitOfMeasureV uom = "V"
-	// UnitOfMeasureK indicates Kelvin.
-	UnitOfMeasureK uom = "K"
-	// UnitOfMeasureCelsius indicates Celsius.
-	UnitOfMeasureCelsius uom = "Celsius"
-	// UnitOfMeasureFahrenheit indicates Fahrenheit.
-	UnitOfMeasureFahrenheit uom = "Fahrenheit"
-	// UnitOfMeasureHz indicates Hertz.
-	UnitOfMeasureHz uom = "Hz"
-	// UnitOfMeasurePercent indicates percentage.
-	UnitOfMeasurePercent uom = "Percent"
+	// UnitWh is watt-hours (energy).
+	UnitWh uom = "Wh"
+	// UnitKWh is kilowatt-hours (energy).
+	UnitKWh uom = "kWh"
+	// UnitVarh is var-hours (reactive energy).
+	UnitVarh uom = "varh"
+	// UnitKvarh is kilovar-hours (reactive energy).
+	UnitKvarh uom = "kvarh"
+	// UnitW is watts (power).
+	UnitW uom = "W"
+	// UnitKW is kilowatts (power).
+	UnitKW uom = "kW"
+	// UnitVA is volt-amperes (apparent power).
+	UnitVA uom = "VA"
+	// UnitKVA is kilovolt-amperes (apparent power).
+	UnitKVA uom = "kVA"
+	// UnitVar is vars (reactive power).
+	UnitVar uom = "var"
+	// UnitKvar is kilovars (reactive power).
+	UnitKvar uom = "kvar"
+	// UnitA is amperes (current).
+	UnitA uom = "A"
+	// UnitV is volts (voltage).
+	UnitV uom = "V"
+	// UnitCelsius is degrees Celsius (temperature).
+	UnitCelsius uom = "Celsius"
+	// UnitFahrenheit is degrees Fahrenheit (temperature).
+	UnitFahrenheit uom = "Fahrenheit"
+	// UnitK is Kelvin (temperature).
+	UnitK uom = "K"
+	// UnitPercent is a percentage value.
+	UnitPercent uom = "Percent"
 )
 
 // IsValid checks if the UnitOfMeasure value is valid per OCPP 1.6.
-func (t UnitOfMeasure) IsValid() bool {
-	switch t {
-	case UnitOfMeasureWh, UnitOfMeasureKWh, UnitOfMeasureVarh,
-		UnitOfMeasureKvarh, UnitOfMeasureW, UnitOfMeasureKW,
-		UnitOfMeasureVA, UnitOfMeasureKVA, UnitOfMeasureVAR,
-		UnitOfMeasureKVAR, UnitOfMeasureA, UnitOfMeasureV,
-		UnitOfMeasureK, UnitOfMeasureCelsius, UnitOfMeasureFahrenheit,
-		UnitOfMeasureHz, UnitOfMeasurePercent:
+func (u UnitOfMeasure) IsValid() bool {
+	switch u {
+	case UnitWh,
+		UnitKWh,
+		UnitVarh,
+		UnitKvarh,
+		UnitW,
+		UnitKW,
+		UnitVA,
+		UnitKVA,
+		UnitVar,
+		UnitKvar,
+		UnitA,
+		UnitV,
+		UnitCelsius,
+		UnitFahrenheit,
+		UnitK,
+		UnitPercent:
 		return true
 	default:
 		return false
@@ -60,6 +68,6 @@ func (t UnitOfMeasure) IsValid() bool {
 }
 
 // String returns the string representation of UnitOfMeasure.
-func (t UnitOfMeasure) String() string {
-	return string(t)
+func (u UnitOfMeasure) String() string {
+	return string(u)
 }

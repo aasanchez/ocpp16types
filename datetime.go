@@ -5,38 +5,64 @@ import (
 	"time"
 )
 
-// DateTime wraps time.Time with RFC3339 validation and UTC
-// enforcement.
+// Compile-time interface verification.
+var _ fmt.Stringer = (*DateTime)(nil)
+
+const (
+	utcOffsetSeconds = 0
+	dateTimeField    = "value"
+)
+
+// DateTime represents an OCPP 1.6–compliant RFC3339 timestamp in UTC.
+// Inputs must already be expressed in UTC; non-UTC offsets are rejected.
 type DateTime struct {
 	value time.Time
 }
 
-// NewDateTime constructs a DateTime with RFC3339 validation.
-func NewDateTime(value string) (DateTime, error) {
-	if value == "" {
-		return DateTime{value: time.Time{}}, ErrEmptyValue
+// NewDateTime creates a new DateTime from an RFC3339 formatted string.
+// The input must be UTC (offset 0). Returns an error if parsing fails or
+// the input is not UTC.
+func NewDateTime(input string) (DateTime, error) {
+	if input == "" {
+		return DateTime{}, fmt.Errorf(
+			"NewDateTime: "+ErrorFieldFormat,
+			dateTimeField,
+			ErrEmptyValue,
+		)
 	}
 
-	parsedTime, err := time.Parse(time.RFC3339, value)
+	timestamp, err := time.Parse(time.RFC3339, input)
 	if err != nil {
-		return DateTime{value: time.Time{}}, ErrInvalidValue
+		return DateTime{}, fmt.Errorf(
+			"NewDateTime: "+ErrorFieldFormat,
+			dateTimeField,
+			fmt.Errorf("%w: %w", ErrInvalidValue, err),
+		)
 	}
 
-	if parsedTime.UTC().String() != parsedTime.String() {
-		return DateTime{value: time.Time{}}, ErrInvalidValue
+	_, offset := timestamp.Zone()
+	if offset != utcOffsetSeconds {
+		return DateTime{}, fmt.Errorf(
+			"NewDateTime: "+ErrorFieldFormat,
+			dateTimeField,
+			fmt.Errorf(
+				"%w: expected UTC offset, got %s",
+				ErrInvalidValue,
+				timestamp.Format("Z07:00"),
+			),
+		)
 	}
 
-	return DateTime{value: parsedTime}, nil
+	return DateTime{value: timestamp.UTC()}, nil
 }
 
-// Value returns the wrapped time.Time value.
-func (d DateTime) Value() time.Time {
-	return d.value
+// Value returns the underlying time.Time value of the DateTime.
+func (dt DateTime) Value() time.Time {
+	return dt.value
 }
 
-// String returns the RFC3339Nano string representation.
-func (d DateTime) String() string {
-	return d.value.Format(time.RFC3339Nano)
+// String implements the fmt.Stringer interface, returning the RFC3339Nano
+// formatted string representation of the DateTime in UTC.
+func (dt DateTime) String() string {
+	return dt.value.Format(time.RFC3339Nano)
 }
-
-var _ fmt.Stringer = DateTime{value: time.Time{}}

@@ -1,4 +1,3 @@
-//nolint:dupl // enum test pattern
 package ocpp16types_test
 
 import (
@@ -8,24 +7,15 @@ import (
 )
 
 const (
-	phaseSinglePhaseStr = "Single"
-	phaseL1Str          = "L1"
-	phaseL2Str          = "L2"
-	phaseL3Str          = "L3"
-	phaseNStr           = "N"
-	phaseL1L2Str        = "L1-L2"
-	phaseL2L3Str        = "L2-L3"
-	phaseL3L1Str        = "L3-L1"
-	phaseMethodString   = "Phase.String()"
+	phaseL1Str        = "L1"
+	phaseL2Str        = "L2"
+	phaseL3Str        = "L3"
+	phaseNStr         = "N"
+	phaseL1L2Str      = "L1-L2"
+	phaseL2L3Str      = "L2-L3"
+	phaseL3L1Str      = "L3-L1"
+	phaseMethodString = "Phase.String()"
 )
-
-func TestPhase_IsValid_SinglePhase(t *testing.T) {
-	t.Parallel()
-
-	if !st.PhaseSinglePhase.IsValid() {
-		t.Errorf(st.ErrorIsValidFalse, "PhaseSinglePhase")
-	}
-}
 
 func TestPhase_IsValid_L1(t *testing.T) {
 	t.Parallel()
@@ -107,20 +97,6 @@ func TestPhase_IsValid_Lowercase(t *testing.T) {
 	phase := st.Phase("single")
 	if phase.IsValid() {
 		t.Errorf(st.ErrorIsValidTrue, "Phase(\"single\")")
-	}
-}
-
-func TestPhase_String_SinglePhase(t *testing.T) {
-	t.Parallel()
-
-	got := st.PhaseSinglePhase.String()
-	if got != phaseSinglePhaseStr {
-		t.Errorf(
-			st.ErrorMethodMismatch,
-			phaseMethodString,
-			got,
-			phaseSinglePhaseStr,
-		)
 	}
 }
 

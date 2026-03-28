@@ -1,30 +1,29 @@
 package ocpp16types
 
-// Location represents the location of a measurement as defined in
-// OCPP 1.6.
+// Location represents the location of measurement as defined in OCPP 1.6.
 type Location string
 
-// Alias for shorter constant declarations.
+// Alias for shorter constant names within this package.
 type loc = Location
 
+// Location enumeration values as defined in OCPP 1.6.
 const (
-	// LocationBody indicates measurement at the body.
+	// LocationBody is a measurement inside the charge point body.
 	LocationBody loc = "Body"
-	// LocationCable indicates measurement at the cable.
+	// LocationCable is a measurement on the cable between charge point and EV.
 	LocationCable loc = "Cable"
-	// LocationEV indicates measurement at the EV.
+	// LocationEV is a measurement inside the EV.
 	LocationEV loc = "EV"
-	// LocationInlet indicates measurement at the inlet.
+	// LocationInlet is a measurement at the network/grid inlet connection.
 	LocationInlet loc = "Inlet"
-	// LocationOutlet indicates measurement at the outlet.
+	// LocationOutlet is a measurement at the connector/outlet to EV.
 	LocationOutlet loc = "Outlet"
 )
 
 // IsValid checks if the Location value is valid per OCPP 1.6.
-func (t Location) IsValid() bool {
-	switch t {
-	case LocationBody, LocationCable, LocationEV, LocationInlet,
-		LocationOutlet:
+func (l Location) IsValid() bool {
+	switch l {
+	case LocationBody, LocationCable, LocationEV, LocationInlet, LocationOutlet:
 		return true
 	default:
 		return false
@@ -32,6 +31,6 @@ func (t Location) IsValid() bool {
 }
 
 // String returns the string representation of Location.
-func (t Location) String() string {
-	return string(t)
+func (l Location) String() string {
+	return string(l)
 }

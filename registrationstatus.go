@@ -1,26 +1,20 @@
 package ocpp16types
 
-// RegistrationStatus represents the registration status of a charge
-// point as defined in OCPP 1.6.
+// RegistrationStatus represents the result of a BootNotification request.
 type RegistrationStatus string
 
-// Alias for shorter constant declarations.
-type rs = RegistrationStatus
-
+// RegistrationStatus enumeration values as defined in OCPP 1.6.
 const (
-	// RegistrationStatusAccepted indicates registration is accepted.
-	RegistrationStatusAccepted rs = "Accepted"
-	// RegistrationStatusPending indicates registration is pending.
-	RegistrationStatusPending rs = "Pending"
-	// RegistrationStatusRejected indicates registration is rejected.
-	RegistrationStatusRejected rs = "Rejected"
+	RegistrationStatusAccepted RegistrationStatus = "Accepted"
+	RegistrationStatusPending  RegistrationStatus = "Pending"
+	RegistrationStatusRejected RegistrationStatus = "Rejected"
 )
 
-// IsValid checks if the RegistrationStatus value is valid per
-// OCPP 1.6.
-func (t RegistrationStatus) IsValid() bool {
-	switch t {
-	case RegistrationStatusAccepted, RegistrationStatusPending,
+// IsValid checks if the RegistrationStatus value is valid per OCPP 1.6.
+func (r RegistrationStatus) IsValid() bool {
+	switch r {
+	case RegistrationStatusAccepted,
+		RegistrationStatusPending,
 		RegistrationStatusRejected:
 		return true
 	default:
@@ -29,6 +23,6 @@ func (t RegistrationStatus) IsValid() bool {
 }
 
 // String returns the string representation of RegistrationStatus.
-func (t RegistrationStatus) String() string {
-	return string(t)
+func (r RegistrationStatus) String() string {
+	return string(r)
 }

@@ -1,29 +1,31 @@
 package ocpp16types
 
+// UpdateStatus enumeration values as defined in OCPP 1.6.
+const (
+	// Accepted indicates the local authorization list update was accepted.
+	Accepted = "Accepted"
+	// Failed indicates the local authorization list update failed.
+	Failed = "Failed"
+	// NotSupported indicates the Charge Point does not support this feature.
+	NotSupported = "NotSupported"
+	// VersionMismatch indicates a version number mismatch.
+	VersionMismatch = "VersionMismatch"
+)
+
 // UpdateStatus represents the result of a SendLocalList request.
 type UpdateStatus string
 
-// Type alias for shorter const declarations.
-type us = UpdateStatus
-
 // UpdateStatus enumeration values as defined in OCPP 1.6.
 const (
-	// UpdateStatusAccepted indicates the local authorization
-	// list update was accepted.
-	UpdateStatusAccepted us = "Accepted"
-	// UpdateStatusFailed indicates the local authorization
-	// list update failed.
-	UpdateStatusFailed us = "Failed"
-	// UpdateStatusNotSupported indicates the Charge Point
-	// does not support this feature.
-	UpdateStatusNotSupported us = "NotSupported"
-	// UpdateStatusVersionMismatch indicates a version number mismatch.
-	UpdateStatusVersionMismatch us = "VersionMismatch"
+	UpdateStatusAccepted        UpdateStatus = Accepted
+	UpdateStatusFailed          UpdateStatus = Failed
+	UpdateStatusNotSupported    UpdateStatus = NotSupported
+	UpdateStatusVersionMismatch UpdateStatus = VersionMismatch
 )
 
 // IsValid checks if the UpdateStatus value is valid per OCPP 1.6.
-func (t UpdateStatus) IsValid() bool {
-	switch t {
+func (u UpdateStatus) IsValid() bool {
+	switch u {
 	case UpdateStatusAccepted,
 		UpdateStatusFailed,
 		UpdateStatusNotSupported,
@@ -35,6 +37,6 @@ func (t UpdateStatus) IsValid() bool {
 }
 
 // String returns the string representation of UpdateStatus.
-func (t UpdateStatus) String() string {
-	return string(t)
+func (u UpdateStatus) String() string {
+	return string(u)
 }

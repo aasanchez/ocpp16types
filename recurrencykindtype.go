@@ -4,21 +4,18 @@ package ocpp16types
 // charging profile as defined in OCPP 1.6.
 type RecurrencyKindType string
 
-// Type alias for shorter const declarations.
-type rkt = RecurrencyKindType
-
 // RecurrencyKindType enumeration values as defined in OCPP 1.6.
 const (
 	// RecurrencyKindDaily indicates the schedule repeats every 24 hours.
-	RecurrencyKindDaily rkt = "Daily"
-	// RecurrencyKindWeekly indicates the schedule repeats
-	// every 7 days starting from startSchedule.
-	RecurrencyKindWeekly rkt = "Weekly"
+	RecurrencyKindDaily RecurrencyKindType = "Daily"
+	// RecurrencyKindWeekly indicates the schedule repeats every 7 days
+	// starting from startSchedule.
+	RecurrencyKindWeekly RecurrencyKindType = "Weekly"
 )
 
 // IsValid checks if the RecurrencyKindType value is valid per OCPP 1.6.
-func (t RecurrencyKindType) IsValid() bool {
-	switch t {
+func (r RecurrencyKindType) IsValid() bool {
+	switch r {
 	case RecurrencyKindDaily,
 		RecurrencyKindWeekly:
 		return true
@@ -28,6 +25,6 @@ func (t RecurrencyKindType) IsValid() bool {
 }
 
 // String returns the string representation of RecurrencyKindType.
-func (t RecurrencyKindType) String() string {
-	return string(t)
+func (r RecurrencyKindType) String() string {
+	return string(r)
 }

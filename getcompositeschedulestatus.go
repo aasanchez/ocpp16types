@@ -4,22 +4,15 @@ package ocpp16types
 // request as defined in OCPP 1.6.
 type GetCompositeScheduleStatus string
 
-// Type alias for shorter const declarations.
-type gcss = GetCompositeScheduleStatus
-
 // GetCompositeScheduleStatus enumeration values as defined in OCPP 1.6.
 const (
-	// GetCompositeScheduleStatusAccepted indicates the
-	// request has been accepted.
-	GetCompositeScheduleStatusAccepted gcss = "Accepted"
-	// GetCompositeScheduleStatusRejected indicates the
-	// request has been rejected.
-	GetCompositeScheduleStatusRejected gcss = "Rejected"
+	GetCompositeScheduleStatusAccepted GetCompositeScheduleStatus = "Accepted"
+	GetCompositeScheduleStatusRejected GetCompositeScheduleStatus = "Rejected"
 )
 
 // IsValid checks if the GetCompositeScheduleStatus value is valid per OCPP 1.6.
-func (t GetCompositeScheduleStatus) IsValid() bool {
-	switch t {
+func (g GetCompositeScheduleStatus) IsValid() bool {
+	switch g {
 	case GetCompositeScheduleStatusAccepted,
 		GetCompositeScheduleStatusRejected:
 		return true
@@ -29,6 +22,6 @@ func (t GetCompositeScheduleStatus) IsValid() bool {
 }
 
 // String returns the string representation of GetCompositeScheduleStatus.
-func (t GetCompositeScheduleStatus) String() string {
-	return string(t)
+func (g GetCompositeScheduleStatus) String() string {
+	return string(g)
 }

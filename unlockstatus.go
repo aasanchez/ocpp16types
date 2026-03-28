@@ -1,25 +1,29 @@
 package ocpp16types
 
+// UnlockStatus string constants for use in enumeration values.
+const (
+	unlocked     = "Unlocked"
+	unlockFailed = "UnlockFailed"
+	notSupported = "NotSupported"
+)
+
 // UnlockStatus represents the result of an UnlockConnector request.
 type UnlockStatus string
-
-// Type alias for shorter const declarations.
-type uls = UnlockStatus
 
 // UnlockStatus enumeration values as defined in OCPP 1.6.
 const (
 	// UnlockStatusUnlocked indicates the connector has unlocked successfully.
-	UnlockStatusUnlocked uls = "Unlocked"
+	UnlockStatusUnlocked UnlockStatus = unlocked
 	// UnlockStatusUnlockFailed indicates the connector failed to unlock.
-	UnlockStatusUnlockFailed uls = "UnlockFailed"
-	// UnlockStatusNotSupported indicates the Charge Point
-	// has no connector lock.
-	UnlockStatusNotSupported uls = "NotSupported"
+	UnlockStatusUnlockFailed UnlockStatus = unlockFailed
+	// UnlockStatusNotSupported indicates the Charge Point has no connector
+	// lock.
+	UnlockStatusNotSupported UnlockStatus = notSupported
 )
 
 // IsValid checks if the UnlockStatus value is valid per OCPP 1.6.
-func (t UnlockStatus) IsValid() bool {
-	switch t {
+func (u UnlockStatus) IsValid() bool {
+	switch u {
 	case UnlockStatusUnlocked,
 		UnlockStatusUnlockFailed,
 		UnlockStatusNotSupported:
@@ -30,6 +34,6 @@ func (t UnlockStatus) IsValid() bool {
 }
 
 // String returns the string representation of UnlockStatus.
-func (t UnlockStatus) String() string {
-	return string(t)
+func (u UnlockStatus) String() string {
+	return string(u)
 }

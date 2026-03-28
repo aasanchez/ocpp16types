@@ -19,14 +19,14 @@ const (
 	unitOfMeasureVStr       = "V"
 	unitOfMeasureKStr       = "K"
 	unitOfMeasureCelsiusStr = "Celsius"
-	unitOfMeasureHzStr      = "Hz"
+	unitOfMeasurePercentStr = "Percent"
 	unitMethodString        = "UnitOfMeasure.String()"
 )
 
 func TestUnitOfMeasure_IsValid_Wh(t *testing.T) {
 	t.Parallel()
 
-	if !st.UnitOfMeasureWh.IsValid() {
+	if !st.UnitWh.IsValid() {
 		t.Errorf(st.ErrorIsValidFalse, "UnitOfMeasureWh")
 	}
 }
@@ -34,7 +34,7 @@ func TestUnitOfMeasure_IsValid_Wh(t *testing.T) {
 func TestUnitOfMeasure_IsValid_KWh(t *testing.T) {
 	t.Parallel()
 
-	if !st.UnitOfMeasureKWh.IsValid() {
+	if !st.UnitKWh.IsValid() {
 		t.Errorf(st.ErrorIsValidFalse, "UnitOfMeasureKWh")
 	}
 }
@@ -42,7 +42,7 @@ func TestUnitOfMeasure_IsValid_KWh(t *testing.T) {
 func TestUnitOfMeasure_IsValid_W(t *testing.T) {
 	t.Parallel()
 
-	if !st.UnitOfMeasureW.IsValid() {
+	if !st.UnitW.IsValid() {
 		t.Errorf(st.ErrorIsValidFalse, "UnitOfMeasureW")
 	}
 }
@@ -50,7 +50,7 @@ func TestUnitOfMeasure_IsValid_W(t *testing.T) {
 func TestUnitOfMeasure_IsValid_KW(t *testing.T) {
 	t.Parallel()
 
-	if !st.UnitOfMeasureKW.IsValid() {
+	if !st.UnitKW.IsValid() {
 		t.Errorf(st.ErrorIsValidFalse, "UnitOfMeasureKW")
 	}
 }
@@ -58,7 +58,7 @@ func TestUnitOfMeasure_IsValid_KW(t *testing.T) {
 func TestUnitOfMeasure_IsValid_VA(t *testing.T) {
 	t.Parallel()
 
-	if !st.UnitOfMeasureVA.IsValid() {
+	if !st.UnitVA.IsValid() {
 		t.Errorf(st.ErrorIsValidFalse, "UnitOfMeasureVA")
 	}
 }
@@ -66,7 +66,7 @@ func TestUnitOfMeasure_IsValid_VA(t *testing.T) {
 func TestUnitOfMeasure_IsValid_KVA(t *testing.T) {
 	t.Parallel()
 
-	if !st.UnitOfMeasureKVA.IsValid() {
+	if !st.UnitKVA.IsValid() {
 		t.Errorf(st.ErrorIsValidFalse, "UnitOfMeasureKVA")
 	}
 }
@@ -74,7 +74,7 @@ func TestUnitOfMeasure_IsValid_KVA(t *testing.T) {
 func TestUnitOfMeasure_IsValid_VAR(t *testing.T) {
 	t.Parallel()
 
-	if !st.UnitOfMeasureVAR.IsValid() {
+	if !st.UnitVar.IsValid() {
 		t.Errorf(st.ErrorIsValidFalse, "UnitOfMeasureVAR")
 	}
 }
@@ -82,7 +82,7 @@ func TestUnitOfMeasure_IsValid_VAR(t *testing.T) {
 func TestUnitOfMeasure_IsValid_KVAR(t *testing.T) {
 	t.Parallel()
 
-	if !st.UnitOfMeasureKVAR.IsValid() {
+	if !st.UnitKvar.IsValid() {
 		t.Errorf(st.ErrorIsValidFalse, "UnitOfMeasureKVAR")
 	}
 }
@@ -90,7 +90,7 @@ func TestUnitOfMeasure_IsValid_KVAR(t *testing.T) {
 func TestUnitOfMeasure_IsValid_A(t *testing.T) {
 	t.Parallel()
 
-	if !st.UnitOfMeasureA.IsValid() {
+	if !st.UnitA.IsValid() {
 		t.Errorf(st.ErrorIsValidFalse, "UnitOfMeasureA")
 	}
 }
@@ -98,7 +98,7 @@ func TestUnitOfMeasure_IsValid_A(t *testing.T) {
 func TestUnitOfMeasure_IsValid_V(t *testing.T) {
 	t.Parallel()
 
-	if !st.UnitOfMeasureV.IsValid() {
+	if !st.UnitV.IsValid() {
 		t.Errorf(st.ErrorIsValidFalse, "UnitOfMeasureV")
 	}
 }
@@ -106,7 +106,7 @@ func TestUnitOfMeasure_IsValid_V(t *testing.T) {
 func TestUnitOfMeasure_IsValid_K(t *testing.T) {
 	t.Parallel()
 
-	if !st.UnitOfMeasureK.IsValid() {
+	if !st.UnitK.IsValid() {
 		t.Errorf(st.ErrorIsValidFalse, "UnitOfMeasureK")
 	}
 }
@@ -114,16 +114,16 @@ func TestUnitOfMeasure_IsValid_K(t *testing.T) {
 func TestUnitOfMeasure_IsValid_Celsius(t *testing.T) {
 	t.Parallel()
 
-	if !st.UnitOfMeasureCelsius.IsValid() {
+	if !st.UnitCelsius.IsValid() {
 		t.Errorf(st.ErrorIsValidFalse, "UnitOfMeasureCelsius")
 	}
 }
 
-func TestUnitOfMeasure_IsValid_Hz(t *testing.T) {
+func TestUnitOfMeasure_IsValid_Percent(t *testing.T) {
 	t.Parallel()
 
-	if !st.UnitOfMeasureHz.IsValid() {
-		t.Errorf(st.ErrorIsValidFalse, "UnitOfMeasureHz")
+	if !st.UnitPercent.IsValid() {
+		t.Errorf(st.ErrorIsValidFalse, "UnitPercent")
 	}
 }
 
@@ -157,7 +157,7 @@ func TestUnitOfMeasure_IsValid_Lowercase(t *testing.T) {
 func TestUnitOfMeasure_String_Wh(t *testing.T) {
 	t.Parallel()
 
-	got := st.UnitOfMeasureWh.String()
+	got := st.UnitWh.String()
 	if got != unitOfMeasureWhStr {
 		t.Errorf(
 			st.ErrorMethodMismatch,
@@ -171,7 +171,7 @@ func TestUnitOfMeasure_String_Wh(t *testing.T) {
 func TestUnitOfMeasure_String_KWh(t *testing.T) {
 	t.Parallel()
 
-	got := st.UnitOfMeasureKWh.String()
+	got := st.UnitKWh.String()
 	if got != unitOfMeasureKWhStr {
 		t.Errorf(
 			st.ErrorMethodMismatch,
@@ -185,7 +185,7 @@ func TestUnitOfMeasure_String_KWh(t *testing.T) {
 func TestUnitOfMeasure_String_W(t *testing.T) {
 	t.Parallel()
 
-	got := st.UnitOfMeasureW.String()
+	got := st.UnitW.String()
 	if got != unitOfMeasureWStr {
 		t.Errorf(
 			st.ErrorMethodMismatch,
@@ -199,7 +199,7 @@ func TestUnitOfMeasure_String_W(t *testing.T) {
 func TestUnitOfMeasure_String_KW(t *testing.T) {
 	t.Parallel()
 
-	got := st.UnitOfMeasureKW.String()
+	got := st.UnitKW.String()
 	if got != unitOfMeasureKWStr {
 		t.Errorf(
 			st.ErrorMethodMismatch,
@@ -213,7 +213,7 @@ func TestUnitOfMeasure_String_KW(t *testing.T) {
 func TestUnitOfMeasure_String_VA(t *testing.T) {
 	t.Parallel()
 
-	got := st.UnitOfMeasureVA.String()
+	got := st.UnitVA.String()
 	if got != unitOfMeasureVAStr {
 		t.Errorf(
 			st.ErrorMethodMismatch,
@@ -227,7 +227,7 @@ func TestUnitOfMeasure_String_VA(t *testing.T) {
 func TestUnitOfMeasure_String_KVA(t *testing.T) {
 	t.Parallel()
 
-	got := st.UnitOfMeasureKVA.String()
+	got := st.UnitKVA.String()
 	if got != unitOfMeasureKVAStr {
 		t.Errorf(
 			st.ErrorMethodMismatch,
@@ -241,7 +241,7 @@ func TestUnitOfMeasure_String_KVA(t *testing.T) {
 func TestUnitOfMeasure_String_VAR(t *testing.T) {
 	t.Parallel()
 
-	got := st.UnitOfMeasureVAR.String()
+	got := st.UnitVar.String()
 	if got != unitOfMeasureVARStr {
 		t.Errorf(
 			st.ErrorMethodMismatch,
@@ -255,7 +255,7 @@ func TestUnitOfMeasure_String_VAR(t *testing.T) {
 func TestUnitOfMeasure_String_KVAR(t *testing.T) {
 	t.Parallel()
 
-	got := st.UnitOfMeasureKVAR.String()
+	got := st.UnitKvar.String()
 	if got != unitOfMeasureKVARStr {
 		t.Errorf(
 			st.ErrorMethodMismatch,
@@ -269,7 +269,7 @@ func TestUnitOfMeasure_String_KVAR(t *testing.T) {
 func TestUnitOfMeasure_String_A(t *testing.T) {
 	t.Parallel()
 
-	got := st.UnitOfMeasureA.String()
+	got := st.UnitA.String()
 	if got != unitOfMeasureAStr {
 		t.Errorf(
 			st.ErrorMethodMismatch,
@@ -283,7 +283,7 @@ func TestUnitOfMeasure_String_A(t *testing.T) {
 func TestUnitOfMeasure_String_V(t *testing.T) {
 	t.Parallel()
 
-	got := st.UnitOfMeasureV.String()
+	got := st.UnitV.String()
 	if got != unitOfMeasureVStr {
 		t.Errorf(
 			st.ErrorMethodMismatch,
@@ -297,7 +297,7 @@ func TestUnitOfMeasure_String_V(t *testing.T) {
 func TestUnitOfMeasure_String_K(t *testing.T) {
 	t.Parallel()
 
-	got := st.UnitOfMeasureK.String()
+	got := st.UnitK.String()
 	if got != unitOfMeasureKStr {
 		t.Errorf(
 			st.ErrorMethodMismatch,
@@ -311,7 +311,7 @@ func TestUnitOfMeasure_String_K(t *testing.T) {
 func TestUnitOfMeasure_String_Celsius(t *testing.T) {
 	t.Parallel()
 
-	got := st.UnitOfMeasureCelsius.String()
+	got := st.UnitCelsius.String()
 	if got != unitOfMeasureCelsiusStr {
 		t.Errorf(
 			st.ErrorMethodMismatch,
@@ -322,16 +322,16 @@ func TestUnitOfMeasure_String_Celsius(t *testing.T) {
 	}
 }
 
-func TestUnitOfMeasure_String_Hz(t *testing.T) {
+func TestUnitOfMeasure_String_Percent(t *testing.T) {
 	t.Parallel()
 
-	got := st.UnitOfMeasureHz.String()
-	if got != unitOfMeasureHzStr {
+	got := st.UnitPercent.String()
+	if got != unitOfMeasurePercentStr {
 		t.Errorf(
 			st.ErrorMethodMismatch,
 			unitMethodString,
 			got,
-			unitOfMeasureHzStr,
+			unitOfMeasurePercentStr,
 		)
 	}
 }

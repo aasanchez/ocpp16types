@@ -4,23 +4,19 @@ package ocpp16types
 // RemoteStartTransaction request.
 type RemoteStartTransactionStatus string
 
-// Type alias for shorter const declarations.
-type rsts = RemoteStartTransactionStatus
+// Alias for shorter constant declarations.
+type rstt = RemoteStartTransactionStatus
 
 // RemoteStartTransactionStatus enumeration values as defined in OCPP 1.6.
 const (
-	// RemoteStartTransactionStatusAccepted indicates the
-	// request has been accepted.
-	RemoteStartTransactionStatusAccepted rsts = "Accepted"
-	// RemoteStartTransactionStatusRejected indicates the
-	// request has been rejected.
-	RemoteStartTransactionStatusRejected rsts = "Rejected"
+	RemoteStartTransactionStatusAccepted rstt = "Accepted"
+	RemoteStartTransactionStatusRejected rstt = "Rejected"
 )
 
-// IsValid checks if the RemoteStartTransactionStatus value
-// is valid per OCPP 1.6.
-func (t RemoteStartTransactionStatus) IsValid() bool {
-	switch t {
+// IsValid checks if the RemoteStartTransactionStatus value is valid
+// per OCPP 1.6.
+func (r RemoteStartTransactionStatus) IsValid() bool {
+	switch r {
 	case RemoteStartTransactionStatusAccepted,
 		RemoteStartTransactionStatusRejected:
 		return true
@@ -30,6 +26,6 @@ func (t RemoteStartTransactionStatus) IsValid() bool {
 }
 
 // String returns the string representation of RemoteStartTransactionStatus.
-func (t RemoteStartTransactionStatus) String() string {
-	return string(t)
+func (r RemoteStartTransactionStatus) String() string {
+	return string(r)
 }

@@ -1,22 +1,23 @@
 package ocpp16types
 
+// Hard is the reset type value for a hard reset.
+const Hard = "Hard"
+
+// Soft is the reset type value for a soft reset.
+const Soft = "Soft"
+
 // ResetType represents the type of reset to perform on a Charge Point.
 type ResetType string
 
-// Type alias for shorter const declarations.
-type rt = ResetType
-
 // ResetType enumeration values as defined in OCPP 1.6.
 const (
-	// ResetTypeHard indicates a hard reset.
-	ResetTypeHard rt = "Hard"
-	// ResetTypeSoft indicates a soft reset.
-	ResetTypeSoft rt = "Soft"
+	ResetTypeHard ResetType = Hard
+	ResetTypeSoft ResetType = Soft
 )
 
 // IsValid checks if the ResetType value is valid per OCPP 1.6.
-func (t ResetType) IsValid() bool {
-	switch t {
+func (r ResetType) IsValid() bool {
+	switch r {
 	case ResetTypeHard, ResetTypeSoft:
 		return true
 	default:
@@ -25,6 +26,6 @@ func (t ResetType) IsValid() bool {
 }
 
 // String returns the string representation of ResetType.
-func (t ResetType) String() string {
-	return string(t)
+func (r ResetType) String() string {
+	return string(r)
 }

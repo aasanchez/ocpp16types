@@ -14,7 +14,7 @@ func ExampleNewIdTagInfo() {
 		return
 	}
 
-	fmt.Println(info.Status().String())
+	fmt.Println(info.Status.String())
 	// Output:
 	// Accepted
 }
@@ -27,5 +27,5 @@ func ExampleNewIdTagInfo_invalid() {
 		return
 	}
 	// Output:
-	// invalid value
+	// NewIdTagInfo: AuthorizationStatus: invalid value
 }

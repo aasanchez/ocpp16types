@@ -4,25 +4,17 @@ package ocpp16types
 // as defined in OCPP 1.6.
 type DiagnosticsStatus string
 
-// Type alias for shorter const declarations.
-type ds = DiagnosticsStatus
-
 // DiagnosticsStatus enumeration values as defined in OCPP 1.6.
 const (
-	// DiagnosticsStatusIdle indicates the diagnostics upload is idle.
-	DiagnosticsStatusIdle ds = "Idle"
-	// DiagnosticsStatusUploaded indicates the diagnostics have been uploaded.
-	DiagnosticsStatusUploaded ds = "Uploaded"
-	// DiagnosticsStatusUploadFailed indicates the diagnostics upload failed.
-	DiagnosticsStatusUploadFailed ds = "UploadFailed"
-	// DiagnosticsStatusUploading indicates the diagnostics
-	// are currently uploading.
-	DiagnosticsStatusUploading ds = "Uploading"
+	DiagnosticsStatusIdle         DiagnosticsStatus = "Idle"
+	DiagnosticsStatusUploaded     DiagnosticsStatus = "Uploaded"
+	DiagnosticsStatusUploadFailed DiagnosticsStatus = "UploadFailed"
+	DiagnosticsStatusUploading    DiagnosticsStatus = "Uploading"
 )
 
 // IsValid checks if the DiagnosticsStatus value is valid per OCPP 1.6.
-func (t DiagnosticsStatus) IsValid() bool {
-	switch t {
+func (d DiagnosticsStatus) IsValid() bool {
+	switch d {
 	case DiagnosticsStatusIdle,
 		DiagnosticsStatusUploaded,
 		DiagnosticsStatusUploadFailed,
@@ -34,6 +26,6 @@ func (t DiagnosticsStatus) IsValid() bool {
 }
 
 // String returns the string representation of DiagnosticsStatus.
-func (t DiagnosticsStatus) String() string {
-	return string(t)
+func (d DiagnosticsStatus) String() string {
+	return string(d)
 }

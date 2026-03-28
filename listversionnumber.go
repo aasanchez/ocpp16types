@@ -13,9 +13,6 @@ const (
 
 	// ListVersionEmpty indicates the local authorization list is empty.
 	ListVersionEmpty = 0
-
-	// decimalBase is the base-10 radix used for formatting.
-	decimalBase = 10
 )
 
 // ListVersionNumber represents the version number of the local authorization
@@ -33,7 +30,7 @@ type ListVersionNumber struct {
 // Returns an error if the value is outside int32 range.
 func NewListVersionNumber(value int) (ListVersionNumber, error) {
 	if value < math.MinInt32 || value > math.MaxInt32 {
-		return ListVersionNumber{value: ListVersionEmpty}, fmt.Errorf(
+		return ListVersionNumber{}, fmt.Errorf(
 			"NewListVersionNumber: "+ErrorFieldFormat,
 			"value",
 			fmt.Errorf(

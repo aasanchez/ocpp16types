@@ -27,9 +27,9 @@ func FuzzIdTagInfo(f *testing.F) {
 			return
 		}
 
-		// If no error, verify Status().IsValid()
-		if !info.Status().IsValid() {
-			t.Fatalf("Status().IsValid() = false, want true for status %q", status)
+		// If no error, verify Status.IsValid()
+		if !info.Status.IsValid() {
+			t.Fatalf("Status.IsValid() = false, want true for status %q", status)
 		}
 	})
 }

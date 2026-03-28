@@ -1,31 +1,30 @@
 package ocpp16types
 
-// AuthorizationStatus represents the status of an authorization
-// transaction as defined in OCPP 1.6.
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = AuthorizationStatus("")
+
+// AuthorizationStatus represents the status in a response to an Authorize
+// request.
 type AuthorizationStatus string
 
-// Alias for shorter constant declarations.
-type as = AuthorizationStatus
-
+// AuthorizationStatus enumeration values as defined in OCPP 1.6.
 const (
-	// AuthorizationStatusAccepted indicates authorization is accepted.
-	AuthorizationStatusAccepted as = "Accepted"
-	// AuthorizationStatusBlocked indicates the ID is blocked.
-	AuthorizationStatusBlocked as = "Blocked"
-	// AuthorizationStatusExpired indicates the ID is expired.
-	AuthorizationStatusExpired as = "Expired"
-	// AuthorizationStatusInvalid indicates the ID is invalid.
-	AuthorizationStatusInvalid as = "Invalid"
-	// AuthorizationStatusConcurrentTx indicates concurrent transaction.
-	AuthorizationStatusConcurrentTx as = "ConcurrentTx"
+	AuthorizationStatusAccepted     AuthorizationStatus = "Accepted"
+	AuthorizationStatusBlocked      AuthorizationStatus = "Blocked"
+	AuthorizationStatusExpired      AuthorizationStatus = "Expired"
+	AuthorizationStatusInvalid      AuthorizationStatus = "Invalid"
+	AuthorizationStatusConcurrentTx AuthorizationStatus = "ConcurrentTx"
 )
 
-// IsValid checks if the AuthorizationStatus value is valid per
-// OCPP 1.6.
-func (t AuthorizationStatus) IsValid() bool {
-	switch t {
-	case AuthorizationStatusAccepted, AuthorizationStatusBlocked,
-		AuthorizationStatusExpired, AuthorizationStatusInvalid,
+// IsValid checks if the AuthorizationStatus value is valid per OCPP 1.6.
+func (a AuthorizationStatus) IsValid() bool {
+	switch a {
+	case AuthorizationStatusAccepted,
+		AuthorizationStatusBlocked,
+		AuthorizationStatusExpired,
+		AuthorizationStatusInvalid,
 		AuthorizationStatusConcurrentTx:
 		return true
 	default:
@@ -34,6 +33,6 @@ func (t AuthorizationStatus) IsValid() bool {
 }
 
 // String returns the string representation of AuthorizationStatus.
-func (t AuthorizationStatus) String() string {
-	return string(t)
+func (a AuthorizationStatus) String() string {
+	return string(a)
 }

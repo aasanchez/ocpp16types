@@ -4,32 +4,20 @@ package ocpp16types
 // as defined in OCPP 1.6.
 type FirmwareStatus string
 
-// Type alias for shorter const declarations.
-type fws = FirmwareStatus
-
 // FirmwareStatus enumeration values as defined in OCPP 1.6.
 const (
-	// FirmwareStatusDownloaded indicates the firmware has been downloaded.
-	FirmwareStatusDownloaded fws = "Downloaded"
-	// FirmwareStatusDownloadFailed indicates the firmware download failed.
-	FirmwareStatusDownloadFailed fws = "DownloadFailed"
-	// FirmwareStatusDownloading indicates the firmware
-	// is currently downloading.
-	FirmwareStatusDownloading fws = "Downloading"
-	// FirmwareStatusIdle indicates the firmware status is idle.
-	FirmwareStatusIdle fws = "Idle"
-	// FirmwareStatusInstallationFailed indicates the
-	// firmware installation failed.
-	FirmwareStatusInstallationFailed fws = "InstallationFailed"
-	// FirmwareStatusInstalling indicates the firmware is currently installing.
-	FirmwareStatusInstalling fws = "Installing"
-	// FirmwareStatusInstalled indicates the firmware has been installed.
-	FirmwareStatusInstalled fws = "Installed"
+	FirmwareStatusDownloaded         FirmwareStatus = "Downloaded"
+	FirmwareStatusDownloadFailed     FirmwareStatus = "DownloadFailed"
+	FirmwareStatusDownloading        FirmwareStatus = "Downloading"
+	FirmwareStatusIdle               FirmwareStatus = "Idle"
+	FirmwareStatusInstallationFailed FirmwareStatus = "InstallationFailed"
+	FirmwareStatusInstalling         FirmwareStatus = "Installing"
+	FirmwareStatusInstalled          FirmwareStatus = "Installed"
 )
 
 // IsValid checks if the FirmwareStatus value is valid per OCPP 1.6.
-func (t FirmwareStatus) IsValid() bool {
-	switch t {
+func (f FirmwareStatus) IsValid() bool {
+	switch f {
 	case FirmwareStatusDownloaded,
 		FirmwareStatusDownloadFailed,
 		FirmwareStatusDownloading,
@@ -44,6 +32,6 @@ func (t FirmwareStatus) IsValid() bool {
 }
 
 // String returns the string representation of FirmwareStatus.
-func (t FirmwareStatus) String() string {
-	return string(t)
+func (f FirmwareStatus) String() string {
+	return string(f)
 }

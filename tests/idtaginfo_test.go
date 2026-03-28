@@ -19,11 +19,11 @@ func TestNewIdTagInfo_Accepted(t *testing.T) {
 		t.Fatalf("unexpected error: %v", err)
 	}
 
-	if info.Status() != st.AuthorizationStatusAccepted {
+	if info.Status != st.AuthorizationStatusAccepted {
 		t.Errorf(
 			st.ErrorMethodMismatch,
-			"IdTagInfo.Status()",
-			info.Status(),
+			"IdTagInfo.Status",
+			info.Status,
 			st.AuthorizationStatusAccepted,
 		)
 	}
@@ -48,11 +48,11 @@ func TestNewIdTagInfo_AllStatuses(t *testing.T) {
 			continue
 		}
 
-		if info.Status() != status {
+		if info.Status != status {
 			t.Errorf(
 				st.ErrorMethodMismatch,
-				"IdTagInfo.Status()",
-				info.Status(),
+				"IdTagInfo.Status",
+				info.Status,
 				status,
 			)
 		}
@@ -82,7 +82,7 @@ func TestIdTagInfo_WithExpiryDate(t *testing.T) {
 	}
 
 	info = info.WithExpiryDate(dt)
-	expiryDate := info.ExpiryDate()
+	expiryDate := info.ExpiryDate
 
 	if expiryDate == nil {
 		t.Errorf(st.ErrorWantNonNil, "IdTagInfo.ExpiryDate()")
@@ -104,7 +104,7 @@ func TestIdTagInfo_WithParentIdTag(t *testing.T) {
 
 	parentToken := st.NewIdToken(token)
 	info = info.WithParentIdTag(parentToken)
-	retrievedParent := info.ParentIdTag()
+	retrievedParent := info.ParentIdTag
 
 	if retrievedParent == nil {
 		t.Errorf(st.ErrorWantNonNil, "IdTagInfo.ParentIdTag()")
@@ -119,7 +119,7 @@ func TestIdTagInfo_ExpiryDate_Nil(t *testing.T) {
 		t.Fatalf(errUnexpectedIdTagInfo, err)
 	}
 
-	expiryDate := info.ExpiryDate()
+	expiryDate := info.ExpiryDate
 	if expiryDate != nil {
 		t.Errorf("IdTagInfo.ExpiryDate() = %v, want nil", expiryDate)
 	}
@@ -133,7 +133,7 @@ func TestIdTagInfo_ParentIdTag_Nil(t *testing.T) {
 		t.Fatalf(errUnexpectedIdTagInfo, err)
 	}
 
-	parentTag := info.ParentIdTag()
+	parentTag := info.ParentIdTag
 	if parentTag != nil {
 		t.Errorf("IdTagInfo.ParentIdTag() = %v, want nil", parentTag)
 	}

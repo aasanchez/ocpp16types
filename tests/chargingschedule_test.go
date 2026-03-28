@@ -219,35 +219,3 @@ func TestChargingSchedule_Getters(t *testing.T) {
 		)
 	}
 }
-
-func TestChargingSchedule_String(t *testing.T) {
-	t.Parallel()
-
-	input := st.ChargingScheduleInput{
-		Duration:         nil,
-		ChargingRateUnit: testRateUnitW,
-		ChargingSchedulePeriod: []st.ChargingSchedulePeriodInput{
-			{
-				StartPeriod:  testStartPeriodZero,
-				Limit:        testLimitDefault,
-				NumberPhases: nil,
-			},
-		},
-		MinChargingRate: nil,
-		StartSchedule:   nil,
-	}
-
-	schedule, err := st.NewChargingSchedule(input)
-	if err != nil {
-		t.Fatalf(errUnexpectedFmt, err)
-	}
-
-	strRepr := schedule.String()
-	if !containsSubstring(strRepr, "ChargingSchedule") {
-		t.Errorf(
-			st.ErrorWantContains,
-			strRepr,
-			"ChargingSchedule",
-		)
-	}
-}

@@ -1,4 +1,3 @@
-//nolint:dupl // enum test pattern
 package ocpp16types_test
 
 import (

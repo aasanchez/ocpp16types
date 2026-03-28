@@ -5,7 +5,7 @@ import (
 )
 
 // AuthorizationDataInput represents the raw input data for creating an
-// AuthorizationData entry in the local authorization list.
+// AuthorizationData entry in the local authorization li
 type AuthorizationDataInput struct {
 	// Required: The identifier to be authorized.
 	IdTag string
@@ -24,18 +24,10 @@ type IdTagInfoInput struct {
 	ParentIdTag *string
 }
 
-// AuthorizationData represents an entry in the local authorization list.
+// AuthorizationData represents an entry in the local authorization li
 type AuthorizationData struct {
 	IdTag     IdToken
 	IdTagInfo *IdTagInfo
-}
-
-func zeroIdToken() IdToken {
-	return IdToken{
-		value: CiString20Type{
-			value: ciString{value: emptyStringValue},
-		},
-	}
 }
 
 // NewAuthorizationData creates a new AuthorizationData from the given input.
@@ -47,14 +39,11 @@ func NewAuthorizationData(
 ) (AuthorizationData, error) {
 	ciString, err := NewCiString20Type(input.IdTag)
 	if err != nil {
-		return AuthorizationData{
-				IdTag:     zeroIdToken(),
-				IdTagInfo: nil,
-			}, fmt.Errorf(
-				"NewAuthorizationData: "+ErrorFieldFormat,
-				"IdTag",
-				err,
-			)
+		return AuthorizationData{}, fmt.Errorf(
+			"NewAuthorizationData: "+ErrorFieldFormat,
+			"IdTag",
+			err,
+		)
 	}
 
 	idToken := NewIdToken(ciString)
@@ -68,14 +57,11 @@ func NewAuthorizationData(
 
 	idTagInfo, err := buildIdTagInfo(*input.IdTagInfo)
 	if err != nil {
-		return AuthorizationData{
-				IdTag:     zeroIdToken(),
-				IdTagInfo: nil,
-			}, fmt.Errorf(
-				"NewAuthorizationData: "+ErrorFieldFormat,
-				"IdTagInfo",
-				err,
-			)
+		return AuthorizationData{}, fmt.Errorf(
+			"NewAuthorizationData: "+ErrorFieldFormat,
+			"IdTagInfo",
+			err,
+		)
 	}
 
 	return AuthorizationData{
@@ -89,28 +75,17 @@ func buildIdTagInfo(input IdTagInfoInput) (IdTagInfo, error) {
 
 	idTagInfo, err := NewIdTagInfo(status)
 	if err != nil {
-		return IdTagInfo{
-				status:      emptyStringValue,
-				expiryDate:  nil,
-				parentIdTag: nil,
-			}, fmt.Errorf(
-				"buildIdTagInfo: %w",
-				err,
-			)
+		return IdTagInfo{}, fmt.Errorf("buildIdTagInfo: %w", err)
 	}
 
 	if input.ExpiryDate != nil {
 		expiryDate, err := NewDateTime(*input.ExpiryDate)
 		if err != nil {
-			return IdTagInfo{
-					status:      emptyStringValue,
-					expiryDate:  nil,
-					parentIdTag: nil,
-				}, fmt.Errorf(
-					ErrorFieldFormat,
-					"ExpiryDate",
-					err,
-				)
+			return IdTagInfo{}, fmt.Errorf(
+				ErrorFieldFormat,
+				"ExpiryDate",
+				err,
+			)
 		}
 
 		idTagInfo = idTagInfo.WithExpiryDate(expiryDate)
@@ -119,15 +94,11 @@ func buildIdTagInfo(input IdTagInfoInput) (IdTagInfo, error) {
 	if input.ParentIdTag != nil {
 		ciString, err := NewCiString20Type(*input.ParentIdTag)
 		if err != nil {
-			return IdTagInfo{
-					status:      emptyStringValue,
-					expiryDate:  nil,
-					parentIdTag: nil,
-				}, fmt.Errorf(
-					ErrorFieldFormat,
-					"ParentIdTag",
-					err,
-				)
+			return IdTagInfo{}, fmt.Errorf(
+				ErrorFieldFormat,
+				"ParentIdTag",
+				err,
+			)
 		}
 
 		parentIdToken := NewIdToken(ciString)

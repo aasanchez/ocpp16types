@@ -1,187 +1,212 @@
 package ocpp16types
 
 import (
+	"errors"
 	"fmt"
 )
 
-// CiString maximum length constants as defined in OCPP 1.6.
+// Compile-time interface verification.
+var (
+	_ fmt.Stringer = (*CiString20Type)(nil)
+	_ fmt.Stringer = (*CiString25Type)(nil)
+	_ fmt.Stringer = (*CiString50Type)(nil)
+	_ fmt.Stringer = (*CiString255Type)(nil)
+	_ fmt.Stringer = (*CiString500Type)(nil)
+)
+
+// Maximum length constants for OCPP 1.6 CiString types.
 const (
-	// CiString20Max is the maximum length of a CiString20Type.
-	CiString20Max = 20
-	// CiString25Max is the maximum length of a CiString25Type.
-	CiString25Max = 25
-	// CiString50Max is the maximum length of a CiString50Type.
-	CiString50Max = 50
-	// CiString255Max is the maximum length of a CiString255Type.
+	CiString20Max  = 20
+	CiString25Max  = 25
+	CiString50Max  = 50
 	CiString255Max = 255
-	// CiString500Max is the maximum length of a CiString500Type.
 	CiString500Max = 500
 )
 
-// emptyStringValue is the zero-value empty string constant.
-const emptyStringValue = ""
+// ASCII printable character range boundaries.
+const (
+	asciiPrintableMin = 32  // Space character
+	asciiPrintableMax = 126 // Tilde character
+)
 
-// printableASCIIMin is the lowest printable ASCII character (space).
-const printableASCIIMin = 32
+var (
+	// errExceedsMaxLength is returned when a CiString value exceeds its
+	// maximum length constraint.
+	errExceedsMaxLength = errors.New("exceeds maximum length")
 
-// printableASCIIMax is the highest printable ASCII character (tilde).
-const printableASCIIMax = 126
+	// errInvalidASCII is returned when a CiString value contains characters
+	// outside the printable ASCII range (32-126).
+	errInvalidASCII = errors.New(
+		"CiString: value contains non-printable ASCII characters",
+	)
+)
 
-// ciString holds a validated case-insensitive string.
+// ciString is the internal implementation of OCPP 1.6 case-insensitive string
+// validation. It validates string length and ensures only printable ASCII
+// characters (32-126) are present.
 type ciString struct {
 	value string
 }
 
-// newCiString validates and returns a new ciString.
-func newCiString(value string, maxLen int) (ciString, error) {
-	if value == emptyStringValue {
-		return ciString{value: emptyStringValue}, ErrEmptyValue
+// newCiString creates a new ciString with the given maximum length constraint.
+// Returns an error if the input is empty, exceeds maxLen, or contains
+// non-printable ASCII characters.
+func newCiString(input string, maxLen int) (ciString, error) {
+	if input == "" {
+		return ciString{}, ErrEmptyValue
 	}
 
-	if len(value) > maxLen {
-		return ciString{value: emptyStringValue}, ErrInvalidValue
+	cis := ciString{value: input}
+
+	if len(cis.value) > maxLen {
+		return ciString{}, fmt.Errorf(
+			"%w: %w (len=%d, max=%d)",
+			ErrInvalidValue,
+			errExceedsMaxLength,
+			len(cis.value),
+			maxLen,
+		)
 	}
 
-	for _, ch := range value {
-		if ch < printableASCIIMin || ch > printableASCIIMax {
-			return ciString{value: emptyStringValue}, ErrInvalidValue
+	for _, r := range input {
+		if r < asciiPrintableMin || r > asciiPrintableMax {
+			return ciString{}, fmt.Errorf(
+				"%w: %w",
+				ErrInvalidValue,
+				errInvalidASCII,
+			)
 		}
 	}
 
-	return ciString{value: value}, nil
+	return cis, nil
 }
 
-// CiString20Type is a case-insensitive string limited to 20 chars.
+// val returns the underlying string value.
+func (cis ciString) val() string {
+	return cis.value
+}
+
+// CiString20Type represents an OCPP 1.6 case-insensitive string with a maximum
+// length of 20 characters. The string must contain only printable ASCII
+// characters (32-126).
 type CiString20Type struct {
 	value ciString
 }
 
-// NewCiString20Type constructs a CiString20Type with validation.
+// NewCiString20Type creates a new CiString20Type from a string value. Returns
+// an error if the value exceeds 20 characters or contains non-printable ASCII.
 func NewCiString20Type(value string) (CiString20Type, error) {
 	cs, err := newCiString(value, CiString20Max)
-	if err != nil {
-		return CiString20Type{value: ciString{value: emptyStringValue}}, err
-	}
 
-	return CiString20Type{value: cs}, nil
+	return CiString20Type{value: cs}, err
 }
 
-// Value returns the wrapped string value.
+// Value returns the underlying string value of the CiString20Type.
 func (c CiString20Type) Value() string {
-	return c.value.value
+	return c.value.val()
 }
 
-// String returns the wrapped string value.
+// String implements the fmt.Stringer interface, returning the string value.
 func (c CiString20Type) String() string {
-	return c.value.value
+	return c.value.val()
 }
 
-var _ fmt.Stringer = CiString20Type{value: ciString{value: emptyStringValue}}
-
-// CiString25Type is a case-insensitive string limited to 25 chars.
+// CiString25Type represents an OCPP 1.6 case-insensitive string with a maximum
+// length of 25 characters. The string must contain only printable ASCII
+// characters (32-126).
 type CiString25Type struct {
 	value ciString
 }
 
-// NewCiString25Type constructs a CiString25Type with validation.
+// NewCiString25Type creates a new CiString25Type from a string value. Returns
+// an error if the value exceeds 25 characters or contains non-printable ASCII.
 func NewCiString25Type(value string) (CiString25Type, error) {
 	cs, err := newCiString(value, CiString25Max)
-	if err != nil {
-		return CiString25Type{value: ciString{value: emptyStringValue}}, err
-	}
 
-	return CiString25Type{value: cs}, nil
+	return CiString25Type{value: cs}, err
 }
 
-// Value returns the wrapped string value.
+// Value returns the underlying string value of the CiString25Type.
 func (c CiString25Type) Value() string {
-	return c.value.value
+	return c.value.val()
 }
 
-// String returns the wrapped string value.
+// String implements the fmt.Stringer interface, returning the string value.
 func (c CiString25Type) String() string {
-	return c.value.value
+	return c.value.val()
 }
 
-var _ fmt.Stringer = CiString25Type{value: ciString{value: emptyStringValue}}
-
-// CiString50Type is a case-insensitive string limited to 50 chars.
+// CiString50Type represents an OCPP 1.6 case-insensitive string with a maximum
+// length of 50 characters. The string must contain only printable ASCII
+// characters (32-126).
 type CiString50Type struct {
 	value ciString
 }
 
-// NewCiString50Type constructs a CiString50Type with validation.
+// NewCiString50Type creates a new CiString50Type from a string value. Returns
+// an error if the value exceeds 50 characters or contains non-printable ASCII.
 func NewCiString50Type(value string) (CiString50Type, error) {
 	cs, err := newCiString(value, CiString50Max)
-	if err != nil {
-		return CiString50Type{value: ciString{value: emptyStringValue}}, err
-	}
 
-	return CiString50Type{value: cs}, nil
+	return CiString50Type{value: cs}, err
 }
 
-// Value returns the wrapped string value.
+// Value returns the underlying string value of the CiString50Type.
 func (c CiString50Type) Value() string {
-	return c.value.value
+	return c.value.val()
 }
 
-// String returns the wrapped string value.
+// String implements the fmt.Stringer interface, returning the string value.
 func (c CiString50Type) String() string {
-	return c.value.value
+	return c.value.val()
 }
 
-var _ fmt.Stringer = CiString50Type{value: ciString{value: emptyStringValue}}
-
-// CiString255Type is a case-insensitive string limited to 255 chars.
+// CiString255Type represents an OCPP 1.6 case-insensitive string with a maximum
+// length of 255 characters. The string must contain only printable ASCII
+// characters (32-126).
 type CiString255Type struct {
 	value ciString
 }
 
-// NewCiString255Type constructs a CiString255Type with validation.
+// NewCiString255Type creates a new CiString255Type from a string value. Returns
+// an error if the value exceeds 255 characters or contains non-printable ASCII.
 func NewCiString255Type(value string) (CiString255Type, error) {
 	cs, err := newCiString(value, CiString255Max)
-	if err != nil {
-		return CiString255Type{value: ciString{value: emptyStringValue}}, err
-	}
 
-	return CiString255Type{value: cs}, nil
+	return CiString255Type{value: cs}, err
 }
 
-// Value returns the wrapped string value.
+// Value returns the underlying string value of the CiString255Type.
 func (c CiString255Type) Value() string {
-	return c.value.value
+	return c.value.val()
 }
 
-// String returns the wrapped string value.
+// String implements the fmt.Stringer interface, returning the string value.
 func (c CiString255Type) String() string {
-	return c.value.value
+	return c.value.val()
 }
 
-var _ fmt.Stringer = CiString255Type{value: ciString{value: emptyStringValue}}
-
-// CiString500Type is a case-insensitive string limited to 500 chars.
+// CiString500Type represents an OCPP 1.6 case-insensitive string with a maximum
+// length of 500 characters. The string must contain only printable ASCII
+// characters (32-126).
 type CiString500Type struct {
 	value ciString
 }
 
-// NewCiString500Type constructs a CiString500Type with validation.
+// NewCiString500Type creates a new CiString500Type from a string value. Returns
+// an error if the value exceeds 500 characters or contains non-printable ASCII.
 func NewCiString500Type(value string) (CiString500Type, error) {
-	cs, err := newCiString(value, CiString500Max)
-	if err != nil {
-		return CiString500Type{value: ciString{value: emptyStringValue}}, err
-	}
+	cis, err := newCiString(value, CiString500Max)
 
-	return CiString500Type{value: cs}, nil
+	return CiString500Type{value: cis}, err
 }
 
-// Value returns the wrapped string value.
+// Value returns the underlying string value of the CiString500Type.
 func (c CiString500Type) Value() string {
-	return c.value.value
+	return c.value.val()
 }
 
-// String returns the wrapped string value.
+// String implements the fmt.Stringer interface, returning the string value.
 func (c CiString500Type) String() string {
-	return c.value.value
+	return c.value.val()
 }
-
-var _ fmt.Stringer = CiString500Type{value: ciString{value: emptyStringValue}}

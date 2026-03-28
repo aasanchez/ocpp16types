@@ -1,41 +1,48 @@
 package ocpp16types
 
-// ReadingContext represents the context of a meter reading as
-// defined in OCPP 1.6.
+// ReadingContext represents the context of a meter value reading
+// as defined in OCPP 1.6.
 type ReadingContext string
 
-// Alias for shorter constant declarations.
+// Alias for shorter constant names within this package.
 type rc = ReadingContext
 
+// ReadingContext enumeration values as defined in OCPP 1.6.
 const (
-	// ReadingContextInterruptionBegin indicates reading at interruption
-	// begin.
+	// ReadingContextInterruptionBegin indicates the value was taken at the
+	// beginning of an interruption.
 	ReadingContextInterruptionBegin rc = "Interruption.Begin"
-	// ReadingContextInterruptionEnd indicates reading at interruption
-	// end.
+	// ReadingContextInterruptionEnd indicates the value was taken at the end
+	// of an interruption.
 	ReadingContextInterruptionEnd rc = "Interruption.End"
-	// ReadingContextOther indicates other reading context.
+	// ReadingContextOther indicates an unspecified reading context.
 	ReadingContextOther rc = "Other"
-	// ReadingContextSampleClock indicates reading at sample clock.
+	// ReadingContextSampleClock indicates the value was taken at a
+	// clock-aligned interval.
 	ReadingContextSampleClock rc = "Sample.Clock"
-	// ReadingContextSamplePeriodic indicates reading at sample periodic.
+	// ReadingContextSamplePeriodic indicates the value was taken at a
+	// periodic interval.
 	ReadingContextSamplePeriodic rc = "Sample.Periodic"
-	// ReadingContextTransactionBegin indicates reading at transaction
-	// begin.
+	// ReadingContextTransactionBegin indicates the value was taken at the
+	// start of a transaction.
 	ReadingContextTransactionBegin rc = "Transaction.Begin"
-	// ReadingContextTransactionEnd indicates reading at transaction end.
+	// ReadingContextTransactionEnd indicates the value was taken at the end
+	// of a transaction.
 	ReadingContextTransactionEnd rc = "Transaction.End"
-	// ReadingContextTrigger indicates reading at trigger.
+	// ReadingContextTrigger indicates the value was taken because of a trigger.
 	ReadingContextTrigger rc = "Trigger"
 )
 
 // IsValid checks if the ReadingContext value is valid per OCPP 1.6.
-func (t ReadingContext) IsValid() bool {
-	switch t {
+func (r ReadingContext) IsValid() bool {
+	switch r {
 	case ReadingContextInterruptionBegin,
-		ReadingContextInterruptionEnd, ReadingContextOther,
-		ReadingContextSampleClock, ReadingContextSamplePeriodic,
-		ReadingContextTransactionBegin, ReadingContextTransactionEnd,
+		ReadingContextInterruptionEnd,
+		ReadingContextOther,
+		ReadingContextSampleClock,
+		ReadingContextSamplePeriodic,
+		ReadingContextTransactionBegin,
+		ReadingContextTransactionEnd,
 		ReadingContextTrigger:
 		return true
 	default:
@@ -44,6 +51,6 @@ func (t ReadingContext) IsValid() bool {
 }
 
 // String returns the string representation of ReadingContext.
-func (t ReadingContext) String() string {
-	return string(t)
+func (r ReadingContext) String() string {
+	return string(r)
 }

@@ -4,26 +4,17 @@ package ocpp16types
 // as defined in OCPP 1.6.
 type ConfigurationStatus string
 
-// Type alias for shorter const declarations.
-type cs = ConfigurationStatus
-
 // ConfigurationStatus enumeration values as defined in OCPP 1.6.
 const (
-	// ConfigurationStatusAccepted indicates the request has been accepted.
-	ConfigurationStatusAccepted cs = "Accepted"
-	// ConfigurationStatusRejected indicates the request has been rejected.
-	ConfigurationStatusRejected cs = "Rejected"
-	// ConfigurationStatusRebootRequired indicates a reboot
-	// is required to apply the configuration.
-	ConfigurationStatusRebootRequired cs = "RebootRequired"
-	// ConfigurationStatusNotSupported indicates the
-	// configuration is not supported.
-	ConfigurationStatusNotSupported cs = "NotSupported"
+	ConfigurationStatusAccepted       ConfigurationStatus = "Accepted"
+	ConfigurationStatusRejected       ConfigurationStatus = "Rejected"
+	ConfigurationStatusRebootRequired ConfigurationStatus = "RebootRequired"
+	ConfigurationStatusNotSupported   ConfigurationStatus = "NotSupported"
 )
 
 // IsValid checks if the ConfigurationStatus value is valid per OCPP 1.6.
-func (t ConfigurationStatus) IsValid() bool {
-	switch t {
+func (c ConfigurationStatus) IsValid() bool {
+	switch c {
 	case ConfigurationStatusAccepted,
 		ConfigurationStatusRejected,
 		ConfigurationStatusRebootRequired,
@@ -35,6 +26,6 @@ func (t ConfigurationStatus) IsValid() bool {
 }
 
 // String returns the string representation of ConfigurationStatus.
-func (t ConfigurationStatus) String() string {
-	return string(t)
+func (c ConfigurationStatus) String() string {
+	return string(c)
 }

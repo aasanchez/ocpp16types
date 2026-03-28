@@ -1,59 +1,48 @@
 package ocpp16types
 
-// ChargePointErrorCode represents error codes for charge points
-// as defined in OCPP 1.6.
+// ChargePointErrorCode represents the error code reported in a
+// StatusNotification as defined in OCPP 1.6.
 type ChargePointErrorCode string
 
-// Alias for shorter constant declarations.
-type cpec = ChargePointErrorCode
-
+// ChargePointErrorCode enumeration values as defined in OCPP 1.6.
 const (
-	// ErrCodeNoError indicates no error.
-	ErrCodeNoError cpec = "NoError"
-	// ErrCodeConnectorLockFailure indicates connector lock failure.
-	ErrCodeConnectorLockFailure cpec = "ConnectorLockFailure"
-	// ErrCodeEVCommunicationError indicates EV communication error.
-	ErrCodeEVCommunicationError cpec = "EVCommunicationError"
-	// ErrCodeGroundFailure indicates ground failure.
-	ErrCodeGroundFailure cpec = "GroundFailure"
-	// ErrCodeHighTemperature indicates high temperature.
-	ErrCodeHighTemperature cpec = "HighTemperature"
-	// ErrCodeInternalError indicates internal error.
-	ErrCodeInternalError cpec = "InternalError"
-	// ErrCodeLocalListConflict indicates local list conflict.
-	ErrCodeLocalListConflict cpec = "LocalListConflict"
-	// ErrCodeOtherError indicates other error.
-	ErrCodeOtherError cpec = "OtherError"
-	// ErrCodeOverCurrentFailure indicates over current failure.
-	ErrCodeOverCurrentFailure cpec = "OverCurrentFailure"
-	// ErrCodeOverVoltage indicates over voltage.
-	ErrCodeOverVoltage cpec = "OverVoltage"
-	// ErrCodePowerMeterFailure indicates power meter failure.
-	ErrCodePowerMeterFailure cpec = "PowerMeterFailure"
-	// ErrCodePowerSwitchFailure indicates power switch failure.
-	ErrCodePowerSwitchFailure cpec = "PowerSwitchFailure"
-	// ErrCodeReaderFailure indicates reader failure.
-	ErrCodeReaderFailure cpec = "ReaderFailure"
-	// ErrCodeResetFailure indicates reset failure.
-	ErrCodeResetFailure cpec = "ResetFailure"
-	// ErrCodeUnderVoltage indicates under voltage.
-	ErrCodeUnderVoltage cpec = "UnderVoltage"
-	// ErrCodeWeakSignal indicates weak signal.
-	ErrCodeWeakSignal cpec = "WeakSignal"
+	ErrCodeConnectorLockFailure ChargePointErrorCode = "ConnectorLockFailure"
+	ErrCodeEVCommunicationError ChargePointErrorCode = "EVCommunicationError"
+	ErrCodeGroundFailure        ChargePointErrorCode = "GroundFailure"
+	ErrCodeHighTemperature      ChargePointErrorCode = "HighTemperature"
+	ErrCodeInternalError        ChargePointErrorCode = "InternalError"
+	ErrCodeLocalListConflict    ChargePointErrorCode = "LocalListConflict"
+	ErrCodeNoError              ChargePointErrorCode = "NoError"
+	ErrCodeOtherError           ChargePointErrorCode = "OtherError"
+	ErrCodeOverCurrentFailure   ChargePointErrorCode = "OverCurrentFailure"
+	ErrCodeOverVoltage          ChargePointErrorCode = "OverVoltage"
+	ErrCodePowerMeterFailure    ChargePointErrorCode = "PowerMeterFailure"
+	ErrCodePowerSwitchFailure   ChargePointErrorCode = "PowerSwitchFailure"
+	ErrCodeReaderFailure        ChargePointErrorCode = "ReaderFailure"
+	ErrCodeResetFailure         ChargePointErrorCode = "ResetFailure"
+	ErrCodeUnderVoltage         ChargePointErrorCode = "UnderVoltage"
+	ErrCodeWeakSignal           ChargePointErrorCode = "WeakSignal"
 )
 
-// IsValid checks if the ChargePointErrorCode value is valid per
-// OCPP 1.6.
-func (t ChargePointErrorCode) IsValid() bool {
-	switch t {
-	case ErrCodeNoError, ErrCodeConnectorLockFailure,
-		ErrCodeEVCommunicationError, ErrCodeGroundFailure,
-		ErrCodeHighTemperature, ErrCodeInternalError,
-		ErrCodeLocalListConflict, ErrCodeOtherError,
-		ErrCodeOverCurrentFailure, ErrCodeOverVoltage,
-		ErrCodePowerMeterFailure, ErrCodePowerSwitchFailure,
-		ErrCodeReaderFailure, ErrCodeResetFailure,
-		ErrCodeUnderVoltage, ErrCodeWeakSignal:
+// IsValid checks if the ChargePointErrorCode value is valid per OCPP 1.6.
+func (c ChargePointErrorCode) IsValid() bool {
+	switch c {
+	case ErrCodeConnectorLockFailure,
+		ErrCodeEVCommunicationError,
+		ErrCodeGroundFailure,
+		ErrCodeHighTemperature,
+		ErrCodeInternalError,
+		ErrCodeLocalListConflict,
+		ErrCodeNoError,
+		ErrCodeOtherError,
+		ErrCodeOverCurrentFailure,
+		ErrCodeOverVoltage,
+		ErrCodePowerMeterFailure,
+		ErrCodePowerSwitchFailure,
+		ErrCodeReaderFailure,
+		ErrCodeResetFailure,
+		ErrCodeUnderVoltage,
+		ErrCodeWeakSignal:
 		return true
 	default:
 		return false
@@ -61,6 +50,6 @@ func (t ChargePointErrorCode) IsValid() bool {
 }
 
 // String returns the string representation of ChargePointErrorCode.
-func (t ChargePointErrorCode) String() string {
-	return string(t)
+func (c ChargePointErrorCode) String() string {
+	return string(c)
 }

@@ -4,22 +4,15 @@ package ocpp16types
 // Point or connector as defined in OCPP 1.6.
 type AvailabilityType string
 
-// Type alias for shorter const declarations.
-type avt = AvailabilityType
-
 // AvailabilityType enumeration values as defined in OCPP 1.6.
 const (
-	// AvailabilityTypeInoperative indicates the resource
-	// should be made inoperative.
-	AvailabilityTypeInoperative avt = "Inoperative"
-	// AvailabilityTypeOperative indicates the resource
-	// should be made operative.
-	AvailabilityTypeOperative avt = "Operative"
+	AvailabilityTypeInoperative AvailabilityType = "Inoperative"
+	AvailabilityTypeOperative   AvailabilityType = "Operative"
 )
 
 // IsValid checks if the AvailabilityType value is valid per OCPP 1.6.
-func (t AvailabilityType) IsValid() bool {
-	switch t {
+func (a AvailabilityType) IsValid() bool {
+	switch a {
 	case AvailabilityTypeInoperative,
 		AvailabilityTypeOperative:
 		return true
@@ -29,6 +22,6 @@ func (t AvailabilityType) IsValid() bool {
 }
 
 // String returns the string representation of AvailabilityType.
-func (t AvailabilityType) String() string {
-	return string(t)
+func (a AvailabilityType) String() string {
+	return string(a)
 }

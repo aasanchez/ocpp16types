@@ -102,56 +102,23 @@ func TestNewMeterValue_Getters(t *testing.T) {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	timestamp := meterVal.Timestamp()
+	timestamp := meterVal.Timestamp
 	if timestamp.String() != testTimestamp {
 		t.Errorf(
 			st.ErrorMethodMismatch,
-			"MeterValue.Timestamp()",
+			"MeterValue.Timestamp",
 			timestamp.String(),
 			testTimestamp,
 		)
 	}
 
-	samples := meterVal.SampledValue()
+	samples := meterVal.SampledValue
 	if len(samples) != testExpectedSamples {
 		t.Errorf(
 			st.ErrorMethodMismatch,
-			"len(MeterValue.SampledValue())",
+			"len(MeterValue.SampledValue)",
 			len(samples),
 			testExpectedSamples,
-		)
-	}
-}
-
-func TestMeterValue_String(t *testing.T) {
-	t.Parallel()
-
-	input := st.MeterValueInput{
-		Timestamp: testTimestamp,
-		SampledValue: []st.SampledValueInput{
-			{
-				Value:     testSampledValueStr,
-				Context:   nil,
-				Format:    nil,
-				Measurand: nil,
-				Phase:     nil,
-				Location:  nil,
-				Unit:      nil,
-			},
-		},
-	}
-
-	meterVal, err := st.NewMeterValue(input)
-	if err != nil {
-		t.Fatalf(errUnexpectedFmt, err)
-	}
-
-	strRepr := meterVal.String()
-	if !containsSubstring(strRepr, "MeterValue") {
-		t.Errorf(
-			st.ErrorWantContains,
-			strRepr,
-			"MeterValue",
 		)
 	}
 }

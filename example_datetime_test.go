@@ -26,6 +26,7 @@ func ExampleNewDateTime_invalid() {
 
 		return
 	}
+	//nolint:lll,revive // Output comment must match exact error string
 	// Output:
-	// invalid value
+	// NewDateTime: value: invalid value: parsing time "not-a-date" as "2006-01-02T15:04:05Z07:00": cannot parse "not-a-date" as "2006"
 }
