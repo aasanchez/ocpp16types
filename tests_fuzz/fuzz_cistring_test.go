@@ -3,6 +3,7 @@
 package testsfuzz
 
 import (
+	"errors"
 	"testing"
 
 	st "github.com/aasanchez/ocpp16types"
@@ -88,5 +89,6 @@ func FuzzCiString50(f *testing.F) {
 }
 
 func isExpectedError(err error) bool {
-	return err == st.ErrEmptyValue || err == st.ErrInvalidValue
+	return errors.Is(err, st.ErrEmptyValue) ||
+		errors.Is(err, st.ErrInvalidValue)
 }

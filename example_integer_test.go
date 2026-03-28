@@ -12,6 +12,7 @@ func ExampleNewInteger() {
 	num, err := st.NewInteger(exampleIntegerValue)
 	if err != nil {
 		fmt.Println(err)
+
 		return
 	}
 
@@ -24,6 +25,7 @@ func ExampleNewInteger_invalid() {
 	_, err := st.NewInteger(-1)
 	if err != nil {
 		fmt.Println(err)
+
 		return
 	}
 	// Output:

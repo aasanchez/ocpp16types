@@ -10,6 +10,7 @@ func ExampleNewIdTagInfo() {
 	info, err := st.NewIdTagInfo(st.AuthorizationStatusAccepted)
 	if err != nil {
 		fmt.Println(err)
+
 		return
 	}
 
@@ -22,6 +23,7 @@ func ExampleNewIdTagInfo_invalid() {
 	_, err := st.NewIdTagInfo(st.AuthorizationStatus("Bogus"))
 	if err != nil {
 		fmt.Println(err)
+
 		return
 	}
 	// Output:

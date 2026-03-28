@@ -63,8 +63,8 @@ func validateStartPeriod(
 }
 
 func validateLimit(input float64, errs error) (float64, error) {
-	if input < 0 {
-		return 0, errors.Join(errs, fmt.Errorf(
+	if input < zeroValue {
+		return zeroValue, errors.Join(errs, fmt.Errorf(
 			"NewChargingSchedulePeriod: "+ErrorFieldFormat,
 			"Limit", ErrInvalidValue,
 		))

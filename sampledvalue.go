@@ -32,6 +32,7 @@ func NewSampledValue(
 	input SampledValueInput,
 ) (SampledValue, error) {
 	var errs error
+
 	sampledVal := SampledValue{
 		value:     CiString500Type{value: ciString{value: ""}},
 		context:   nil,
@@ -64,11 +65,13 @@ func validateContext(input *string, errs error) (*ReadingContext, error) {
 	if input == nil {
 		return nil, errs
 	}
+
 	ctx := ReadingContext(*input)
 
 	if !ctx.IsValid() {
 		return nil, errors.Join(errs, ErrInvalidValue)
 	}
+
 	return &ctx, errs
 }
 
@@ -82,6 +85,7 @@ func validateFormat(input *string, errs error) (*ValueFormat, error) {
 	if !valFmt.IsValid() {
 		return nil, errors.Join(errs, ErrInvalidValue)
 	}
+
 	return &valFmt, errs
 }
 
@@ -95,6 +99,7 @@ func validateMeasurand(input *string, errs error) (*Measurand, error) {
 	if !measurand.IsValid() {
 		return nil, errors.Join(errs, ErrInvalidValue)
 	}
+
 	return &measurand, errs
 }
 
@@ -108,6 +113,7 @@ func validatePhase(input *string, errs error) (*Phase, error) {
 	if !phase.IsValid() {
 		return nil, errors.Join(errs, ErrInvalidValue)
 	}
+
 	return &phase, errs
 }
 
@@ -115,10 +121,13 @@ func validateLocation(input *string, errs error) (*Location, error) {
 	if input == nil {
 		return nil, errs
 	}
+
 	location := Location(*input)
+
 	if !location.IsValid() {
 		return nil, errors.Join(errs, ErrInvalidValue)
 	}
+
 	return &location, errs
 }
 
@@ -126,11 +135,13 @@ func validateUnit(input *string, errs error) (*UnitOfMeasure, error) {
 	if input == nil {
 		return nil, errs
 	}
+
 	unit := UnitOfMeasure(*input)
 
 	if !unit.IsValid() {
 		return nil, errors.Join(errs, ErrInvalidValue)
 	}
+
 	return &unit, errs
 }
 
@@ -144,7 +155,9 @@ func (s SampledValue) Context() *ReadingContext {
 	if s.context == nil {
 		return nil
 	}
+
 	cp := *s.context
+
 	return &cp
 }
 
@@ -153,7 +166,9 @@ func (s SampledValue) Format() *ValueFormat {
 	if s.format == nil {
 		return nil
 	}
+
 	cp := *s.format
+
 	return &cp
 }
 
@@ -162,7 +177,9 @@ func (s SampledValue) Measurand() *Measurand {
 	if s.measurand == nil {
 		return nil
 	}
+
 	cp := *s.measurand
+
 	return &cp
 }
 
@@ -171,7 +188,9 @@ func (s SampledValue) Phase() *Phase {
 	if s.phase == nil {
 		return nil
 	}
+
 	cp := *s.phase
+
 	return &cp
 }
 
@@ -180,7 +199,9 @@ func (s SampledValue) Location() *Location {
 	if s.location == nil {
 		return nil
 	}
+
 	cp := *s.location
+
 	return &cp
 }
 
@@ -189,7 +210,9 @@ func (s SampledValue) Unit() *UnitOfMeasure {
 	if s.unit == nil {
 		return nil
 	}
+
 	cp := *s.unit
+
 	return &cp
 }
 

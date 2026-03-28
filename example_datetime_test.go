@@ -10,6 +10,7 @@ func ExampleNewDateTime() {
 	dateTime, err := st.NewDateTime("2024-01-15T10:30:00Z")
 	if err != nil {
 		fmt.Println(err)
+
 		return
 	}
 
@@ -22,6 +23,7 @@ func ExampleNewDateTime_invalid() {
 	_, err := st.NewDateTime("not-a-date")
 	if err != nil {
 		fmt.Println(err)
+
 		return
 	}
 	// Output:

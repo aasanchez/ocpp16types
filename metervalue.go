@@ -21,6 +21,7 @@ type MeterValue struct {
 // NewMeterValue constructs a MeterValue with validation.
 func NewMeterValue(input MeterValueInput) (MeterValue, error) {
 	var errs error
+
 	meterVal := MeterValue{
 		timestamp:    DateTime{value: time.Time{}},
 		sampledValue: nil,
@@ -35,7 +36,7 @@ func NewMeterValue(input MeterValueInput) (MeterValue, error) {
 	}
 
 	// Validate sampled values
-	if len(input.SampledValue) == 0 {
+	if len(input.SampledValue) == zeroValue {
 		errs = errors.Join(errs, ErrEmptyValue)
 	}
 
@@ -63,6 +64,7 @@ func (m MeterValue) Timestamp() DateTime {
 func (m MeterValue) SampledValue() []SampledValue {
 	cp := make([]SampledValue, len(m.sampledValue))
 	copy(cp, m.sampledValue)
+
 	return cp
 }
 

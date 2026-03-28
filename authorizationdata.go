@@ -31,7 +31,11 @@ type AuthorizationData struct {
 }
 
 func zeroIdToken() IdToken {
-	return IdToken{value: CiString20Type{value: ciString{value: emptyStringValue}}}
+	return IdToken{
+		value: CiString20Type{
+			value: ciString{value: emptyStringValue},
+		},
+	}
 }
 
 // NewAuthorizationData creates a new AuthorizationData from the given input.
@@ -43,11 +47,14 @@ func NewAuthorizationData(
 ) (AuthorizationData, error) {
 	ciString, err := NewCiString20Type(input.IdTag)
 	if err != nil {
-		return AuthorizationData{IdTag: zeroIdToken(), IdTagInfo: nil}, fmt.Errorf(
-			"NewAuthorizationData: "+ErrorFieldFormat,
-			"IdTag",
-			err,
-		)
+		return AuthorizationData{
+				IdTag:     zeroIdToken(),
+				IdTagInfo: nil,
+			}, fmt.Errorf(
+				"NewAuthorizationData: "+ErrorFieldFormat,
+				"IdTag",
+				err,
+			)
 	}
 
 	idToken := NewIdToken(ciString)
@@ -61,11 +68,14 @@ func NewAuthorizationData(
 
 	idTagInfo, err := buildIdTagInfo(*input.IdTagInfo)
 	if err != nil {
-		return AuthorizationData{IdTag: zeroIdToken(), IdTagInfo: nil}, fmt.Errorf(
-			"NewAuthorizationData: "+ErrorFieldFormat,
-			"IdTagInfo",
-			err,
-		)
+		return AuthorizationData{
+				IdTag:     zeroIdToken(),
+				IdTagInfo: nil,
+			}, fmt.Errorf(
+				"NewAuthorizationData: "+ErrorFieldFormat,
+				"IdTagInfo",
+				err,
+			)
 	}
 
 	return AuthorizationData{
@@ -92,11 +102,15 @@ func buildIdTagInfo(input IdTagInfoInput) (IdTagInfo, error) {
 	if input.ExpiryDate != nil {
 		expiryDate, err := NewDateTime(*input.ExpiryDate)
 		if err != nil {
-			return IdTagInfo{status: emptyStringValue, expiryDate: nil, parentIdTag: nil}, fmt.Errorf(
-				ErrorFieldFormat,
-				"ExpiryDate",
-				err,
-			)
+			return IdTagInfo{
+					status:      emptyStringValue,
+					expiryDate:  nil,
+					parentIdTag: nil,
+				}, fmt.Errorf(
+					ErrorFieldFormat,
+					"ExpiryDate",
+					err,
+				)
 		}
 
 		idTagInfo = idTagInfo.WithExpiryDate(expiryDate)
@@ -106,14 +120,14 @@ func buildIdTagInfo(input IdTagInfoInput) (IdTagInfo, error) {
 		ciString, err := NewCiString20Type(*input.ParentIdTag)
 		if err != nil {
 			return IdTagInfo{
-				status:      emptyStringValue,
-				expiryDate:  nil,
-				parentIdTag: nil,
-			}, fmt.Errorf(
-				ErrorFieldFormat,
-				"ParentIdTag",
-				err,
-			)
+					status:      emptyStringValue,
+					expiryDate:  nil,
+					parentIdTag: nil,
+				}, fmt.Errorf(
+					ErrorFieldFormat,
+					"ParentIdTag",
+					err,
+				)
 		}
 
 		parentIdToken := NewIdToken(ciString)

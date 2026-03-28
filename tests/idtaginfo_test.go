@@ -6,7 +6,10 @@ import (
 	st "github.com/aasanchez/ocpp16types"
 )
 
-const errUnexpectedIdTagInfo = "unexpected error creating IdTagInfo: %v"
+const (
+	errUnexpectedIdTagInfo = "unexpected error creating IdTagInfo: %v"
+	zeroLen                = 0
+)
 
 func TestNewIdTagInfo_Accepted(t *testing.T) {
 	t.Parallel()
@@ -155,14 +158,16 @@ func TestIdTagInfo_String(t *testing.T) {
 }
 
 func containsSubstring(str, substring string) bool {
-	return len(str) > 0 && len(substring) > 0 && findSubstring(str, substring)
+	return len(str) > zeroLen && len(substring) > zeroLen &&
+		findSubstring(str, substring)
 }
 
 func findSubstring(str, substring string) bool {
-	for i := 0; i <= len(str)-len(substring); i++ {
+	for i := zeroLen; i <= len(str)-len(substring); i++ {
 		if str[i:i+len(substring)] == substring {
 			return true
 		}
 	}
+
 	return false
 }

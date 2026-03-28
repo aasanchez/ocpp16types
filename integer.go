@@ -20,8 +20,9 @@ type Integer struct {
 // NewInteger constructs an Integer with range validation.
 func NewInteger(value int) (Integer, error) {
 	if value < integerMinValue || value > integerMaxValue {
-		return Integer{value: 0}, ErrInvalidValue
+		return Integer{value: integerMinValue}, ErrInvalidValue
 	}
+
 	return Integer{value: uint16(value)}, nil
 }
 
@@ -35,4 +36,4 @@ func (i Integer) String() string {
 	return strconv.FormatUint(uint64(i.value), base10)
 }
 
-var _ fmt.Stringer = Integer{value: 0}
+var _ fmt.Stringer = Integer{value: integerMinValue}

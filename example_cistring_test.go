@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	ciString20MaxLen = 20
+	ciString20MaxLen  = 20
 	ciString20OverLen = 21
 )
 
@@ -18,6 +18,7 @@ func ExampleNewCiString20Type() {
 	cistr, err := st.NewCiString20Type(input)
 	if err != nil {
 		fmt.Println(err)
+
 		return
 	}
 
@@ -32,6 +33,7 @@ func ExampleNewCiString20Type_invalid() {
 	_, err := st.NewCiString20Type(input)
 	if err != nil {
 		fmt.Println(err)
+
 		return
 	}
 	// Output:

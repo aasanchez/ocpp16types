@@ -20,10 +20,13 @@ const (
 	testValueStr  = "TestValue"
 	testStringStr = "TestString"
 
-	ciString20MaxLen = 20
-	ciString25MaxLen = 25
-	ciString50MaxLen = 50
-	repeatCharA      = "A"
+	ciString20MaxLen  = 20
+	ciString25MaxLen  = 25
+	ciString50MaxLen  = 50
+	ciString255MaxLen = 255
+	ciString500MaxLen = 500
+	repeatCharA       = "A"
+	repeatCharB       = "B"
 )
 
 const (
@@ -38,20 +41,22 @@ const (
 
 func TestNewCiString20Type(t *testing.T) {
 	t.Parallel()
+
 	input := strings.Repeat(repeatCharA, ciString20MaxLen)
 
-	s, err := st.NewCiString20Type(input)
+	ciStr, err := st.NewCiString20Type(input)
 	if err != nil {
 		t.Fatalf("unexpected error for a 20-character string: %v", err)
 	}
 
-	if s.Value() != input {
-		t.Errorf(errMsgValueMismatch, input, s.Value())
+	if ciStr.Value() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.Value())
 	}
 }
 
 func TestNewCiString20_Empty(t *testing.T) {
 	t.Parallel()
+
 	_, err := st.NewCiString20Type(emptyString)
 	if err == nil {
 		t.Fatal(errMsgEmptyWantError)
@@ -64,7 +69,9 @@ func TestNewCiString20_Empty(t *testing.T) {
 
 func TestNewCiString20_TooLong(t *testing.T) {
 	t.Parallel()
-	input := strings.Repeat("B", ciString20Over)
+
+	input := strings.Repeat(repeatCharB, ciString20Over)
+
 	_, err := st.NewCiString20Type(input)
 	if err == nil {
 		t.Fatalf(errMsgStringTooLong, ciString20MaxLen)
@@ -73,27 +80,31 @@ func TestNewCiString20_TooLong(t *testing.T) {
 
 func TestNewCiString20_TestValue(t *testing.T) {
 	t.Parallel()
+
 	input := testValueStr
-	s, err := st.NewCiString20Type(input)
+
+	ciStr, err := st.NewCiString20Type(input)
 	if err != nil {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if s.Value() != input {
-		t.Errorf(errMsgValueMismatch, input, s.Value())
+	if ciStr.Value() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.Value())
 	}
 }
 
 func TestCiString20Type_String(t *testing.T) {
 	t.Parallel()
+
 	input := testStringStr
-	s, err := st.NewCiString20Type(input)
+
+	ciStr, err := st.NewCiString20Type(input)
 	if err != nil {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if s.String() != input {
-		t.Errorf(errMsgValueMismatch, input, s.String())
+	if ciStr.String() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.String())
 	}
 }
 
@@ -101,20 +112,22 @@ func TestCiString20Type_String(t *testing.T) {
 
 func TestNewCiString25Type(t *testing.T) {
 	t.Parallel()
+
 	input := strings.Repeat(repeatCharA, ciString25MaxLen)
 
-	s, err := st.NewCiString25Type(input)
+	ciStr, err := st.NewCiString25Type(input)
 	if err != nil {
 		t.Fatalf(errMsgUnexpectedError, ciString25MaxLen, err)
 	}
 
-	if s.Value() != input {
-		t.Errorf(errMsgValueMismatch, input, s.Value())
+	if ciStr.Value() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.Value())
 	}
 }
 
 func TestNewCiString25_Empty(t *testing.T) {
 	t.Parallel()
+
 	_, err := st.NewCiString25Type(emptyString)
 	if err == nil {
 		t.Fatal(errMsgEmptyWantError)
@@ -127,7 +140,9 @@ func TestNewCiString25_Empty(t *testing.T) {
 
 func TestNewCiString25_TooLong(t *testing.T) {
 	t.Parallel()
-	input := strings.Repeat("B", ciString25Over)
+
+	input := strings.Repeat(repeatCharB, ciString25Over)
+
 	_, err := st.NewCiString25Type(input)
 	if err == nil {
 		t.Fatalf(errMsgStringTooLong, ciString25MaxLen)
@@ -136,27 +151,31 @@ func TestNewCiString25_TooLong(t *testing.T) {
 
 func TestNewCiString25_TestValue(t *testing.T) {
 	t.Parallel()
+
 	input := testValueStr
-	s, err := st.NewCiString25Type(input)
+
+	ciStr, err := st.NewCiString25Type(input)
 	if err != nil {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if s.Value() != input {
-		t.Errorf(errMsgValueMismatch, input, s.Value())
+	if ciStr.Value() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.Value())
 	}
 }
 
 func TestCiString25Type_String(t *testing.T) {
 	t.Parallel()
+
 	input := testStringStr
-	s, err := st.NewCiString25Type(input)
+
+	ciStr, err := st.NewCiString25Type(input)
 	if err != nil {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if s.String() != input {
-		t.Errorf(errMsgValueMismatch, input, s.String())
+	if ciStr.String() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.String())
 	}
 }
 
@@ -164,20 +183,22 @@ func TestCiString25Type_String(t *testing.T) {
 
 func TestNewCiString50Type(t *testing.T) {
 	t.Parallel()
+
 	input := strings.Repeat(repeatCharA, ciString50MaxLen)
 
-	s, err := st.NewCiString50Type(input)
+	ciStr, err := st.NewCiString50Type(input)
 	if err != nil {
 		t.Fatalf(errMsgUnexpectedError, ciString50MaxLen, err)
 	}
 
-	if s.Value() != input {
-		t.Errorf(errMsgValueMismatch, input, s.Value())
+	if ciStr.Value() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.Value())
 	}
 }
 
 func TestNewCiString50_Empty(t *testing.T) {
 	t.Parallel()
+
 	_, err := st.NewCiString50Type(emptyString)
 	if err == nil {
 		t.Fatal(errMsgEmptyWantError)
@@ -190,7 +211,9 @@ func TestNewCiString50_Empty(t *testing.T) {
 
 func TestNewCiString50_TooLong(t *testing.T) {
 	t.Parallel()
-	input := strings.Repeat("B", ciString50Over)
+
+	input := strings.Repeat(repeatCharB, ciString50Over)
+
 	_, err := st.NewCiString50Type(input)
 	if err == nil {
 		t.Fatalf(errMsgStringTooLong, ciString50MaxLen)
@@ -199,27 +222,31 @@ func TestNewCiString50_TooLong(t *testing.T) {
 
 func TestNewCiString50_TestValue(t *testing.T) {
 	t.Parallel()
+
 	input := testValueStr
-	s, err := st.NewCiString50Type(input)
+
+	ciStr, err := st.NewCiString50Type(input)
 	if err != nil {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if s.Value() != input {
-		t.Errorf(errMsgValueMismatch, input, s.Value())
+	if ciStr.Value() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.Value())
 	}
 }
 
 func TestCiString50Type_String(t *testing.T) {
 	t.Parallel()
+
 	input := testStringStr
-	s, err := st.NewCiString50Type(input)
+
+	ciStr, err := st.NewCiString50Type(input)
 	if err != nil {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if s.String() != input {
-		t.Errorf(errMsgValueMismatch, input, s.String())
+	if ciStr.String() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.String())
 	}
 }
 
@@ -227,19 +254,22 @@ func TestCiString50Type_String(t *testing.T) {
 
 func TestNewCiString255Type(t *testing.T) {
 	t.Parallel()
-	input := strings.Repeat(repeatCharA, 255)
-	s, err := st.NewCiString255Type(input)
+
+	input := strings.Repeat(repeatCharA, ciString255MaxLen)
+
+	ciStr, err := st.NewCiString255Type(input)
 	if err != nil {
-		t.Fatalf(errMsgUnexpectedError, 255, err)
+		t.Fatalf(errMsgUnexpectedError, ciString255MaxLen, err)
 	}
 
-	if s.Value() != input {
-		t.Errorf(errMsgValueMismatch, input, s.Value())
+	if ciStr.Value() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.Value())
 	}
 }
 
 func TestNewCiString255_Empty(t *testing.T) {
 	t.Parallel()
+
 	_, err := st.NewCiString255Type(emptyString)
 	if err == nil {
 		t.Fatal(errMsgEmptyWantError)
@@ -253,36 +283,41 @@ func TestNewCiString255_Empty(t *testing.T) {
 func TestNewCiString255_TooLong(t *testing.T) {
 	t.Parallel()
 
-	input := strings.Repeat("B", ciString255Over)
+	input := strings.Repeat(repeatCharB, ciString255Over)
+
 	_, err := st.NewCiString255Type(input)
 	if err == nil {
-		t.Fatalf(errMsgStringTooLong, 255)
+		t.Fatalf(errMsgStringTooLong, ciString255MaxLen)
 	}
 }
 
 func TestNewCiString255_TestValue(t *testing.T) {
 	t.Parallel()
+
 	input := testValueStr
-	s, err := st.NewCiString255Type(input)
+
+	ciStr, err := st.NewCiString255Type(input)
 	if err != nil {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if s.Value() != input {
-		t.Errorf(errMsgValueMismatch, input, s.Value())
+	if ciStr.Value() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.Value())
 	}
 }
 
 func TestCiString255Type_String(t *testing.T) {
 	t.Parallel()
+
 	input := testStringStr
-	s, err := st.NewCiString255Type(input)
+
+	ciStr, err := st.NewCiString255Type(input)
 	if err != nil {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if s.String() != input {
-		t.Errorf(errMsgValueMismatch, input, s.String())
+	if ciStr.String() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.String())
 	}
 }
 
@@ -290,19 +325,22 @@ func TestCiString255Type_String(t *testing.T) {
 
 func TestNewCiString500Type(t *testing.T) {
 	t.Parallel()
-	input := strings.Repeat(repeatCharA, 500)
-	s, err := st.NewCiString500Type(input)
+
+	input := strings.Repeat(repeatCharA, ciString500MaxLen)
+
+	ciStr, err := st.NewCiString500Type(input)
 	if err != nil {
-		t.Fatalf(errMsgUnexpectedError, 500, err)
+		t.Fatalf(errMsgUnexpectedError, ciString500MaxLen, err)
 	}
 
-	if s.Value() != input {
-		t.Errorf(errMsgValueMismatch, input, s.Value())
+	if ciStr.Value() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.Value())
 	}
 }
 
 func TestNewCiString500_Empty(t *testing.T) {
 	t.Parallel()
+
 	_, err := st.NewCiString500Type(emptyString)
 	if err == nil {
 		t.Fatal(errMsgEmptyWantError)
@@ -315,35 +353,41 @@ func TestNewCiString500_Empty(t *testing.T) {
 
 func TestNewCiString500_TooLong(t *testing.T) {
 	t.Parallel()
-	input := strings.Repeat("B", ciString500Over)
+
+	input := strings.Repeat(repeatCharB, ciString500Over)
+
 	_, err := st.NewCiString500Type(input)
 	if err == nil {
-		t.Fatalf(errMsgStringTooLong, 500)
+		t.Fatalf(errMsgStringTooLong, ciString500MaxLen)
 	}
 }
 
 func TestNewCiString500_TestValue(t *testing.T) {
 	t.Parallel()
+
 	input := testValueStr
-	s, err := st.NewCiString500Type(input)
+
+	ciStr, err := st.NewCiString500Type(input)
 	if err != nil {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if s.Value() != input {
-		t.Errorf(errMsgValueMismatch, input, s.Value())
+	if ciStr.Value() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.Value())
 	}
 }
 
 func TestCiString500Type_String(t *testing.T) {
 	t.Parallel()
+
 	input := testStringStr
-	s, err := st.NewCiString500Type(input)
+
+	ciStr, err := st.NewCiString500Type(input)
 	if err != nil {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if s.String() != input {
-		t.Errorf(errMsgValueMismatch, input, s.String())
+	if ciStr.String() != input {
+		t.Errorf(errMsgValueMismatch, input, ciStr.String())
 	}
 }

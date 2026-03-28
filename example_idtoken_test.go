@@ -10,8 +10,10 @@ func ExampleNewIdToken() {
 	cistr, err := st.NewCiString20Type("RFID-TAG-123")
 	if err != nil {
 		fmt.Println(err)
+
 		return
 	}
+
 	token := st.NewIdToken(cistr)
 	fmt.Println(token.String())
 	// Output:

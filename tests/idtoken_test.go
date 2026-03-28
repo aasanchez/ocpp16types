@@ -6,21 +6,27 @@ import (
 	st "github.com/aasanchez/ocpp16types"
 )
 
+const (
+	testRFIDTag123        = "RFID-TAG-123"
+	testRFIDTag456        = "RFID-TAG-456"
+	errUnexpectedCiString = "unexpected error creating CiString20Type: %v"
+)
+
 func TestNewIdToken(t *testing.T) {
 	t.Parallel()
 
-	token, err := st.NewCiString20Type("RFID-TAG-123")
+	token, err := st.NewCiString20Type(testRFIDTag123)
 	if err != nil {
-		t.Fatalf("unexpected error creating CiString20Type: %v", err)
+		t.Fatalf(errUnexpectedCiString, err)
 	}
 
 	idToken := st.NewIdToken(token)
-	if idToken.String() != "RFID-TAG-123" {
+	if idToken.String() != testRFIDTag123 {
 		t.Errorf(
 			st.ErrorMethodMismatch,
 			"IdToken.String()",
 			idToken.String(),
-			"RFID-TAG-123",
+			testRFIDTag123,
 		)
 	}
 }
@@ -28,20 +34,20 @@ func TestNewIdToken(t *testing.T) {
 func TestIdToken_Value(t *testing.T) {
 	t.Parallel()
 
-	token, err := st.NewCiString20Type("RFID-TAG-456")
+	token, err := st.NewCiString20Type(testRFIDTag456)
 	if err != nil {
-		t.Fatalf("unexpected error creating CiString20Type: %v", err)
+		t.Fatalf(errUnexpectedCiString, err)
 	}
 
 	idToken := st.NewIdToken(token)
 	retrievedToken := idToken.Value()
 
-	if retrievedToken.Value() != "RFID-TAG-456" {
+	if retrievedToken.Value() != testRFIDTag456 {
 		t.Errorf(
 			st.ErrorMethodMismatch,
 			"IdToken.Value().Value()",
 			retrievedToken.Value(),
-			"RFID-TAG-456",
+			testRFIDTag456,
 		)
 	}
 }
@@ -50,9 +56,10 @@ func TestIdToken_String(t *testing.T) {
 	t.Parallel()
 
 	input := "RFID-TAG-789"
+
 	token, err := st.NewCiString20Type(input)
 	if err != nil {
-		t.Fatalf("unexpected error creating CiString20Type: %v", err)
+		t.Fatalf(errUnexpectedCiString, err)
 	}
 
 	idToken := st.NewIdToken(token)

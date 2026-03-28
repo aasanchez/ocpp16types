@@ -8,9 +8,10 @@ import (
 
 const (
 	testPhases             = 3
-	testInvalidStartPeriod = -1 //nolint:revive // negative test constant
+	testInvalidStartPeriod = -1
 	testInvalidPhases      = 4
 	testStartPeriod        = 60
+	testStartPeriodZero    = 0
 )
 
 func intPtr(i int) *int {
@@ -21,7 +22,7 @@ func TestNewChargingSchedulePeriod_Valid(t *testing.T) {
 	t.Parallel()
 
 	input := st.ChargingSchedulePeriodInput{
-		StartPeriod:  0,
+		StartPeriod:  testStartPeriodZero,
 		Limit:        testLimitDefault,
 		NumberPhases: nil,
 	}
@@ -36,7 +37,7 @@ func TestNewChargingSchedulePeriod_WithPhases(t *testing.T) {
 	t.Parallel()
 
 	input := st.ChargingSchedulePeriodInput{
-		StartPeriod:  0,
+		StartPeriod:  testStartPeriodZero,
 		Limit:        testLimitDefault,
 		NumberPhases: intPtr(testPhases),
 	}
@@ -70,7 +71,7 @@ func TestNewChargingSchedulePeriod_InvalidPhases(t *testing.T) {
 	t.Parallel()
 
 	input := st.ChargingSchedulePeriodInput{
-		StartPeriod:  0,
+		StartPeriod:  testStartPeriodZero,
 		Limit:        testLimitDefault,
 		NumberPhases: intPtr(testInvalidPhases),
 	}
@@ -85,7 +86,7 @@ func TestNewChargingSchedulePeriod_NilPhases(t *testing.T) {
 	t.Parallel()
 
 	input := st.ChargingSchedulePeriodInput{
-		StartPeriod:  0,
+		StartPeriod:  testStartPeriodZero,
 		Limit:        testLimitDefault,
 		NumberPhases: nil,
 	}
@@ -140,7 +141,7 @@ func TestChargingSchedulePeriod_String(t *testing.T) {
 	t.Parallel()
 
 	input := st.ChargingSchedulePeriodInput{
-		StartPeriod:  0,
+		StartPeriod:  testStartPeriodZero,
 		Limit:        testLimitDefault,
 		NumberPhases: nil,
 	}

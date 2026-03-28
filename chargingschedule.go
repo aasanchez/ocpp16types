@@ -88,7 +88,7 @@ func validateRateUnit(
 func validatePeriods(
 	input []ChargingSchedulePeriodInput, errs error,
 ) ([]ChargingSchedulePeriod, error) {
-	if len(input) == 0 {
+	if len(input) == zeroValue {
 		return nil, errors.Join(errs, ErrEmptyValue)
 	}
 

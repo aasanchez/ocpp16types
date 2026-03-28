@@ -24,7 +24,7 @@ func TestNewChargingSchedule_Valid(t *testing.T) {
 		ChargingRateUnit: testRateUnitW,
 		ChargingSchedulePeriod: []st.ChargingSchedulePeriodInput{
 			{
-				StartPeriod:  0,
+				StartPeriod:  testStartPeriodZero,
 				Limit:        testLimitDefault,
 				NumberPhases: nil,
 			},
@@ -47,7 +47,7 @@ func TestNewChargingSchedule_InvalidRateUnit(t *testing.T) {
 		ChargingRateUnit: "X",
 		ChargingSchedulePeriod: []st.ChargingSchedulePeriodInput{
 			{
-				StartPeriod:  0,
+				StartPeriod:  testStartPeriodZero,
 				Limit:        testLimitDefault,
 				NumberPhases: nil,
 			},
@@ -91,7 +91,7 @@ func TestNewChargingSchedule_WithOptionals(t *testing.T) {
 		ChargingRateUnit: testRateUnitW,
 		ChargingSchedulePeriod: []st.ChargingSchedulePeriodInput{
 			{
-				StartPeriod:  0,
+				StartPeriod:  testStartPeriodZero,
 				Limit:        testLimitDefault,
 				NumberPhases: nil,
 			},
@@ -126,7 +126,7 @@ func TestNewChargingSchedule_NilOptionals(t *testing.T) {
 		ChargingRateUnit: testRateUnitW,
 		ChargingSchedulePeriod: []st.ChargingSchedulePeriodInput{
 			{
-				StartPeriod:  0,
+				StartPeriod:  testStartPeriodZero,
 				Limit:        testLimitDefault,
 				NumberPhases: nil,
 			},
@@ -141,7 +141,8 @@ func TestNewChargingSchedule_NilOptionals(t *testing.T) {
 	}
 
 	if schedule.Duration() != nil {
-		t.Errorf("ChargingSchedule.Duration() = %v, want nil", schedule.Duration())
+		t.Errorf("ChargingSchedule.Duration() = %v, want nil",
+			schedule.Duration())
 	}
 
 	if schedule.MinChargingRate() != nil {
@@ -180,7 +181,7 @@ func TestChargingSchedule_Getters(t *testing.T) {
 		ChargingRateUnit: testRateUnitW,
 		ChargingSchedulePeriod: []st.ChargingSchedulePeriodInput{
 			{
-				StartPeriod:  0,
+				StartPeriod:  testStartPeriodZero,
 				Limit:        testLimitDefault,
 				NumberPhases: nil,
 			},
@@ -227,7 +228,7 @@ func TestChargingSchedule_String(t *testing.T) {
 		ChargingRateUnit: testRateUnitW,
 		ChargingSchedulePeriod: []st.ChargingSchedulePeriodInput{
 			{
-				StartPeriod:  0,
+				StartPeriod:  testStartPeriodZero,
 				Limit:        testLimitDefault,
 				NumberPhases: nil,
 			},

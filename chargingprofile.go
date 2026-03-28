@@ -114,9 +114,9 @@ func NewChargingProfile(input ChargingProfileInput) (ChargingProfile, error) {
 
 	if len(errs) > errCountZero {
 		return ChargingProfile{
-			chargingProfileId:      Integer{value: 0},
+			chargingProfileId:      Integer{value: zeroValue},
 			transactionId:          nil,
-			stackLevel:             Integer{value: 0},
+			stackLevel:             Integer{value: zeroValue},
 			chargingProfilePurpose: "",
 			chargingProfileKind:    "",
 			recurrencyKind:         nil,
@@ -149,7 +149,9 @@ func NewChargingProfile(input ChargingProfileInput) (ChargingProfile, error) {
 func validateChargingProfileId(id int) (Integer, error) {
 	profileId, err := NewInteger(id)
 	if err != nil {
-		return Integer{value: 0}, fmt.Errorf("chargingProfileId: %w", err)
+		return Integer{value: zeroValue}, fmt.Errorf(
+			"chargingProfileId: %w", err,
+		)
 	}
 
 	return profileId, nil
@@ -172,12 +174,14 @@ func validateTransactionId(id *int) (*Integer, error) {
 // validateStackLevel validates the stack level.
 func validateStackLevel(level int) (Integer, error) {
 	if level < stackLevelMin {
-		return Integer{value: 0}, fmt.Errorf("stackLevel: %w", ErrInvalidValue)
+		return Integer{value: zeroValue}, fmt.Errorf(
+			"stackLevel: %w", ErrInvalidValue,
+		)
 	}
 
 	stackLevel, err := NewInteger(level)
 	if err != nil {
-		return Integer{value: 0}, fmt.Errorf("stackLevel: %w", err)
+		return Integer{value: zeroValue}, fmt.Errorf("stackLevel: %w", err)
 	}
 
 	return stackLevel, nil

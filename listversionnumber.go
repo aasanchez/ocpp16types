@@ -33,7 +33,7 @@ type ListVersionNumber struct {
 // Returns an error if the value is outside int32 range.
 func NewListVersionNumber(value int) (ListVersionNumber, error) {
 	if value < math.MinInt32 || value > math.MaxInt32 {
-		return ListVersionNumber{value: 0}, fmt.Errorf(
+		return ListVersionNumber{value: ListVersionEmpty}, fmt.Errorf(
 			"NewListVersionNumber: "+ErrorFieldFormat,
 			"value",
 			fmt.Errorf(

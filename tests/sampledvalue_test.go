@@ -55,18 +55,23 @@ func TestNewSampledValue_AllFields(t *testing.T) {
 	if sampledVal.Context() == nil {
 		t.Errorf(st.ErrorWantNonNil, "SampledValue.Context()")
 	}
+
 	if sampledVal.Format() == nil {
 		t.Errorf(st.ErrorWantNonNil, "SampledValue.Format()")
 	}
+
 	if sampledVal.Measurand() == nil {
 		t.Errorf(st.ErrorWantNonNil, "SampledValue.Measurand()")
 	}
+
 	if sampledVal.Phase() == nil {
 		t.Errorf(st.ErrorWantNonNil, "SampledValue.Phase()")
 	}
+
 	if sampledVal.Location() == nil {
 		t.Errorf(st.ErrorWantNonNil, "SampledValue.Location()")
 	}
+
 	if sampledVal.Unit() == nil {
 		t.Errorf(st.ErrorWantNonNil, "SampledValue.Unit()")
 	}
@@ -150,18 +155,25 @@ func TestNewSampledValue_NilOptionals(t *testing.T) {
 	if sampledVal.Context() != nil {
 		t.Errorf("SampledValue.Context() = %v, want nil", sampledVal.Context())
 	}
+
 	if sampledVal.Format() != nil {
 		t.Errorf("SampledValue.Format() = %v, want nil", sampledVal.Format())
 	}
+
 	if sampledVal.Measurand() != nil {
-		t.Errorf("SampledValue.Measurand() = %v, want nil", sampledVal.Measurand())
+		t.Errorf("SampledValue.Measurand() = %v, want nil",
+			sampledVal.Measurand())
 	}
+
 	if sampledVal.Phase() != nil {
 		t.Errorf("SampledValue.Phase() = %v, want nil", sampledVal.Phase())
 	}
+
 	if sampledVal.Location() != nil {
-		t.Errorf("SampledValue.Location() = %v, want nil", sampledVal.Location())
+		t.Errorf("SampledValue.Location() = %v, want nil",
+			sampledVal.Location())
 	}
+
 	if sampledVal.Unit() != nil {
 		t.Errorf("SampledValue.Unit() = %v, want nil", sampledVal.Unit())
 	}
