@@ -22,4 +22,4 @@ func (i IdToken) String() string {
 	return i.value.String()
 }
 
-var _ fmt.Stringer = IdToken{}
+var _ fmt.Stringer = IdToken{value: CiString20Type{value: ciString{value: ""}}}

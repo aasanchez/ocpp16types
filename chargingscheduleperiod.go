@@ -8,8 +8,8 @@ import (
 // ChargingSchedulePeriodInput is the input for constructing a
 // ChargingSchedulePeriod.
 type ChargingSchedulePeriodInput struct {
-	StartPeriod int
-	Limit       float64
+	StartPeriod  int
+	Limit        float64
 	NumberPhases *int
 }
 
@@ -20,39 +20,76 @@ type ChargingSchedulePeriod struct {
 	numberPhases *Integer
 }
 
+// Number of phases range for OCPP 1.6 charging schedule periods.
+const (
+	zeroValue       = 0
+	minNumberPhases = 1
+	maxNumberPhases = 3
+)
+
 // NewChargingSchedulePeriod constructs a ChargingSchedulePeriod with
 // validation.
 func NewChargingSchedulePeriod(
 	input ChargingSchedulePeriodInput,
 ) (ChargingSchedulePeriod, error) {
 	var errs error
-	csp := ChargingSchedulePeriod{}
 
-	// Validate StartPeriod
-	sp, err := NewInteger(input.StartPeriod)
-	if err != nil {
-		errs = errors.Join(errs, err)
-	} else {
-		csp.startPeriod = sp
+	csp := ChargingSchedulePeriod{
+		startPeriod:  Integer{value: zeroValue},
+		limit:        zeroValue,
+		numberPhases: nil,
 	}
 
-	csp.limit = input.Limit
-
-	// Validate optional NumberPhases
-	if input.NumberPhases != nil {
-		if *input.NumberPhases < 1 || *input.NumberPhases > 3 {
-			errs = errors.Join(errs, ErrInvalidValue)
-		} else {
-			np, err := NewInteger(*input.NumberPhases)
-			if err != nil {
-				errs = errors.Join(errs, err)
-			} else {
-				csp.numberPhases = &np
-			}
-		}
-	}
+	csp.startPeriod, errs = validateStartPeriod(
+		input.StartPeriod, errs,
+	)
+	csp.limit, errs = validateLimit(input.Limit, errs)
+	csp.numberPhases, errs = validateNumberPhases(
+		input.NumberPhases, errs,
+	)
 
 	return csp, errs
+}
+
+func validateStartPeriod(
+	input int, errs error,
+) (Integer, error) {
+	sp, err := NewInteger(input)
+	if err != nil {
+		return Integer{value: zeroValue}, errors.Join(errs, err)
+	}
+
+	return sp, errs
+}
+
+func validateLimit(input float64, errs error) (float64, error) {
+	if input < 0 {
+		return 0, errors.Join(errs, fmt.Errorf(
+			"NewChargingSchedulePeriod: "+ErrorFieldFormat,
+			"Limit", ErrInvalidValue,
+		))
+	}
+
+	return input, errs
+}
+
+func validateNumberPhases(
+	input *int, errs error,
+) (*Integer, error) {
+	if input == nil {
+		return nil, errs
+	}
+
+	if *input < minNumberPhases || *input > maxNumberPhases {
+		return nil, errors.Join(errs, ErrInvalidValue)
+	}
+
+	np, err := NewInteger(*input)
+	if err != nil {
+		return nil, errors.Join(errs, err)
+	}
+
+	return &np, errs
 }
 
 // StartPeriod returns the start period.
@@ -70,7 +107,9 @@ func (c ChargingSchedulePeriod) NumberPhases() *Integer {
 	if c.numberPhases == nil {
 		return nil
 	}
+
 	cp := *c.numberPhases
+
 	return &cp
 }
 
@@ -83,4 +122,8 @@ func (c ChargingSchedulePeriod) String() string {
 	)
 }
 
-var _ fmt.Stringer = ChargingSchedulePeriod{}
+var _ fmt.Stringer = ChargingSchedulePeriod{
+	startPeriod:  Integer{value: zeroValue},
+	limit:        zeroValue,
+	numberPhases: nil,
+}

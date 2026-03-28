@@ -15,36 +15,28 @@ const (
 	MeasurandCurrentOffered m = "Current.Offered"
 	// MeasurandEnergyActiveExportRegister measures active export
 	// energy register.
-	MeasurandEnergyActiveExportRegister m =
-		"Energy.Active.Export.Register"
+	MeasurandEnergyActiveExportRegister m = "Energy.Active.Export.Register"
 	// MeasurandEnergyActiveImportRegister measures active import
 	// energy register.
-	MeasurandEnergyActiveImportRegister m =
-		"Energy.Active.Import.Register"
+	MeasurandEnergyActiveImportRegister m = "Energy.Active.Import.Register"
 	// MeasurandEnergyReactiveExportRegister measures reactive export
 	// energy register.
-	MeasurandEnergyReactiveExportRegister m =
-		"Energy.Reactive.Export.Register"
+	MeasurandEnergyReactiveExportRegister m = "Energy.Reactive.Export.Register"
 	// MeasurandEnergyReactiveImportRegister measures reactive import
 	// energy register.
-	MeasurandEnergyReactiveImportRegister m =
-		"Energy.Reactive.Import.Register"
+	MeasurandEnergyReactiveImportRegister m = "Energy.Reactive.Import.Register"
 	// MeasurandEnergyActiveExportInterval measures active export
 	// energy interval.
-	MeasurandEnergyActiveExportInterval m =
-		"Energy.Active.Export.Interval"
+	MeasurandEnergyActiveExportInterval m = "Energy.Active.Export.Interval"
 	// MeasurandEnergyActiveImportInterval measures active import
 	// energy interval.
-	MeasurandEnergyActiveImportInterval m =
-		"Energy.Active.Import.Interval"
+	MeasurandEnergyActiveImportInterval m = "Energy.Active.Import.Interval"
 	// MeasurandEnergyReactiveExportInterval measures reactive export
 	// energy interval.
-	MeasurandEnergyReactiveExportInterval m =
-		"Energy.Reactive.Export.Interval"
+	MeasurandEnergyReactiveExportInterval m = "Energy.Reactive.Export.Interval"
 	// MeasurandEnergyReactiveImportInterval measures reactive import
 	// energy interval.
-	MeasurandEnergyReactiveImportInterval m =
-		"Energy.Reactive.Import.Interval"
+	MeasurandEnergyReactiveImportInterval m = "Energy.Reactive.Import.Interval"
 	// MeasurandFrequency measures frequency.
 	MeasurandFrequency m = "Frequency"
 	// MeasurandPowerActiveExport measures active exported power.

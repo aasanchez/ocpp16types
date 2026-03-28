@@ -6,9 +6,9 @@ import (
 
 // IdTagInfo contains authorization information for an ID token.
 type IdTagInfo struct {
-	status       AuthorizationStatus
-	expiryDate   *DateTime
-	parentIdTag  *IdToken
+	status      AuthorizationStatus
+	expiryDate  *DateTime
+	parentIdTag *IdToken
 }
 
 // NewIdTagInfo constructs an IdTagInfo with validation.
@@ -16,9 +16,18 @@ func NewIdTagInfo(
 	status AuthorizationStatus,
 ) (IdTagInfo, error) {
 	if !status.IsValid() {
-		return IdTagInfo{}, ErrInvalidValue
+		return IdTagInfo{
+			status:      "",
+			expiryDate:  nil,
+			parentIdTag: nil,
+		}, ErrInvalidValue
 	}
-	return IdTagInfo{status: status}, nil
+
+	return IdTagInfo{
+		status:      status,
+		expiryDate:  nil,
+		parentIdTag: nil,
+	}, nil
 }
 
 // WithExpiryDate sets the expiry date and returns a copy.
@@ -43,7 +52,9 @@ func (i IdTagInfo) ExpiryDate() *DateTime {
 	if i.expiryDate == nil {
 		return nil
 	}
+
 	cp := *i.expiryDate
+
 	return &cp
 }
 
@@ -52,7 +63,9 @@ func (i IdTagInfo) ParentIdTag() *IdToken {
 	if i.parentIdTag == nil {
 		return nil
 	}
+
 	cp := *i.parentIdTag
+
 	return &cp
 }
 
@@ -64,4 +77,8 @@ func (i IdTagInfo) String() string {
 	)
 }
 
-var _ fmt.Stringer = IdTagInfo{}
+var _ fmt.Stringer = IdTagInfo{
+	status:      "",
+	expiryDate:  nil,
+	parentIdTag: nil,
+}

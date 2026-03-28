@@ -5,6 +5,13 @@ import (
 	"strconv"
 )
 
+// Integer range and formatting constants.
+const (
+	integerMinValue = 0
+	integerMaxValue = 65535
+	base10          = 10
+)
+
 // Integer wraps a validated uint16 value (0-65535).
 type Integer struct {
 	value uint16
@@ -12,8 +19,8 @@ type Integer struct {
 
 // NewInteger constructs an Integer with range validation.
 func NewInteger(value int) (Integer, error) {
-	if value < 0 || value > 65535 {
-		return Integer{}, ErrInvalidValue
+	if value < integerMinValue || value > integerMaxValue {
+		return Integer{value: 0}, ErrInvalidValue
 	}
 	return Integer{value: uint16(value)}, nil
 }
@@ -25,7 +32,7 @@ func (i Integer) Value() uint16 {
 
 // String returns the base-10 string representation.
 func (i Integer) String() string {
-	return strconv.FormatUint(uint64(i.value), 10)
+	return strconv.FormatUint(uint64(i.value), base10)
 }
 
-var _ fmt.Stringer = Integer{}
+var _ fmt.Stringer = Integer{value: 0}

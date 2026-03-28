@@ -14,16 +14,19 @@ type DateTime struct {
 // NewDateTime constructs a DateTime with RFC3339 validation.
 func NewDateTime(value string) (DateTime, error) {
 	if value == "" {
-		return DateTime{}, ErrEmptyValue
+		return DateTime{value: time.Time{}}, ErrEmptyValue
 	}
-	t, err := time.Parse(time.RFC3339, value)
+
+	parsedTime, err := time.Parse(time.RFC3339, value)
 	if err != nil {
-		return DateTime{}, ErrInvalidValue
+		return DateTime{value: time.Time{}}, ErrInvalidValue
 	}
-	if t.UTC().String() != t.String() {
-		return DateTime{}, ErrInvalidValue
+
+	if parsedTime.UTC().String() != parsedTime.String() {
+		return DateTime{value: time.Time{}}, ErrInvalidValue
 	}
-	return DateTime{value: t}, nil
+
+	return DateTime{value: parsedTime}, nil
 }
 
 // Value returns the wrapped time.Time value.
@@ -36,4 +39,4 @@ func (d DateTime) String() string {
 	return d.value.Format(time.RFC3339Nano)
 }
 
-var _ fmt.Stringer = DateTime{}
+var _ fmt.Stringer = DateTime{value: time.Time{}}

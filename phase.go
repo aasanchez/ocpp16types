@@ -17,6 +17,12 @@ const (
 	PhaseL3 ph = "L3"
 	// PhaseN indicates neutral phase.
 	PhaseN ph = "N"
+	// PhaseL1N indicates phase L1 to neutral.
+	PhaseL1N ph = "L1-N"
+	// PhaseL2N indicates phase L2 to neutral.
+	PhaseL2N ph = "L2-N"
+	// PhaseL3N indicates phase L3 to neutral.
+	PhaseL3N ph = "L3-N"
 	// PhaseL1L2 indicates phases L1 and L2.
 	PhaseL1L2 ph = "L1-L2"
 	// PhaseL2L3 indicates phases L2 and L3.
@@ -29,6 +35,7 @@ const (
 func (t Phase) IsValid() bool {
 	switch t {
 	case PhaseSinglePhase, PhaseL1, PhaseL2, PhaseL3, PhaseN,
+		PhaseL1N, PhaseL2N, PhaseL3N,
 		PhaseL1L2, PhaseL2L3, PhaseL3L1:
 		return true
 	default:

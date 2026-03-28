@@ -20,6 +20,10 @@ const (
 	UnitOfMeasureVA uom = "VA"
 	// UnitOfMeasureKVA indicates kilovolt-amperes.
 	UnitOfMeasureKVA uom = "kVA"
+	// UnitOfMeasureVarh indicates Volt-Ampere-hours reactive.
+	UnitOfMeasureVarh uom = "varh"
+	// UnitOfMeasureKvarh indicates kilovolt-Ampere-hours reactive.
+	UnitOfMeasureKvarh uom = "kvarh"
 	// UnitOfMeasureVAR indicates Volt-Amperes reactive.
 	UnitOfMeasureVAR uom = "var"
 	// UnitOfMeasureKVAR indicates kilovolt-amperes reactive.
@@ -32,18 +36,23 @@ const (
 	UnitOfMeasureK uom = "K"
 	// UnitOfMeasureCelsius indicates Celsius.
 	UnitOfMeasureCelsius uom = "Celsius"
+	// UnitOfMeasureFahrenheit indicates Fahrenheit.
+	UnitOfMeasureFahrenheit uom = "Fahrenheit"
 	// UnitOfMeasureHz indicates Hertz.
 	UnitOfMeasureHz uom = "Hz"
+	// UnitOfMeasurePercent indicates percentage.
+	UnitOfMeasurePercent uom = "Percent"
 )
 
 // IsValid checks if the UnitOfMeasure value is valid per OCPP 1.6.
 func (t UnitOfMeasure) IsValid() bool {
 	switch t {
-	case UnitOfMeasureWh, UnitOfMeasureKWh, UnitOfMeasureW,
-		UnitOfMeasureKW, UnitOfMeasureVA, UnitOfMeasureKVA,
-		UnitOfMeasureVAR, UnitOfMeasureKVAR, UnitOfMeasureA,
-		UnitOfMeasureV, UnitOfMeasureK, UnitOfMeasureCelsius,
-		UnitOfMeasureHz:
+	case UnitOfMeasureWh, UnitOfMeasureKWh, UnitOfMeasureVarh,
+		UnitOfMeasureKvarh, UnitOfMeasureW, UnitOfMeasureKW,
+		UnitOfMeasureVA, UnitOfMeasureKVA, UnitOfMeasureVAR,
+		UnitOfMeasureKVAR, UnitOfMeasureA, UnitOfMeasureV,
+		UnitOfMeasureK, UnitOfMeasureCelsius, UnitOfMeasureFahrenheit,
+		UnitOfMeasureHz, UnitOfMeasurePercent:
 		return true
 	default:
 		return false

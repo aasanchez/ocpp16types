@@ -7,13 +7,13 @@ import (
 
 // SampledValueInput is the input for constructing a SampledValue.
 type SampledValueInput struct {
-	Value       string
-	Context     *string
-	Format      *string
-	Measurand   *string
-	Phase       *string
-	Location    *string
-	Unit        *string
+	Value     string
+	Context   *string
+	Format    *string
+	Measurand *string
+	Phase     *string
+	Location  *string
+	Unit      *string
 }
 
 // SampledValue is a single meter value sample.
@@ -32,77 +32,106 @@ func NewSampledValue(
 	input SampledValueInput,
 ) (SampledValue, error) {
 	var errs error
-	sv := SampledValue{}
+	sampledVal := SampledValue{
+		value:     CiString500Type{value: ciString{value: ""}},
+		context:   nil,
+		format:    nil,
+		measurand: nil,
+		phase:     nil,
+		location:  nil,
+		unit:      nil,
+	}
 
 	// Validate required value field
 	val, err := NewCiString500Type(input.Value)
 	if err != nil {
 		errs = errors.Join(errs, err)
 	} else {
-		sv.value = val
+		sampledVal.value = val
 	}
 
-	// Validate optional context
-	if input.Context != nil {
-		ctx := ReadingContext(*input.Context)
-		if !ctx.IsValid() {
-			errs = errors.Join(errs, ErrInvalidValue)
-		} else {
-			sv.context = &ctx
-		}
+	sampledVal.context, errs = validateContext(input.Context, errs)
+	sampledVal.format, errs = validateFormat(input.Format, errs)
+	sampledVal.measurand, errs = validateMeasurand(input.Measurand, errs)
+	sampledVal.phase, errs = validatePhase(input.Phase, errs)
+	sampledVal.location, errs = validateLocation(input.Location, errs)
+	sampledVal.unit, errs = validateUnit(input.Unit, errs)
+
+	return sampledVal, errs
+}
+
+func validateContext(input *string, errs error) (*ReadingContext, error) {
+	if input == nil {
+		return nil, errs
+	}
+	ctx := ReadingContext(*input)
+
+	if !ctx.IsValid() {
+		return nil, errors.Join(errs, ErrInvalidValue)
+	}
+	return &ctx, errs
+}
+
+func validateFormat(input *string, errs error) (*ValueFormat, error) {
+	if input == nil {
+		return nil, errs
 	}
 
-	// Validate optional format
-	if input.Format != nil {
-		fmt := ValueFormat(*input.Format)
-		if !fmt.IsValid() {
-			errs = errors.Join(errs, ErrInvalidValue)
-		} else {
-			sv.format = &fmt
-		}
+	valFmt := ValueFormat(*input)
+
+	if !valFmt.IsValid() {
+		return nil, errors.Join(errs, ErrInvalidValue)
+	}
+	return &valFmt, errs
+}
+
+func validateMeasurand(input *string, errs error) (*Measurand, error) {
+	if input == nil {
+		return nil, errs
 	}
 
-	// Validate optional measurand
-	if input.Measurand != nil {
-		m := Measurand(*input.Measurand)
-		if !m.IsValid() {
-			errs = errors.Join(errs, ErrInvalidValue)
-		} else {
-			sv.measurand = &m
-		}
+	measurand := Measurand(*input)
+
+	if !measurand.IsValid() {
+		return nil, errors.Join(errs, ErrInvalidValue)
+	}
+	return &measurand, errs
+}
+
+func validatePhase(input *string, errs error) (*Phase, error) {
+	if input == nil {
+		return nil, errs
 	}
 
-	// Validate optional phase
-	if input.Phase != nil {
-		p := Phase(*input.Phase)
-		if !p.IsValid() {
-			errs = errors.Join(errs, ErrInvalidValue)
-		} else {
-			sv.phase = &p
-		}
-	}
+	phase := Phase(*input)
 
-	// Validate optional location
-	if input.Location != nil {
-		l := Location(*input.Location)
-		if !l.IsValid() {
-			errs = errors.Join(errs, ErrInvalidValue)
-		} else {
-			sv.location = &l
-		}
+	if !phase.IsValid() {
+		return nil, errors.Join(errs, ErrInvalidValue)
 	}
+	return &phase, errs
+}
 
-	// Validate optional unit
-	if input.Unit != nil {
-		u := UnitOfMeasure(*input.Unit)
-		if !u.IsValid() {
-			errs = errors.Join(errs, ErrInvalidValue)
-		} else {
-			sv.unit = &u
-		}
+func validateLocation(input *string, errs error) (*Location, error) {
+	if input == nil {
+		return nil, errs
 	}
+	location := Location(*input)
+	if !location.IsValid() {
+		return nil, errors.Join(errs, ErrInvalidValue)
+	}
+	return &location, errs
+}
 
-	return sv, errs
+func validateUnit(input *string, errs error) (*UnitOfMeasure, error) {
+	if input == nil {
+		return nil, errs
+	}
+	unit := UnitOfMeasure(*input)
+
+	if !unit.IsValid() {
+		return nil, errors.Join(errs, ErrInvalidValue)
+	}
+	return &unit, errs
 }
 
 // Value returns the sampled value.
@@ -172,4 +201,12 @@ func (s SampledValue) String() string {
 	)
 }
 
-var _ fmt.Stringer = SampledValue{}
+var _ fmt.Stringer = SampledValue{
+	value:     CiString500Type{value: ciString{value: ""}},
+	context:   nil,
+	format:    nil,
+	measurand: nil,
+	phase:     nil,
+	location:  nil,
+	unit:      nil,
+}

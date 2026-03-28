@@ -3,6 +3,7 @@ package ocpp16types
 import (
 	"errors"
 	"fmt"
+	"time"
 )
 
 // MeterValueInput is the input for constructing a MeterValue.
@@ -20,33 +21,37 @@ type MeterValue struct {
 // NewMeterValue constructs a MeterValue with validation.
 func NewMeterValue(input MeterValueInput) (MeterValue, error) {
 	var errs error
-	mv := MeterValue{}
+	meterVal := MeterValue{
+		timestamp:    DateTime{value: time.Time{}},
+		sampledValue: nil,
+	}
 
 	// Validate timestamp
 	ts, err := NewDateTime(input.Timestamp)
 	if err != nil {
 		errs = errors.Join(errs, err)
 	} else {
-		mv.timestamp = ts
+		meterVal.timestamp = ts
 	}
 
 	// Validate sampled values
 	if len(input.SampledValue) == 0 {
 		errs = errors.Join(errs, ErrEmptyValue)
 	}
+
 	for _, sv := range input.SampledValue {
 		sampledVal, err := NewSampledValue(sv)
 		if err != nil {
 			errs = errors.Join(errs, err)
 		} else {
-			mv.sampledValue = append(
-				mv.sampledValue,
+			meterVal.sampledValue = append(
+				meterVal.sampledValue,
 				sampledVal,
 			)
 		}
 	}
 
-	return mv, errs
+	return meterVal, errs
 }
 
 // Timestamp returns the meter reading timestamp.
@@ -70,4 +75,7 @@ func (m MeterValue) String() string {
 	)
 }
 
-var _ fmt.Stringer = MeterValue{}
+var _ fmt.Stringer = MeterValue{
+	timestamp:    DateTime{value: time.Time{}},
+	sampledValue: nil,
+}
