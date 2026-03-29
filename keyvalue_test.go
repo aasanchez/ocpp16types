@@ -109,6 +109,57 @@ func TestNewKeyValue_InvalidValue(t *testing.T) {
 	}
 }
 
+func TestKeyValue_String_WithValue(t *testing.T) {
+	t.Parallel()
+
+	val := testKeyValue
+	input := KeyValueInput{
+		Key:      testKeyName,
+		Readonly: true,
+		Value:    &val,
+	}
+
+	keyVal, err := NewKeyValue(input)
+	if err != nil {
+		t.Fatalf(errUnexpectedFmt, err)
+	}
+
+	expected := "KeyValue{Key: MyKey, Readonly: true, Value: someValue}"
+	if keyVal.String() != expected {
+		t.Errorf(
+			ErrorMethodMismatch,
+			"KeyValue.String()",
+			keyVal.String(),
+			expected,
+		)
+	}
+}
+
+func TestKeyValue_String_NilValue(t *testing.T) {
+	t.Parallel()
+
+	input := KeyValueInput{
+		Key:      testKeyName,
+		Readonly: false,
+		Value:    nil,
+	}
+
+	keyVal, err := NewKeyValue(input)
+	if err != nil {
+		t.Fatalf(errUnexpectedFmt, err)
+	}
+
+	expected := "KeyValue{Key: MyKey, Readonly: false}"
+	if keyVal.String() != expected {
+		t.Errorf(
+			ErrorMethodMismatch,
+			"KeyValue.String()",
+			keyVal.String(),
+			expected,
+		)
+	}
+}
+
 func TestNewKeyValue_BothErrors(t *testing.T) {
 	t.Parallel()
 

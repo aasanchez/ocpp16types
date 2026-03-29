@@ -10,7 +10,7 @@ const (
 	errUnexpectedCiString = "unexpected error creating CiString20Type: %v"
 )
 
-func TestNewIdToken(t *testing.T) {
+func TestNewIDToken(t *testing.T) {
 	t.Parallel()
 
 	token, err := NewCiString20Type(testRFIDTag123)
@@ -18,18 +18,18 @@ func TestNewIdToken(t *testing.T) {
 		t.Fatalf(errUnexpectedCiString, err)
 	}
 
-	idToken := NewIdToken(token)
+	idToken := NewIDToken(token)
 	if idToken.String() != testRFIDTag123 {
 		t.Errorf(
 			ErrorMethodMismatch,
-			"IdToken.String()",
+			"IDToken.String()",
 			idToken.String(),
 			testRFIDTag123,
 		)
 	}
 }
 
-func TestIdToken_Value(t *testing.T) {
+func TestIDToken_Value(t *testing.T) {
 	t.Parallel()
 
 	token, err := NewCiString20Type(testRFIDTag456)
@@ -37,20 +37,20 @@ func TestIdToken_Value(t *testing.T) {
 		t.Fatalf(errUnexpectedCiString, err)
 	}
 
-	idToken := NewIdToken(token)
+	idToken := NewIDToken(token)
 	retrievedToken := idToken.Value()
 
 	if retrievedToken.Value() != testRFIDTag456 {
 		t.Errorf(
 			ErrorMethodMismatch,
-			"IdToken.Value().Value()",
+			"IDToken.Value().Value()",
 			retrievedToken.Value(),
 			testRFIDTag456,
 		)
 	}
 }
 
-func TestIdToken_String(t *testing.T) {
+func TestIDToken_String(t *testing.T) {
 	t.Parallel()
 
 	input := "RFID-TAG-789"
@@ -60,11 +60,11 @@ func TestIdToken_String(t *testing.T) {
 		t.Fatalf(errUnexpectedCiString, err)
 	}
 
-	idToken := NewIdToken(token)
+	idToken := NewIDToken(token)
 	if idToken.String() != input {
 		t.Errorf(
 			ErrorMethodMismatch,
-			"IdToken.String()",
+			"IDToken.String()",
 			idToken.String(),
 			input,
 		)

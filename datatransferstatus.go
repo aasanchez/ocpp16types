@@ -13,7 +13,7 @@ type DataTransferStatus string
 const (
 	DataTransferStatusAccepted         DataTransferStatus = "Accepted"
 	DataTransferStatusRejected         DataTransferStatus = "Rejected"
-	DataTransferStatusUnknownMessageId DataTransferStatus = "UnknownMessageId"
+	DataTransferStatusUnknownMessageID DataTransferStatus = "UnknownMessageId"
 	DataTransferStatusUnknownVendor    DataTransferStatus = "UnknownVendor"
 )
 
@@ -22,7 +22,7 @@ func (d DataTransferStatus) IsValid() bool {
 	switch d {
 	case DataTransferStatusAccepted,
 		DataTransferStatusRejected,
-		DataTransferStatusUnknownMessageId,
+		DataTransferStatusUnknownMessageID,
 		DataTransferStatusUnknownVendor:
 		return true
 	default:

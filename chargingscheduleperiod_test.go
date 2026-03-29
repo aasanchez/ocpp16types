@@ -120,6 +120,58 @@ func TestNewChargingSchedulePeriod_NegativeLimit(
 	}
 }
 
+func TestChargingSchedulePeriod_String(t *testing.T) {
+	t.Parallel()
+
+	input := ChargingSchedulePeriodInput{
+		StartPeriod:  testStartPeriodZero,
+		Limit:        testLimitDefault,
+		NumberPhases: nil,
+	}
+
+	csp, err := NewChargingSchedulePeriod(input)
+	if err != nil {
+		t.Fatalf(errUnexpectedFmt, err)
+	}
+
+	expected := "ChargingSchedulePeriod{StartPeriod: 0, Limit: 32}"
+	if csp.String() != expected {
+		t.Errorf(
+			ErrorMethodMismatch,
+			"ChargingSchedulePeriod.String()",
+			csp.String(),
+			expected,
+		)
+	}
+}
+
+func TestChargingSchedulePeriod_String_WithPhases(
+	t *testing.T,
+) {
+	t.Parallel()
+
+	input := ChargingSchedulePeriodInput{
+		StartPeriod:  testStartPeriodZero,
+		Limit:        testLimitDefault,
+		NumberPhases: intPtr(testPhases),
+	}
+
+	csp, err := NewChargingSchedulePeriod(input)
+	if err != nil {
+		t.Fatalf(errUnexpectedFmt, err)
+	}
+
+	expected := "ChargingSchedulePeriod{StartPeriod: 0, Limit: 32, NumberPhases: 3}"
+	if csp.String() != expected {
+		t.Errorf(
+			ErrorMethodMismatch,
+			"ChargingSchedulePeriod.String()",
+			csp.String(),
+			expected,
+		)
+	}
+}
+
 func TestChargingSchedulePeriod_Getters(t *testing.T) {
 	t.Parallel()
 

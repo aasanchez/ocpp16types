@@ -266,6 +266,76 @@ func TestChargingSchedule_NilPeriods(t *testing.T) {
 	}
 }
 
+func TestChargingSchedule_String_Minimal(t *testing.T) {
+	t.Parallel()
+
+	input := ChargingScheduleInput{
+		Duration:         nil,
+		ChargingRateUnit: testRateUnitW,
+		ChargingSchedulePeriod: []ChargingSchedulePeriodInput{
+			{
+				StartPeriod:  testStartPeriodZero,
+				Limit:        testLimitDefault,
+				NumberPhases: nil,
+			},
+		},
+		MinChargingRate: nil,
+		StartSchedule:   nil,
+	}
+
+	schedule, err := NewChargingSchedule(input)
+	if err != nil {
+		t.Fatalf(errUnexpectedFmt, err)
+	}
+
+	expected := "ChargingSchedule{RateUnit: W, Periods: [1 items]}"
+	if schedule.String() != expected {
+		t.Errorf(
+			ErrorMethodMismatch,
+			"ChargingSchedule.String()",
+			schedule.String(),
+			expected,
+		)
+	}
+}
+
+func TestChargingSchedule_String_AllOptionals(t *testing.T) {
+	t.Parallel()
+
+	duration := testDurationSeconds
+	minRate := testMinChargingRate
+	startSchedule := testTimestamp
+
+	input := ChargingScheduleInput{
+		Duration:         &duration,
+		ChargingRateUnit: testRateUnitW,
+		ChargingSchedulePeriod: []ChargingSchedulePeriodInput{
+			{
+				StartPeriod:  testStartPeriodZero,
+				Limit:        testLimitDefault,
+				NumberPhases: nil,
+			},
+		},
+		MinChargingRate: &minRate,
+		StartSchedule:   &startSchedule,
+	}
+
+	schedule, err := NewChargingSchedule(input)
+	if err != nil {
+		t.Fatalf(errUnexpectedFmt, err)
+	}
+
+	expected := "ChargingSchedule{RateUnit: W, Periods: [1 items], Duration: 3600, StartSchedule: 2024-01-15T10:30:00Z, MinChargingRate: 6}"
+	if schedule.String() != expected {
+		t.Errorf(
+			ErrorMethodMismatch,
+			"ChargingSchedule.String()",
+			schedule.String(),
+			expected,
+		)
+	}
+}
+
 func TestChargingSchedule_Getters(t *testing.T) {
 	t.Parallel()
 

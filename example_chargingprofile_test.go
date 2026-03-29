@@ -11,7 +11,7 @@ func ExampleNewChargingProfile() {
 	validFrom := "2026-06-01T00:00:00Z"
 
 	profile, err := st.NewChargingProfile(st.ChargingProfileInput{
-		ChargingProfileId:      1,
+		ChargingProfileID:      1,
 		StackLevel:             0,
 		ChargingProfilePurpose: "TxDefaultProfile",
 		ChargingProfileKind:    "Recurring",
@@ -31,7 +31,7 @@ func ExampleNewChargingProfile() {
 		return
 	}
 
-	fmt.Println(profile.ChargingProfileId().String())
+	fmt.Println(profile.ChargingProfileID().String())
 	fmt.Println(profile.ChargingProfilePurpose().String())
 	fmt.Println(profile.ChargingProfileKind().String())
 	fmt.Println(profile.RecurrencyKind().String())
@@ -43,11 +43,11 @@ func ExampleNewChargingProfile() {
 }
 
 func ExampleNewChargingProfile_txProfile() {
-	txId := 42
+	txID := 42
 
 	profile, err := st.NewChargingProfile(st.ChargingProfileInput{
-		ChargingProfileId:      10,
-		TransactionId:          &txId,
+		ChargingProfileID:      10,
+		TransactionID:          &txID,
 		StackLevel:             1,
 		ChargingProfilePurpose: "TxProfile",
 		ChargingProfileKind:    "Relative",
@@ -64,7 +64,7 @@ func ExampleNewChargingProfile_txProfile() {
 		return
 	}
 
-	fmt.Println(profile.TransactionId().String())
+	fmt.Println(profile.TransactionID().String())
 	fmt.Println(profile.ChargingProfilePurpose().String())
 	// Output:
 	// 42

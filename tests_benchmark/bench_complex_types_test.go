@@ -11,25 +11,25 @@ import (
 const (
 	authDataTag       = "TAG-1"
 	authDataParent    = "PARENT-1"
-	profileId         = 1
+	profileID         = 1
 	stackLevelZero    = 0
 	listVersionSample = 42
 	keyValueKey       = "HeartbeatInterval"
 	keyValueValue     = "60"
 )
 
-func BenchmarkNewAuthorizationData_WithIdTagInfo(b *testing.B) {
+func BenchmarkNewAuthorizationData_WithIDTagInfo(b *testing.B) {
 	b.ReportAllocs()
 
 	expiry := sampleTimestamp
-	parentIdTag := authDataParent
+	parentIDTag := authDataParent
 
 	input := st.AuthorizationDataInput{
-		IdTag: authDataTag,
-		IdTagInfo: &st.IdTagInfoInput{
+		IDTag: authDataTag,
+		IDTagInfo: &st.IDTagInfoInput{
 			Status:      st.AuthorizationStatusAccepted.String(),
 			ExpiryDate:  &expiry,
-			ParentIdTag: &parentIdTag,
+			ParentIDTag: &parentIDTag,
 		},
 	}
 
@@ -40,14 +40,14 @@ func BenchmarkNewAuthorizationData_WithIdTagInfo(b *testing.B) {
 	}
 }
 
-func BenchmarkNewAuthorizationData_WithoutIdTagInfo(
+func BenchmarkNewAuthorizationData_WithoutIDTagInfo(
 	b *testing.B,
 ) {
 	b.ReportAllocs()
 
 	input := st.AuthorizationDataInput{
-		IdTag:     authDataTag,
-		IdTagInfo: nil,
+		IDTag:     authDataTag,
+		IDTagInfo: nil,
 	}
 
 	for i := 0; i < b.N; i++ {
@@ -60,7 +60,7 @@ func BenchmarkNewAuthorizationData_WithoutIdTagInfo(
 func BenchmarkNewChargingProfile_AllOptionals(b *testing.B) {
 	b.ReportAllocs()
 
-	transactionId := profileId
+	transactionID := profileID
 	recurrencyKind := st.RecurrencyKindDaily.String()
 	validFrom := sampleTimestamp
 	validTo := "2025-01-02T16:00:00Z"
@@ -85,8 +85,8 @@ func BenchmarkNewChargingProfile_AllOptionals(b *testing.B) {
 	}
 
 	input := st.ChargingProfileInput{
-		ChargingProfileId:      profileId,
-		TransactionId:          &transactionId,
+		ChargingProfileID:      profileID,
+		TransactionID:          &transactionID,
 		StackLevel:             stackLevelZero,
 		ChargingProfilePurpose: st.TxProfile.String(),
 		ChargingProfileKind: st.ChargingProfileKindRecurring.String(),

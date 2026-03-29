@@ -42,8 +42,8 @@ func FuzzChargingProfile(f *testing.F) {
 
 	f.Fuzz(func(
 		t *testing.T,
-		profileId int,
-		hasTxId bool, txId int,
+		profileID int,
+		hasTxID bool, txIDint,
 		stackLevel int,
 		purpose string, kind string,
 		hasRecurr bool, recurr string,
@@ -77,7 +77,7 @@ func FuzzChargingProfile(f *testing.F) {
 		}
 
 		input := st.ChargingProfileInput{
-			ChargingProfileId:      profileId,
+			ChargingProfileID:      profileID,
 			StackLevel:             stackLevel,
 			ChargingProfilePurpose: purpose,
 			ChargingProfileKind:    kind,
@@ -92,8 +92,8 @@ func FuzzChargingProfile(f *testing.F) {
 			},
 		}
 
-		if hasTxId {
-			input.TransactionId = &txId
+		if hasTxID {
+			input.TransactionID = &txId
 		}
 
 		if hasRecurr {
@@ -127,11 +127,11 @@ func FuzzChargingProfile(f *testing.F) {
 			return
 		}
 
-		pid := int(cp.ChargingProfileId().Value())
-		if pid != profileId {
+		pid := int(cp.ChargingProfileID().Value())
+		if pid != profileID {
 			t.Fatalf(
 				"ProfileId = %d, want %d",
-				pid, profileId,
+				pid, profileID,
 			)
 		}
 
@@ -151,8 +151,8 @@ func FuzzChargingProfile(f *testing.F) {
 			t.Fatal("Kind invalid")
 		}
 
-		if hasTxId && cp.TransactionId() == nil {
-			t.Fatal("TransactionId nil")
+		if hasTxID && cp.TransactionID() == nil {
+			t.Fatal("TransactionID nil")
 		}
 
 		if hasRecurr && cp.RecurrencyKind() == nil {

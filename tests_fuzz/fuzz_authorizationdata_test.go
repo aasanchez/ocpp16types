@@ -60,11 +60,11 @@ func FuzzAuthorizationData(f *testing.F) {
 		}
 
 		input := st.AuthorizationDataInput{
-			IdTag: idTag,
+			IDTag: idTag,
 		}
 
 		if hasInfo {
-			info := &st.IdTagInfoInput{
+			info := &st.IDTagInfoInput{
 				Status: status,
 			}
 
@@ -73,10 +73,10 @@ func FuzzAuthorizationData(f *testing.F) {
 			}
 
 			if hasParent {
-				info.ParentIdTag = &parent
+				info.ParentIDTag = &parent
 			}
 
-			input.IdTagInfo = info
+			input.IDTagInfo = info
 		}
 
 		ad, err := st.NewAuthorizationData(input)
@@ -98,30 +98,30 @@ func FuzzAuthorizationData(f *testing.F) {
 			return
 		}
 
-		if ad.IdTag().String() != idTag {
+		if ad.IDTag().String() != idTag {
 			t.Fatalf(
 				"IdTag = %q, want %q",
-				ad.IdTag().String(), idTag,
+				ad.IDTag().String(), idTag,
 			)
 		}
 
 		if hasInfo {
-			if ad.IdTagInfo() == nil {
-				t.Fatal("IdTagInfo nil")
+			if ad.IDTagInfo() == nil {
+				t.Fatal("IDTagInfo nil")
 			}
 
-			if !ad.IdTagInfo().Status().IsValid() {
+			if !ad.IDTagInfo().Status().IsValid() {
 				t.Fatal("Status invalid")
 			}
 
 			if hasExpiry &&
-				ad.IdTagInfo().ExpiryDate() == nil {
+				ad.IDTagInfo().ExpiryDate() == nil {
 				t.Fatal("ExpiryDate nil")
 			}
 
 			if hasParent &&
-				ad.IdTagInfo().ParentIdTag() == nil {
-				t.Fatal("ParentIdTag nil")
+				ad.IDTagInfo().ParentIDTag() == nil {
+				t.Fatal("ParentIDTag nil")
 			}
 		}
 	})

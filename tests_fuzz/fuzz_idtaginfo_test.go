@@ -8,7 +8,7 @@ import (
 	st "github.com/aasanchez/ocpp16types"
 )
 
-func FuzzIdTagInfo(f *testing.F) {
+func FuzzIDTagInfo(f *testing.F) {
 	f.Add("Accepted", false, "", false, "")
 	f.Add("Blocked", false, "", false, "")
 	f.Add("Expired", false, "", false, "")
@@ -42,7 +42,7 @@ func FuzzIdTagInfo(f *testing.F) {
 
 		status := st.AuthorizationStatus(statusStr)
 
-		info, err := st.NewIdTagInfo(status)
+		info, err := st.NewIDTagInfo(status)
 		if err != nil {
 			if !isExpectedError(err) {
 				t.Fatalf(
@@ -51,7 +51,7 @@ func FuzzIdTagInfo(f *testing.F) {
 				)
 			}
 
-			var zero st.IdTagInfo
+			var zero st.IDTagInfo
 			if info != zero {
 				t.Fatal(
 					"expected zero value on error",
@@ -83,11 +83,11 @@ func FuzzIdTagInfo(f *testing.F) {
 		if hasParent {
 			cs, csErr := st.NewCiString20Type(parent)
 			if csErr == nil {
-				tok := st.NewIdToken(cs)
-				info = info.WithParentIdTag(tok)
-				if info.ParentIdTag() == nil {
+				tok := st.NewIDToken(cs)
+				info = info.WithParentIDTag(tok)
+				if info.ParentIDTag() == nil {
 					t.Fatal(
-						"ParentIdTag nil after set",
+						"ParentIDTag nil after set",
 					)
 				}
 			}

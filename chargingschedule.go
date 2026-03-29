@@ -53,14 +53,26 @@ func NewChargingSchedule(
 ) (ChargingSchedule, error) {
 	var errs []error
 
-	duration, err := validateScheduleDuration(input.Duration)
-	if err != nil {
-		errs = append(errs, err)
+	var duration *Integer
+
+	if input.Duration != nil {
+		d, err := NewInteger(*input.Duration)
+		if err != nil {
+			errs = append(errs, fmt.Errorf("duration: %w", err))
+		} else {
+			duration = &d
+		}
 	}
 
-	startSchedule, err := validateStartSchedule(input.StartSchedule)
-	if err != nil {
-		errs = append(errs, err)
+	var startSchedule *DateTime
+
+	if input.StartSchedule != nil {
+		ss, err := NewDateTime(*input.StartSchedule)
+		if err != nil {
+			errs = append(errs, fmt.Errorf("startSchedule: %w", err))
+		} else {
+			startSchedule = &ss
+		}
 	}
 
 	chargingRateUnit, err := validateChargingRateUnit(input.ChargingRateUnit)
@@ -71,9 +83,15 @@ func NewChargingSchedule(
 	periods, periodErrs := validateSchedulePeriods(input.ChargingSchedulePeriod)
 	errs = append(errs, periodErrs...)
 
-	minChargingRate, err := validateMinChargingRate(input.MinChargingRate)
-	if err != nil {
-		errs = append(errs, err)
+	var minChargingRate *float64
+
+	if input.MinChargingRate != nil {
+		if *input.MinChargingRate < minChargingRateZero {
+			errs = append(errs, fmt.Errorf("minChargingRate: %w", ErrInvalidValue))
+		} else {
+			copiedRate := *input.MinChargingRate
+			minChargingRate = &copiedRate
+		}
 	}
 
 	if len(errs) > errCountZero {
@@ -87,34 +105,6 @@ func NewChargingSchedule(
 		chargingSchedulePeriod: periods,
 		minChargingRate:        minChargingRate,
 	}, nil
-}
-
-// validateScheduleDuration validates the optional duration field.
-func validateScheduleDuration(duration *int) (*Integer, error) {
-	if duration == nil {
-		return nil, nil //nolint:nilnil // nil is valid for optional field
-	}
-
-	d, err := NewInteger(*duration)
-	if err != nil {
-		return nil, fmt.Errorf("duration: %w", err)
-	}
-
-	return &d, nil
-}
-
-// validateStartSchedule validates the optional start schedule field.
-func validateStartSchedule(startSchedule *string) (*DateTime, error) {
-	if startSchedule == nil {
-		return nil, nil //nolint:nilnil // nil is valid for optional field
-	}
-
-	ss, err := NewDateTime(*startSchedule)
-	if err != nil {
-		return nil, fmt.Errorf("startSchedule: %w", err)
-	}
-
-	return &ss, nil
 }
 
 // validateChargingRateUnit validates the charging rate unit field.
@@ -154,21 +144,6 @@ func validateSchedulePeriods(
 	}
 
 	return validPeriods, errs
-}
-
-// validateMinChargingRate validates the optional minimum charging rate.
-func validateMinChargingRate(rate *float64) (*float64, error) {
-	if rate == nil {
-		return nil, nil //nolint:nilnil // nil is valid for optional field
-	}
-
-	if *rate < minChargingRateZero {
-		return nil, fmt.Errorf("minChargingRate: %w", ErrInvalidValue)
-	}
-
-	copiedRate := *rate
-
-	return &copiedRate, nil
 }
 
 // Duration returns the duration in seconds, or nil if not specified.

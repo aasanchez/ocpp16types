@@ -55,9 +55,16 @@ func NewChargingSchedulePeriod(
 		)
 	}
 
-	numberPhases, err := validateNumberPhases(input.NumberPhases)
-	if err != nil {
-		return ChargingSchedulePeriod{}, err
+	var numberPhases *Integer
+
+	if input.NumberPhases != nil {
+		if *input.NumberPhases < minNumberPhases || *input.NumberPhases > maxNumberPhases {
+			return ChargingSchedulePeriod{}, fmt.Errorf("numberPhases: %w", ErrInvalidValue)
+		}
+
+		// NewInteger cannot fail here: values 1-3 are always valid for uint16
+		np, _ := NewInteger(*input.NumberPhases)
+		numberPhases = &np
 	}
 
 	return ChargingSchedulePeriod{
@@ -65,22 +72,6 @@ func NewChargingSchedulePeriod(
 		limit:        input.Limit,
 		numberPhases: numberPhases,
 	}, nil
-}
-
-// validateNumberPhases validates the optional number of phases.
-func validateNumberPhases(phases *int) (*Integer, error) {
-	if phases == nil {
-		return nil, nil //nolint:nilnil // nil is valid for optional field
-	}
-
-	if *phases < minNumberPhases || *phases > maxNumberPhases {
-		return nil, fmt.Errorf("numberPhases: %w", ErrInvalidValue)
-	}
-
-	// NewInteger cannot fail here: values 1-3 are always valid for uint16
-	np, _ := NewInteger(*phases)
-
-	return &np, nil
 }
 
 // StartPeriod returns the start period in seconds relative to schedule start.

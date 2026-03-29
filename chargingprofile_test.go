@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	testProfileId       = 1
+	testProfileID       = 1
 	testStackLevel      = 0
 	testInvalidNegative = -1
 	testPurpose         = "TxDefaultProfile"
@@ -13,11 +13,11 @@ const (
 	testRecurrency      = "Daily"
 	testValidFromStr    = "2024-01-01T00:00:00Z"
 	testValidToStr      = "2024-12-31T23:59:59Z"
-	testTxId            = 42
-	testTxIdValid       = 100
+	testTxID            = 42
+	testTxIDValid       = 100
 	testStackOverflow   = 70000
 	testBogus           = "Bogus"
-	testTransactionId   = "TransactionId"
+	testTransactionID   = "TransactionID"
 )
 
 func validScheduleInput() ChargingScheduleInput {
@@ -39,14 +39,14 @@ func validScheduleInput() ChargingScheduleInput {
 func TestNewChargingProfile_AllValid(t *testing.T) {
 	t.Parallel()
 
-	txId := testTxId
+	txID := testTxID
 	recurrKind := testRecurrency
 	validFrom := testValidFromStr
 	validTo := testValidToStr
 
 	input := ChargingProfileInput{
-		ChargingProfileId:      testProfileId,
-		TransactionId:          &txId,
+		ChargingProfileID:      testProfileID,
+		TransactionID:          &txID,
 		StackLevel:             testStackLevel,
 		ChargingProfilePurpose: testPurpose,
 		ChargingProfileKind:    testKind,
@@ -61,20 +61,20 @@ func TestNewChargingProfile_AllValid(t *testing.T) {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if profile.ChargingProfileId().Value() !=
-		uint16(testProfileId) {
+	if profile.ChargingProfileID().Value() !=
+		uint16(testProfileID) {
 		t.Errorf(
 			ErrorMethodMismatch,
-			"ChargingProfileId",
-			profile.ChargingProfileId().Value(),
-			testProfileId,
+			"ChargingProfileID",
+			profile.ChargingProfileID().Value(),
+			testProfileID,
 		)
 	}
 
-	if profile.TransactionId() == nil {
+	if profile.TransactionID() == nil {
 		t.Errorf(
 			ErrorWantNonNil,
-			testTransactionId,
+			testTransactionID,
 		)
 	}
 
@@ -95,8 +95,8 @@ func TestNewChargingProfile_RequiredOnly(t *testing.T) {
 	t.Parallel()
 
 	input := ChargingProfileInput{
-		ChargingProfileId:      testProfileId,
-		TransactionId:          nil,
+		ChargingProfileID:      testProfileID,
+		TransactionID:          nil,
 		StackLevel:             testStackLevel,
 		ChargingProfilePurpose: testPurpose,
 		ChargingProfileKind:    testKind,
@@ -111,10 +111,10 @@ func TestNewChargingProfile_RequiredOnly(t *testing.T) {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if profile.TransactionId() != nil {
+	if profile.TransactionID() != nil {
 		t.Errorf(
-			"TransactionId() = %v, want nil",
-			profile.TransactionId(),
+			"TransactionID() = %v, want nil",
+			profile.TransactionID(),
 		)
 	}
 
@@ -140,12 +140,12 @@ func TestNewChargingProfile_RequiredOnly(t *testing.T) {
 	}
 }
 
-func TestNewChargingProfile_InvalidProfileId(t *testing.T) {
+func TestNewChargingProfile_InvalidProfileID(t *testing.T) {
 	t.Parallel()
 
 	input := ChargingProfileInput{
-		ChargingProfileId:      testInvalidNegative,
-		TransactionId:          nil,
+		ChargingProfileID:      testInvalidNegative,
+		TransactionID:          nil,
 		StackLevel:             testStackLevel,
 		ChargingProfilePurpose: testPurpose,
 		ChargingProfileKind:    testKind,
@@ -157,7 +157,7 @@ func TestNewChargingProfile_InvalidProfileId(t *testing.T) {
 
 	_, err := NewChargingProfile(input)
 	if err == nil {
-		t.Fatalf(ErrorWantNil, "invalid ChargingProfileId")
+		t.Fatalf(ErrorWantNil, "invalid ChargingProfileID")
 	}
 }
 
@@ -165,8 +165,8 @@ func TestNewChargingProfile_InvalidStackLevel(t *testing.T) {
 	t.Parallel()
 
 	input := ChargingProfileInput{
-		ChargingProfileId:      testProfileId,
-		TransactionId:          nil,
+		ChargingProfileID:      testProfileID,
+		TransactionID:          nil,
 		StackLevel:             testInvalidNegative,
 		ChargingProfilePurpose: testPurpose,
 		ChargingProfileKind:    testKind,
@@ -186,8 +186,8 @@ func TestNewChargingProfile_InvalidPurpose(t *testing.T) {
 	t.Parallel()
 
 	input := ChargingProfileInput{
-		ChargingProfileId:      testProfileId,
-		TransactionId:          nil,
+		ChargingProfileID:      testProfileID,
+		TransactionID:          nil,
 		StackLevel:             testStackLevel,
 		ChargingProfilePurpose: testBogus,
 		ChargingProfileKind:    testKind,
@@ -207,8 +207,8 @@ func TestNewChargingProfile_InvalidKind(t *testing.T) {
 	t.Parallel()
 
 	input := ChargingProfileInput{
-		ChargingProfileId:      testProfileId,
-		TransactionId:          nil,
+		ChargingProfileID:      testProfileID,
+		TransactionID:          nil,
 		StackLevel:             testStackLevel,
 		ChargingProfilePurpose: testPurpose,
 		ChargingProfileKind:    testBogus,
@@ -231,8 +231,8 @@ func TestNewChargingProfile_InvalidRecurrencyKind(
 
 	recurrKind := testBogus
 	input := ChargingProfileInput{
-		ChargingProfileId:      testProfileId,
-		TransactionId:          nil,
+		ChargingProfileID:      testProfileID,
+		TransactionID:          nil,
 		StackLevel:             testStackLevel,
 		ChargingProfilePurpose: testPurpose,
 		ChargingProfileKind:    testKind,
@@ -253,8 +253,8 @@ func TestNewChargingProfile_InvalidValidFrom(t *testing.T) {
 
 	validFrom := testNotADate
 	input := ChargingProfileInput{
-		ChargingProfileId:      testProfileId,
-		TransactionId:          nil,
+		ChargingProfileID:      testProfileID,
+		TransactionID:          nil,
 		StackLevel:             testStackLevel,
 		ChargingProfilePurpose: testPurpose,
 		ChargingProfileKind:    testKind,
@@ -275,8 +275,8 @@ func TestNewChargingProfile_InvalidValidTo(t *testing.T) {
 
 	validTo := testNotADate
 	input := ChargingProfileInput{
-		ChargingProfileId:      testProfileId,
-		TransactionId:          nil,
+		ChargingProfileID:      testProfileID,
+		TransactionID:          nil,
 		StackLevel:             testStackLevel,
 		ChargingProfilePurpose: testPurpose,
 		ChargingProfileKind:    testKind,
@@ -296,8 +296,8 @@ func TestNewChargingProfile_InvalidSchedule(t *testing.T) {
 	t.Parallel()
 
 	input := ChargingProfileInput{
-		ChargingProfileId:      testProfileId,
-		TransactionId:          nil,
+		ChargingProfileID:      testProfileID,
+		TransactionID:          nil,
 		StackLevel:             testStackLevel,
 		ChargingProfilePurpose: testPurpose,
 		ChargingProfileKind:    testKind,
@@ -319,15 +319,15 @@ func TestNewChargingProfile_InvalidSchedule(t *testing.T) {
 	}
 }
 
-func TestNewChargingProfile_ValidTransactionId(
+func TestNewChargingProfile_ValidTransactionID(
 	t *testing.T,
 ) {
 	t.Parallel()
 
-	txId := testTxIdValid
+	txID := testTxIDValid
 	input := ChargingProfileInput{
-		ChargingProfileId:      testProfileId,
-		TransactionId:          &txId,
+		ChargingProfileID:      testProfileID,
+		TransactionID:          &txID,
 		StackLevel:             testStackLevel,
 		ChargingProfilePurpose: testPurpose,
 		ChargingProfileKind:    testKind,
@@ -342,33 +342,33 @@ func TestNewChargingProfile_ValidTransactionId(
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if profile.TransactionId() == nil {
+	if profile.TransactionID() == nil {
 		t.Fatalf(
 			ErrorWantNonNil,
-			testTransactionId,
+			testTransactionID,
 		)
 	}
 
-	if profile.TransactionId().Value() !=
-		uint16(txId) {
+	if profile.TransactionID().Value() !=
+		uint16(txID) {
 		t.Errorf(
 			ErrorMethodMismatch,
-			testTransactionId,
-			profile.TransactionId().Value(),
-			txId,
+			testTransactionID,
+			profile.TransactionID().Value(),
+			txID,
 		)
 	}
 }
 
-func TestNewChargingProfile_InvalidTransactionId(
+func TestNewChargingProfile_InvalidTransactionID(
 	t *testing.T,
 ) {
 	t.Parallel()
 
-	txId := testInvalidNegative
+	txID := testInvalidNegative
 	input := ChargingProfileInput{
-		ChargingProfileId:      testProfileId,
-		TransactionId:          &txId,
+		ChargingProfileID:      testProfileID,
+		TransactionID:          &txID,
 		StackLevel:             testStackLevel,
 		ChargingProfilePurpose: testPurpose,
 		ChargingProfileKind:    testKind,
@@ -380,7 +380,7 @@ func TestNewChargingProfile_InvalidTransactionId(
 
 	_, err := NewChargingProfile(input)
 	if err == nil {
-		t.Fatalf(ErrorWantNil, "invalid TransactionId")
+		t.Fatalf(ErrorWantNil, "invalid TransactionID")
 	}
 }
 
@@ -390,8 +390,8 @@ func TestNewChargingProfile_StackLevelOverflow(
 	t.Parallel()
 
 	input := ChargingProfileInput{
-		ChargingProfileId:      testProfileId,
-		TransactionId:          nil,
+		ChargingProfileID:      testProfileID,
+		TransactionID:          nil,
 		StackLevel:             testStackOverflow,
 		ChargingProfilePurpose: testPurpose,
 		ChargingProfileKind:    testKind,
@@ -413,8 +413,8 @@ func TestNewChargingProfile_InvalidSchedulePeriod(
 	t.Parallel()
 
 	input := ChargingProfileInput{
-		ChargingProfileId:      testProfileId,
-		TransactionId:          nil,
+		ChargingProfileID:      testProfileID,
+		TransactionID:          nil,
 		StackLevel:             testStackLevel,
 		ChargingProfilePurpose: testPurpose,
 		ChargingProfileKind:    testKind,
@@ -445,17 +445,84 @@ func TestNewChargingProfile_InvalidSchedulePeriod(
 	}
 }
 
-func TestChargingProfile_Getters(t *testing.T) {
+func TestChargingProfile_String_RequiredOnly(t *testing.T) {
 	t.Parallel()
 
-	txId := testTxId
+	input := ChargingProfileInput{
+		ChargingProfileID:      testProfileID,
+		TransactionID:          nil,
+		StackLevel:             testStackLevel,
+		ChargingProfilePurpose: testPurpose,
+		ChargingProfileKind:    testKind,
+		RecurrencyKind:         nil,
+		ValidFrom:              nil,
+		ValidTo:                nil,
+		ChargingSchedule:       validScheduleInput(),
+	}
+
+	profile, err := NewChargingProfile(input)
+	if err != nil {
+		t.Fatalf(errUnexpectedFmt, err)
+	}
+
+	expected := "ChargingProfile{Id: 1, Purpose: TxDefaultProfile, Kind: Absolute, StackLevel: 0}"
+	if profile.String() != expected {
+		t.Errorf(
+			ErrorMethodMismatch,
+			"ChargingProfile.String()",
+			profile.String(),
+			expected,
+		)
+	}
+}
+
+func TestChargingProfile_String_AllOptionals(t *testing.T) {
+	t.Parallel()
+
+	txID := testTxID
 	recurrKind := testRecurrency
 	validFrom := testValidFromStr
 	validTo := testValidToStr
 
 	input := ChargingProfileInput{
-		ChargingProfileId:      testProfileId,
-		TransactionId:          &txId,
+		ChargingProfileID:      testProfileID,
+		TransactionID:          &txID,
+		StackLevel:             testStackLevel,
+		ChargingProfilePurpose: testPurpose,
+		ChargingProfileKind:    testKind,
+		RecurrencyKind:         &recurrKind,
+		ValidFrom:              &validFrom,
+		ValidTo:                &validTo,
+		ChargingSchedule:       validScheduleInput(),
+	}
+
+	profile, err := NewChargingProfile(input)
+	if err != nil {
+		t.Fatalf(errUnexpectedFmt, err)
+	}
+
+	expected := "ChargingProfile{Id: 1, Purpose: TxDefaultProfile, Kind: Absolute, StackLevel: 0, TransactionId: 42, RecurrencyKind: Daily, ValidFrom: 2024-01-01T00:00:00Z, ValidTo: 2024-12-31T23:59:59Z}"
+	if profile.String() != expected {
+		t.Errorf(
+			ErrorMethodMismatch,
+			"ChargingProfile.String()",
+			profile.String(),
+			expected,
+		)
+	}
+}
+
+func TestChargingProfile_Getters(t *testing.T) {
+	t.Parallel()
+
+	txID := testTxID
+	recurrKind := testRecurrency
+	validFrom := testValidFromStr
+	validTo := testValidToStr
+
+	input := ChargingProfileInput{
+		ChargingProfileID:      testProfileID,
+		TransactionID:          &txID,
 		StackLevel:             testStackLevel,
 		ChargingProfilePurpose: testPurpose,
 		ChargingProfileKind:    testKind,

@@ -1,4 +1,3 @@
-//nolint:dupl // enum test pattern
 package ocpp16types
 
 import (
@@ -8,7 +7,7 @@ import (
 const (
 	dtStatusAcceptedStr  = "Accepted"
 	dtStatusRejectedStr  = "Rejected"
-	dtStatusUnkMsgIdStr  = "UnknownMessageId"
+	dtStatusUnkMsgIDStr  = "UnknownMessageId"
 	dtStatusUnkVendorStr = "UnknownVendor"
 	dtStatusMethodString = "DataTransferStatus.String()"
 )
@@ -44,10 +43,10 @@ func TestDataTransferStatus_IsValid_UnkMsgId(
 ) {
 	t.Parallel()
 
-	if !DataTransferStatusUnknownMessageId.IsValid() {
+	if !DataTransferStatusUnknownMessageID.IsValid() {
 		t.Errorf(
 			ErrorIsValidFalse,
-			"DataTransferStatusUnknownMessageId",
+			"DataTransferStatusUnknownMessageID",
 		)
 	}
 }
@@ -144,13 +143,13 @@ func TestDataTransferStatus_String_UnkMsgId(
 ) {
 	t.Parallel()
 
-	got := DataTransferStatusUnknownMessageId.String()
-	if got != dtStatusUnkMsgIdStr {
+	got := DataTransferStatusUnknownMessageID.String()
+	if got != dtStatusUnkMsgIDStr {
 		t.Errorf(
 			ErrorMethodMismatch,
 			dtStatusMethodString,
 			got,
-			dtStatusUnkMsgIdStr,
+			dtStatusUnkMsgIDStr,
 		)
 	}
 }

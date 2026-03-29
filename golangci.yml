@@ -2,17 +2,44 @@ version: "2"
 
 linters:
   enable:
+    # Bug detection
     - errcheck
+    - errorlint
+    - exhaustive
+    - copyloopvar
+    - nilerr
+    - nilnil
+
+    # Style & code quality
+    - asciicheck
+    - dupword
+    - errname
     - gocritic
-    - gofmt
-    - goimports
-    - gosimple
+    - godoclint
+    - misspell
+    - modernize
+    - nolintlint
+    - recvcheck
+    - revive
+    - whitespace
+
+    # Performance
+    - perfsprint
+    - unconvert
+    - usestdlibvars
+    - wastedassign
+
+    # Security
+    - gosec
+
+    # Static analysis
     - govet
     - ineffassign
-    - misspell
-    - revive
     - staticcheck
     - unused
+
+    # Testing
+    - thelper
 
 linters-settings:
   revive:
@@ -21,8 +48,8 @@ linters-settings:
         disabled: false
       - name: var-naming
         arguments:
-          - allowList:
-              - "Id"
+          - []
+          - ["ID"]
 
 formatters:
   enable:

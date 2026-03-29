@@ -46,7 +46,7 @@ func BenchmarkNewChargingProfile_WorstCase_AllOptionals(
 ) {
 	b.ReportAllocs()
 
-	transactionId := profileId
+	transactionID := profileID
 	recurrencyKind := st.RecurrencyKindDaily.String()
 	validFrom := sampleTimestamp
 	validTo := "2025-01-02T16:00:00Z"
@@ -71,8 +71,8 @@ func BenchmarkNewChargingProfile_WorstCase_AllOptionals(
 	}
 
 	input := st.ChargingProfileInput{
-		ChargingProfileId:      profileId,
-		TransactionId:          &transactionId,
+		ChargingProfileID:      profileID,
+		TransactionID:          &transactionID,
 		StackLevel:             stackLevelZero,
 		ChargingProfilePurpose: st.TxProfile.String(),
 		ChargingProfileKind: st.ChargingProfileKindRecurring.String(),

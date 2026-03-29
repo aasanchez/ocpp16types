@@ -20,7 +20,7 @@ var (
 func buildChargingProfile(b *testing.B) st.ChargingProfile {
 	b.Helper()
 
-	transactionId := profileId
+	transactionID := profileID
 	recurrencyKind := st.RecurrencyKindDaily.String()
 	validFrom := sampleTimestamp
 	validTo := "2025-01-02T16:00:00Z"
@@ -42,8 +42,8 @@ func buildChargingProfile(b *testing.B) st.ChargingProfile {
 	}
 
 	profile, err := st.NewChargingProfile(st.ChargingProfileInput{
-		ChargingProfileId:      profileId,
-		TransactionId:          &transactionId,
+		ChargingProfileID:      profileID,
+		TransactionID:          &transactionID,
 		StackLevel:             stackLevelZero,
 		ChargingProfilePurpose: st.TxProfile.String(),
 		ChargingProfileKind: st.ChargingProfileKindRecurring.String(),
@@ -59,7 +59,7 @@ func buildChargingProfile(b *testing.B) st.ChargingProfile {
 	return profile
 }
 
-func BenchmarkChargingProfileTransactionIdGetter_Copy(
+func BenchmarkChargingProfileTransactionIDGetter_Copy(
 	b *testing.B,
 ) {
 	b.ReportAllocs()
@@ -68,7 +68,7 @@ func BenchmarkChargingProfileTransactionIdGetter_Copy(
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		sinkInteger = profile.TransactionId()
+		sinkInteger = profile.TransactionID()
 	}
 }
 

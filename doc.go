@@ -15,8 +15,8 @@
 //   - RegistrationStatus, StopReason, UnitOfMeasure, ValueFormat
 //
 // Composite types:
-//   - IdToken: wrapper around CiString20Type for identifier tokens
-//   - IdTagInfo: authorization information with builder
+//   - IDToken: wrapper around CiString20Type for identifier tokens
+//   - IDTagInfo: authorization information with builder
 //     pattern for optional fields
 //   - SampledValue: single meter value sample with optional context metadata
 //   - MeterValue: timestamped meter reading with sampled values

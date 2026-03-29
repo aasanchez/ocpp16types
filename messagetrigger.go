@@ -17,7 +17,6 @@ const (
 	MessageTriggerBootNotification mt = "BootNotification"
 	// MessageTriggerDiagnosticsStatusNotification triggers a
 	// DiagnosticsStatusNotification.
-	//nolint:revive // Long constant name required for OCPP compliance
 	MessageTriggerDiagnosticsStatusNotification mt = ("DiagnosticsStatusNotification")
 	// MessageTriggerFirmwareStatusNotification triggers a
 	// FirmwareStatusNotification.

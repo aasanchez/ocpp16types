@@ -46,11 +46,11 @@ test-race: ## Run full test suite with the race detector enabled (race tag optio
 
 ##@ Code Style and Static Analysis
 lint: ## Run static analysis, vetting, and linting using golangci-lint and other tools.
+	@mkdir -p reports
 	@golangci-lint cache clean || true
-	@golangci-lint --config golangci.yml run ./... || true
-	@go vet ./... > reports/govet.json
-	@staticcheck ./... > reports/staticcheck
-	@cat reports/golangci-lint.txt
+	@golangci-lint --config golangci.yml run ./... 2>&1 | tee reports/golangci-lint.txt
+	@go vet ./... > reports/govet.json 2>&1
+	@staticcheck ./... > reports/staticcheck 2>&1
 
 format: ## Format Go code to maintain consistent styling across the codebase.
 	@rg --files -g '*.go' | xargs gci write

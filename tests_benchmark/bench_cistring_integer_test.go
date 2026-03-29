@@ -194,22 +194,22 @@ func BenchmarkDateTimeString(b *testing.B) {
 	}
 }
 
-func BenchmarkNewIdToken(b *testing.B) {
+func BenchmarkNewIDToken(b *testing.B) {
 	b.ReportAllocs()
 
 	ci, _ := st.NewCiString20Type(ciStringSample)
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		_ = st.NewIdToken(ci)
+		_ = st.NewIDToken(ci)
 	}
 }
 
-func BenchmarkNewIdTagInfo(b *testing.B) {
+func BenchmarkNewIDTagInfo(b *testing.B) {
 	b.ReportAllocs()
 
 	for i := 0; i < b.N; i++ {
-		if _, err := st.NewIdTagInfo(
+		if _, err := st.NewIDTagInfo(
 			st.AuthorizationStatusAccepted,
 		); err != nil {
 			b.Fatal(err)
@@ -217,16 +217,16 @@ func BenchmarkNewIdTagInfo(b *testing.B) {
 	}
 }
 
-func BenchmarkIdTagInfoBuilderChain(b *testing.B) {
+func BenchmarkIDTagInfoBuilderChain(b *testing.B) {
 	b.ReportAllocs()
 
 	expiry, _ := st.NewDateTime(sampleTimestamp)
 	ci, _ := st.NewCiString20Type("PARENT-1")
-	parent := st.NewIdToken(ci)
+	parent := st.NewIDToken(ci)
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		info, err := st.NewIdTagInfo(
+		info, err := st.NewIDTagInfo(
 			st.AuthorizationStatusAccepted,
 		)
 		if err != nil {
@@ -235,7 +235,7 @@ func BenchmarkIdTagInfoBuilderChain(b *testing.B) {
 
 		info = info.
 			WithExpiryDate(expiry).
-			WithParentIdTag(parent)
+			WithParentIDTag(parent)
 		_ = info
 	}
 }

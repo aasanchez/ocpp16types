@@ -6,8 +6,8 @@ import (
 	st "github.com/aasanchez/ocpp16types"
 )
 
-func ExampleNewIdTagInfo() {
-	info, err := st.NewIdTagInfo(st.AuthorizationStatusAccepted)
+func ExampleNewIDTagInfo() {
+	info, err := st.NewIDTagInfo(st.AuthorizationStatusAccepted)
 	if err != nil {
 		fmt.Println(err)
 
@@ -19,13 +19,13 @@ func ExampleNewIdTagInfo() {
 	// Accepted
 }
 
-func ExampleNewIdTagInfo_invalid() {
-	_, err := st.NewIdTagInfo(st.AuthorizationStatus("Bogus"))
+func ExampleNewIDTagInfo_invalid() {
+	_, err := st.NewIDTagInfo(st.AuthorizationStatus("Bogus"))
 	if err != nil {
 		fmt.Println(err)
 
 		return
 	}
 	// Output:
-	// NewIdTagInfo: AuthorizationStatus: invalid value
+	// NewIDTagInfo: AuthorizationStatus: invalid value
 }

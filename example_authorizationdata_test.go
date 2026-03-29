@@ -10,8 +10,8 @@ func ExampleNewAuthorizationData() {
 	expiryDate := "2027-12-31T23:59:59Z"
 
 	authData, err := st.NewAuthorizationData(st.AuthorizationDataInput{
-		IdTag: "TAG001",
-		IdTagInfo: &st.IdTagInfoInput{
+		IDTag: "TAG001",
+		IDTagInfo: &st.IDTagInfoInput{
 			Status:     "Accepted",
 			ExpiryDate: &expiryDate,
 		},
@@ -22,8 +22,8 @@ func ExampleNewAuthorizationData() {
 		return
 	}
 
-	fmt.Println(authData.IdTag().Value())
-	fmt.Println(authData.IdTagInfo().Status().String())
+	fmt.Println(authData.IDTag().Value())
+	fmt.Println(authData.IDTagInfo().Status().String())
 	// Output:
 	// TAG001
 	// Accepted
@@ -31,8 +31,8 @@ func ExampleNewAuthorizationData() {
 
 func ExampleNewAuthorizationData_deleteEntry() {
 	authData, err := st.NewAuthorizationData(st.AuthorizationDataInput{
-		IdTag:     "TAG002",
-		IdTagInfo: nil,
+		IDTag:     "TAG002",
+		IDTagInfo: nil,
 	})
 	if err != nil {
 		fmt.Println(err)
@@ -40,8 +40,8 @@ func ExampleNewAuthorizationData_deleteEntry() {
 		return
 	}
 
-	fmt.Println(authData.IdTag().Value())
-	fmt.Println(authData.IdTagInfo() == nil)
+	fmt.Println(authData.IDTag().Value())
+	fmt.Println(authData.IDTagInfo() == nil)
 	// Output:
 	// TAG002
 	// true

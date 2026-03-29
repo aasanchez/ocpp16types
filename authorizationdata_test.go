@@ -14,8 +14,8 @@ func TestNewAuthorizationData_ValidNoInfo(t *testing.T) {
 	t.Parallel()
 
 	input := AuthorizationDataInput{
-		IdTag:     testToken123,
-		IdTagInfo: nil,
+		IDTag:     testToken123,
+		IDTagInfo: nil,
 	}
 
 	authData, err := NewAuthorizationData(input)
@@ -23,19 +23,19 @@ func TestNewAuthorizationData_ValidNoInfo(t *testing.T) {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if authData.IdTag().String() != testToken123 {
+	if authData.IDTag().String() != testToken123 {
 		t.Errorf(
 			ErrorMethodMismatch,
-			"AuthorizationData.IdTag()",
-			authData.IdTag().String(),
+			"AuthorizationData.IDTag()",
+			authData.IDTag().String(),
 			testToken123,
 		)
 	}
 
-	if authData.IdTagInfo() != nil {
+	if authData.IDTagInfo() != nil {
 		t.Errorf(
-			"AuthorizationData.IdTagInfo() = %v, want nil",
-			authData.IdTagInfo(),
+			"AuthorizationData.IDTagInfo() = %v, want nil",
+			authData.IDTagInfo(),
 		)
 	}
 }
@@ -47,11 +47,11 @@ func TestNewAuthorizationData_ValidWithInfo(t *testing.T) {
 	parent := "PARENT-TAG"
 
 	input := AuthorizationDataInput{
-		IdTag: "TOKEN456",
-		IdTagInfo: &IdTagInfoInput{
+		IDTag: "TOKEN456",
+		IDTagInfo: &IDTagInfoInput{
 			Status:      testStatusAcc,
 			ExpiryDate:  &expiry,
-			ParentIdTag: &parent,
+			ParentIDTag: &parent,
 		},
 	}
 
@@ -60,39 +60,39 @@ func TestNewAuthorizationData_ValidWithInfo(t *testing.T) {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if authData.IdTagInfo() == nil {
-		t.Fatalf(ErrorWantNonNil, "IdTagInfo")
+	if authData.IDTagInfo() == nil {
+		t.Fatalf(ErrorWantNonNil, "IDTagInfo")
 	}
 
-	if authData.IdTagInfo().Status() != AuthorizationStatusAccepted {
+	if authData.IDTagInfo().Status() != AuthorizationStatusAccepted {
 		t.Errorf(
 			ErrorMethodMismatch,
-			"IdTagInfo().Status()",
-			authData.IdTagInfo().Status(),
+			"IDTagInfo().Status()",
+			authData.IDTagInfo().Status(),
 			AuthorizationStatusAccepted,
 		)
 	}
 
-	if authData.IdTagInfo().ExpiryDate() == nil {
+	if authData.IDTagInfo().ExpiryDate() == nil {
 		t.Errorf(ErrorWantNonNil, "ExpiryDate")
 	}
 
-	if authData.IdTagInfo().ParentIdTag() == nil {
-		t.Errorf(ErrorWantNonNil, "ParentIdTag")
+	if authData.IDTagInfo().ParentIDTag() == nil {
+		t.Errorf(ErrorWantNonNil, "ParentIDTag")
 	}
 }
 
-func TestNewAuthorizationData_EmptyIdTag(t *testing.T) {
+func TestNewAuthorizationData_EmptyIDTag(t *testing.T) {
 	t.Parallel()
 
 	input := AuthorizationDataInput{
-		IdTag:     "",
-		IdTagInfo: nil,
+		IDTag:     "",
+		IDTagInfo: nil,
 	}
 
 	_, err := NewAuthorizationData(input)
 	if err == nil {
-		t.Fatalf(ErrorWantNil, "empty IdTag")
+		t.Fatalf(ErrorWantNil, "empty IDTag")
 	}
 }
 
@@ -100,17 +100,17 @@ func TestNewAuthorizationData_InvalidStatus(t *testing.T) {
 	t.Parallel()
 
 	input := AuthorizationDataInput{
-		IdTag: "TOKEN789",
-		IdTagInfo: &IdTagInfoInput{
+		IDTag: "TOKEN789",
+		IDTagInfo: &IDTagInfoInput{
 			Status:      "Bogus",
 			ExpiryDate:  nil,
-			ParentIdTag: nil,
+			ParentIDTag: nil,
 		},
 	}
 
 	_, err := NewAuthorizationData(input)
 	if err == nil {
-		t.Fatalf(ErrorWantNil, "invalid IdTagInfo status")
+		t.Fatalf(ErrorWantNil, "invalid IDTagInfo status")
 	}
 }
 
@@ -123,11 +123,11 @@ func TestNewAuthorizationData_WithExpiryAndParent(
 	parent := "PARENT01"
 
 	input := AuthorizationDataInput{
-		IdTag: "CHILD01",
-		IdTagInfo: &IdTagInfoInput{
+		IDTag: "CHILD01",
+		IDTagInfo: &IDTagInfoInput{
 			Status:      testStatusAcc,
 			ExpiryDate:  &expiry,
-			ParentIdTag: &parent,
+			ParentIDTag: &parent,
 		},
 	}
 
@@ -136,43 +136,95 @@ func TestNewAuthorizationData_WithExpiryAndParent(
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if authData.IdTagInfo().ExpiryDate() == nil {
+	if authData.IDTagInfo().ExpiryDate() == nil {
 		t.Errorf(ErrorWantNonNil, "ExpiryDate")
 	}
 
-	if authData.IdTagInfo().ParentIdTag() == nil {
-		t.Errorf(ErrorWantNonNil, "ParentIdTag")
+	if authData.IDTagInfo().ParentIDTag() == nil {
+		t.Errorf(ErrorWantNonNil, "ParentIDTag")
 	}
 }
 
-func TestBuildIdTagInfo_InvalidExpiryDate(t *testing.T) {
+func TestBuildIDTagInfo_InvalidExpiryDate(t *testing.T) {
 	t.Parallel()
 
 	badDate := testNotADate
-	input := IdTagInfoInput{
+	input := IDTagInfoInput{
 		Status:      testStatusAcc,
 		ExpiryDate:  &badDate,
-		ParentIdTag: nil,
+		ParentIDTag: nil,
 	}
 
-	_, err := buildIdTagInfo(input)
+	_, err := buildIDTagInfo(input)
 	if err == nil {
 		t.Fatalf(ErrorWantNil, "invalid ExpiryDate")
 	}
 }
 
-func TestBuildIdTagInfo_InvalidParentIdTag(t *testing.T) {
+func TestBuildIDTagInfo_InvalidParentIDTag(t *testing.T) {
 	t.Parallel()
 
 	badParent := ""
-	input := IdTagInfoInput{
+	input := IDTagInfoInput{
 		Status:      testStatusAcc,
 		ExpiryDate:  nil,
-		ParentIdTag: &badParent,
+		ParentIDTag: &badParent,
 	}
 
-	_, err := buildIdTagInfo(input)
+	_, err := buildIDTagInfo(input)
 	if err == nil {
-		t.Fatalf(ErrorWantNil, "invalid ParentIdTag")
+		t.Fatalf(ErrorWantNil, "invalid ParentIDTag")
+	}
+}
+
+func TestAuthorizationData_String_NoInfo(t *testing.T) {
+	t.Parallel()
+
+	input := AuthorizationDataInput{
+		IDTag:     testToken123,
+		IDTagInfo: nil,
+	}
+
+	authData, err := NewAuthorizationData(input)
+	if err != nil {
+		t.Fatalf(errUnexpectedFmt, err)
+	}
+
+	expected := "AuthorizationData{IDTag: TOKEN123}"
+	if authData.String() != expected {
+		t.Errorf(
+			ErrorMethodMismatch,
+			"AuthorizationData.String()",
+			authData.String(),
+			expected,
+		)
+	}
+}
+
+func TestAuthorizationData_String_WithInfo(t *testing.T) {
+	t.Parallel()
+
+	input := AuthorizationDataInput{
+		IDTag: testToken123,
+		IDTagInfo: &IDTagInfoInput{
+			Status:      testStatusAcc,
+			ExpiryDate:  nil,
+			ParentIDTag: nil,
+		},
+	}
+
+	authData, err := NewAuthorizationData(input)
+	if err != nil {
+		t.Fatalf(errUnexpectedFmt, err)
+	}
+
+	got := authData.String()
+	if got != "AuthorizationData{IDTag: TOKEN123, IDTagInfo: IDTagInfo{Status: Accepted}}" {
+		t.Errorf(
+			ErrorMethodMismatch,
+			"AuthorizationData.String()",
+			got,
+			"AuthorizationData{IDTag: TOKEN123, IDTagInfo: IDTagInfo{Status: Accepted}}",
+		)
 	}
 }

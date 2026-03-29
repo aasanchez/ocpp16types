@@ -208,6 +208,64 @@ func TestNewSampledValue_InvalidUnit(t *testing.T) {
 	}
 }
 
+func TestSampledValue_String_Minimal(t *testing.T) {
+	t.Parallel()
+
+	input := SampledValueInput{
+		Value:     testSampledValueStr,
+		Context:   nil,
+		Format:    nil,
+		Measurand: nil,
+		Phase:     nil,
+		Location:  nil,
+		Unit:      nil,
+	}
+
+	sampledVal, err := NewSampledValue(input)
+	if err != nil {
+		t.Fatalf(errUnexpectedFmt, err)
+	}
+
+	expected := "SampledValue{Value: 42.5}"
+	if sampledVal.String() != expected {
+		t.Errorf(
+			ErrorMethodMismatch,
+			"SampledValue.String()",
+			sampledVal.String(),
+			expected,
+		)
+	}
+}
+
+func TestSampledValue_String_AllFields(t *testing.T) {
+	t.Parallel()
+
+	input := SampledValueInput{
+		Value:     testSampledValueStr,
+		Context:   strPtr("Sample.Periodic"),
+		Format:    strPtr("Raw"),
+		Measurand: strPtr("Voltage"),
+		Phase:     strPtr("L1"),
+		Location:  strPtr("Outlet"),
+		Unit:      strPtr("V"),
+	}
+
+	sampledVal, err := NewSampledValue(input)
+	if err != nil {
+		t.Fatalf(errUnexpectedFmt, err)
+	}
+
+	expected := "SampledValue{Value: 42.5, Context: Sample.Periodic, Format: Raw, Measurand: Voltage, Phase: L1, Location: Outlet, Unit: V}"
+	if sampledVal.String() != expected {
+		t.Errorf(
+			ErrorMethodMismatch,
+			"SampledValue.String()",
+			sampledVal.String(),
+			expected,
+		)
+	}
+}
+
 func TestNewSampledValue_NilOptionals(t *testing.T) {
 	t.Parallel()
 

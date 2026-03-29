@@ -5,14 +5,14 @@ import (
 )
 
 const (
-	errUnexpectedIdTagInfo = "unexpected error creating IdTagInfo: %v"
+	errUnexpectedIDTagInfo = "unexpected error creating IDTagInfo: %v"
 	zeroLen                = 0
 )
 
-func TestNewIdTagInfo_Accepted(t *testing.T) {
+func TestNewIDTagInfo_Accepted(t *testing.T) {
 	t.Parallel()
 
-	info, err := NewIdTagInfo(AuthorizationStatusAccepted)
+	info, err := NewIDTagInfo(AuthorizationStatusAccepted)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -20,14 +20,14 @@ func TestNewIdTagInfo_Accepted(t *testing.T) {
 	if info.Status() != AuthorizationStatusAccepted {
 		t.Errorf(
 			ErrorMethodMismatch,
-			"IdTagInfo.Status()",
+			"IDTagInfo.Status()",
 			info.Status(),
 			AuthorizationStatusAccepted,
 		)
 	}
 }
 
-func TestNewIdTagInfo_AllStatuses(t *testing.T) {
+func TestNewIDTagInfo_AllStatuses(t *testing.T) {
 	t.Parallel()
 
 	statuses := []AuthorizationStatus{
@@ -39,7 +39,7 @@ func TestNewIdTagInfo_AllStatuses(t *testing.T) {
 	}
 
 	for _, status := range statuses {
-		info, err := NewIdTagInfo(status)
+		info, err := NewIDTagInfo(status)
 		if err != nil {
 			t.Errorf("unexpected error for status %s: %v", status, err)
 
@@ -49,7 +49,7 @@ func TestNewIdTagInfo_AllStatuses(t *testing.T) {
 		if info.Status() != status {
 			t.Errorf(
 				ErrorMethodMismatch,
-				"IdTagInfo.Status()",
+				"IDTagInfo.Status()",
 				info.Status(),
 				status,
 			)
@@ -57,21 +57,21 @@ func TestNewIdTagInfo_AllStatuses(t *testing.T) {
 	}
 }
 
-func TestNewIdTagInfo_InvalidStatus(t *testing.T) {
+func TestNewIDTagInfo_InvalidStatus(t *testing.T) {
 	t.Parallel()
 
-	_, err := NewIdTagInfo(AuthorizationStatus("Bogus"))
+	_, err := NewIDTagInfo(AuthorizationStatus("Bogus"))
 	if err == nil {
 		t.Fatalf(ErrorWantNil, "invalid authorization status")
 	}
 }
 
-func TestIdTagInfo_WithExpiryDate(t *testing.T) {
+func TestIDTagInfo_WithExpiryDate(t *testing.T) {
 	t.Parallel()
 
-	info, err := NewIdTagInfo(AuthorizationStatusAccepted)
+	info, err := NewIDTagInfo(AuthorizationStatusAccepted)
 	if err != nil {
-		t.Fatalf(errUnexpectedIdTagInfo, err)
+		t.Fatalf(errUnexpectedIDTagInfo, err)
 	}
 
 	dt, err := NewDateTime("2024-12-31T23:59:59Z")
@@ -83,16 +83,16 @@ func TestIdTagInfo_WithExpiryDate(t *testing.T) {
 	expiryDate := info.ExpiryDate()
 
 	if expiryDate == nil {
-		t.Errorf(ErrorWantNonNil, "IdTagInfo.ExpiryDate()")
+		t.Errorf(ErrorWantNonNil, "IDTagInfo.ExpiryDate()")
 	}
 }
 
-func TestIdTagInfo_WithParentIdTag(t *testing.T) {
+func TestIDTagInfo_WithParentIDTag(t *testing.T) {
 	t.Parallel()
 
-	info, err := NewIdTagInfo(AuthorizationStatusAccepted)
+	info, err := NewIDTagInfo(AuthorizationStatusAccepted)
 	if err != nil {
-		t.Fatalf(errUnexpectedIdTagInfo, err)
+		t.Fatalf(errUnexpectedIDTagInfo, err)
 	}
 
 	token, err := NewCiString20Type("PARENT-TOKEN")
@@ -100,67 +100,67 @@ func TestIdTagInfo_WithParentIdTag(t *testing.T) {
 		t.Fatalf("unexpected error creating CiString20Type: %v", err)
 	}
 
-	parentToken := NewIdToken(token)
-	info = info.WithParentIdTag(parentToken)
-	retrievedParent := info.ParentIdTag()
+	parentToken := NewIDToken(token)
+	info = info.WithParentIDTag(parentToken)
+	retrievedParent := info.ParentIDTag()
 
 	if retrievedParent == nil {
-		t.Errorf(ErrorWantNonNil, "IdTagInfo.ParentIdTag()")
+		t.Errorf(ErrorWantNonNil, "IDTagInfo.ParentIDTag()")
 	}
 }
 
-func TestIdTagInfo_ExpiryDate_Nil(t *testing.T) {
+func TestIDTagInfo_ExpiryDate_Nil(t *testing.T) {
 	t.Parallel()
 
-	info, err := NewIdTagInfo(AuthorizationStatusAccepted)
+	info, err := NewIDTagInfo(AuthorizationStatusAccepted)
 	if err != nil {
-		t.Fatalf(errUnexpectedIdTagInfo, err)
+		t.Fatalf(errUnexpectedIDTagInfo, err)
 	}
 
 	expiryDate := info.ExpiryDate()
 	if expiryDate != nil {
-		t.Errorf("IdTagInfo.ExpiryDate() = %v, want nil", expiryDate)
+		t.Errorf("IDTagInfo.ExpiryDate() = %v, want nil", expiryDate)
 	}
 }
 
-func TestIdTagInfo_ParentIdTag_Nil(t *testing.T) {
+func TestIDTagInfo_ParentIDTag_Nil(t *testing.T) {
 	t.Parallel()
 
-	info, err := NewIdTagInfo(AuthorizationStatusAccepted)
+	info, err := NewIDTagInfo(AuthorizationStatusAccepted)
 	if err != nil {
-		t.Fatalf(errUnexpectedIdTagInfo, err)
+		t.Fatalf(errUnexpectedIDTagInfo, err)
 	}
 
-	parentTag := info.ParentIdTag()
+	parentTag := info.ParentIDTag()
 	if parentTag != nil {
-		t.Errorf("IdTagInfo.ParentIdTag() = %v, want nil", parentTag)
+		t.Errorf("IDTagInfo.ParentIDTag() = %v, want nil", parentTag)
 	}
 }
 
-func TestIdTagInfo_String(t *testing.T) {
+func TestIDTagInfo_String(t *testing.T) {
 	t.Parallel()
 
-	info, err := NewIdTagInfo(AuthorizationStatusAccepted)
+	info, err := NewIDTagInfo(AuthorizationStatusAccepted)
 	if err != nil {
-		t.Fatalf(errUnexpectedIdTagInfo, err)
+		t.Fatalf(errUnexpectedIDTagInfo, err)
 	}
 
 	strRepr := info.String()
-	if !containsSubstring(strRepr, "IdTagInfo") {
+	if !containsSubstring(strRepr, "IDTagInfo") {
 		t.Errorf(
 			ErrorWantContains,
 			strRepr,
-			"IdTagInfo",
+			"IDTagInfo",
 		)
 	}
 }
 
-func TestIdTagInfo_String_WithExpiryDate(t *testing.T) {
+func TestIDTagInfo_String_WithExpiryDate(t *testing.T) {
 	t.Parallel()
 
-	info, err := NewIdTagInfo(AuthorizationStatusAccepted)
+	info, err := NewIDTagInfo(AuthorizationStatusAccepted)
 	if err != nil {
-		t.Fatalf(errUnexpectedIdTagInfo, err)
+		t.Fatalf(errUnexpectedIDTagInfo, err)
 	}
 
 	dt, err := NewDateTime("2024-12-31T23:59:59Z")
@@ -180,12 +180,12 @@ func TestIdTagInfo_String_WithExpiryDate(t *testing.T) {
 	}
 }
 
-func TestIdTagInfo_String_WithParentIdTag(t *testing.T) {
+func TestIDTagInfo_String_WithParentIDTag(t *testing.T) {
 	t.Parallel()
 
-	info, err := NewIdTagInfo(AuthorizationStatusAccepted)
+	info, err := NewIDTagInfo(AuthorizationStatusAccepted)
 	if err != nil {
-		t.Fatalf(errUnexpectedIdTagInfo, err)
+		t.Fatalf(errUnexpectedIDTagInfo, err)
 	}
 
 	token, err := NewCiString20Type("PARENT-TOKEN")
@@ -193,15 +193,15 @@ func TestIdTagInfo_String_WithParentIdTag(t *testing.T) {
 		t.Fatalf("unexpected error: %v", err)
 	}
 
-	parentToken := NewIdToken(token)
-	info = info.WithParentIdTag(parentToken)
+	parentToken := NewIDToken(token)
+	info = info.WithParentIDTag(parentToken)
 	strRepr := info.String()
 
-	if !containsSubstring(strRepr, "ParentIdTag") {
+	if !containsSubstring(strRepr, "ParentIDTag") {
 		t.Errorf(
 			ErrorWantContains,
 			strRepr,
-			"ParentIdTag",
+			"ParentIDTag",
 		)
 	}
 }

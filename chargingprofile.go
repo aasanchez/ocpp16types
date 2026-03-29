@@ -20,9 +20,9 @@ const (
 // automatically.
 type ChargingProfileInput struct {
 	// Required: Unique identifier of this profile
-	ChargingProfileId int
+	ChargingProfileID int
 	// Optional: Only valid if ChargingProfilePurpose is TxProfile
-	TransactionId *int
+	TransactionID *int
 	// Required: Value determining level in hierarchy stack of profiles
 	StackLevel int
 	// Required: Defines the purpose of the schedule
@@ -43,8 +43,8 @@ type ChargingProfileInput struct {
 
 // ChargingProfile represents a charging profile as defined in OCPP 1.6.
 type ChargingProfile struct {
-	chargingProfileId      Integer
-	transactionId          *Integer
+	chargingProfileID      Integer
+	transactionID          *Integer
 	stackLevel             Integer
 	chargingProfilePurpose ChargingProfilePurposeType
 	chargingProfileKind    ChargingProfileKindType
@@ -56,8 +56,8 @@ type ChargingProfile struct {
 
 // NewChargingProfile creates a new ChargingProfile from input.
 // Returns an error if:
-//   - ChargingProfileId is negative or exceeds uint16 max value (65535)
-//   - TransactionId (if provided) is negative or exceeds uint16 max (65535)
+//   - ChargingProfileID is negative or exceeds uint16 max value (65535)
+//   - TransactionID (if provided) is negative or exceeds uint16 max (65535)
 //   - StackLevel is negative or exceeds uint16 max value (65535)
 //   - ChargingProfilePurpose is not a valid value
 //   - ChargingProfileKind is not a valid value
@@ -65,19 +65,23 @@ type ChargingProfile struct {
 //   - ValidFrom (if provided) is not a valid RFC3339 timestamp
 //   - ValidTo (if provided) is not a valid RFC3339 timestamp
 //   - ChargingSchedule is invalid
-//
-//nolint:cyclop,funlen,revive // validation requires checking many fields
 func NewChargingProfile(input ChargingProfileInput) (ChargingProfile, error) {
 	var errs []error
 
-	chargingProfileId, err := validateChargingProfileId(input.ChargingProfileId)
+	chargingProfileID, err := validateChargingProfileID(input.ChargingProfileID)
 	if err != nil {
 		errs = append(errs, err)
 	}
 
-	transactionId, err := validateTransactionId(input.TransactionId)
-	if err != nil {
-		errs = append(errs, err)
+	var transactionID *Integer
+
+	if input.TransactionID != nil {
+		txID, err := NewInteger(*input.TransactionID)
+		if err != nil {
+			errs = append(errs, fmt.Errorf("transactionID: %w", err))
+		} else {
+			transactionID = &txID
+		}
 	}
 
 	stackLevel, err := validateStackLevel(input.StackLevel)
@@ -95,19 +99,37 @@ func NewChargingProfile(input ChargingProfileInput) (ChargingProfile, error) {
 		errs = append(errs, err)
 	}
 
-	recurrencyKind, err := validateRecurrencyKind(input.RecurrencyKind)
-	if err != nil {
-		errs = append(errs, err)
+	var recurrencyKind *RecurrencyKindType
+
+	if input.RecurrencyKind != nil {
+		rk := RecurrencyKindType(*input.RecurrencyKind)
+		if !rk.IsValid() {
+			errs = append(errs, fmt.Errorf("recurrencyKind: %w", ErrInvalidValue))
+		} else {
+			recurrencyKind = &rk
+		}
 	}
 
-	validFrom, err := validateValidFrom(input.ValidFrom)
-	if err != nil {
-		errs = append(errs, err)
+	var validFrom *DateTime
+
+	if input.ValidFrom != nil {
+		vf, err := NewDateTime(*input.ValidFrom)
+		if err != nil {
+			errs = append(errs, fmt.Errorf("validFrom: %w", err))
+		} else {
+			validFrom = &vf
+		}
 	}
 
-	validTo, err := validateValidTo(input.ValidTo)
-	if err != nil {
-		errs = append(errs, err)
+	var validTo *DateTime
+
+	if input.ValidTo != nil {
+		vt, err := NewDateTime(*input.ValidTo)
+		if err != nil {
+			errs = append(errs, fmt.Errorf("validTo: %w", err))
+		} else {
+			validTo = &vt
+		}
 	}
 
 	chargingSchedule, err := NewChargingSchedule(input.ChargingSchedule)
@@ -120,8 +142,8 @@ func NewChargingProfile(input ChargingProfileInput) (ChargingProfile, error) {
 	}
 
 	return ChargingProfile{
-		chargingProfileId:      chargingProfileId,
-		transactionId:          transactionId,
+		chargingProfileID:      chargingProfileID,
+		transactionID:          transactionID,
 		stackLevel:             stackLevel,
 		chargingProfilePurpose: purpose,
 		chargingProfileKind:    kind,
@@ -132,28 +154,14 @@ func NewChargingProfile(input ChargingProfileInput) (ChargingProfile, error) {
 	}, nil
 }
 
-// validateChargingProfileId validates the charging profile ID.
-func validateChargingProfileId(id int) (Integer, error) {
-	profileId, err := NewInteger(id)
+// validateChargingProfileID validates the charging profile ID.
+func validateChargingProfileID(id int) (Integer, error) {
+	profileID, err := NewInteger(id)
 	if err != nil {
-		return Integer{}, fmt.Errorf("chargingProfileId: %w", err)
+		return Integer{}, fmt.Errorf("chargingProfileID: %w", err)
 	}
 
-	return profileId, nil
-}
-
-// validateTransactionId validates the optional transaction ID.
-func validateTransactionId(id *int) (*Integer, error) {
-	if id == nil {
-		return nil, nil //nolint:nilnil // nil is valid for optional field
-	}
-
-	txId, err := NewInteger(*id)
-	if err != nil {
-		return nil, fmt.Errorf("transactionId: %w", err)
-	}
-
-	return &txId, nil
+	return profileID, nil
 }
 
 // validateStackLevel validates the stack level.
@@ -192,62 +200,20 @@ func validateChargingProfileKind(kind string) (ChargingProfileKindType, error) {
 	return kindType, nil
 }
 
-// validateRecurrencyKind validates the optional recurrency kind.
-func validateRecurrencyKind(kind *string) (*RecurrencyKindType, error) {
-	if kind == nil {
-		return nil, nil //nolint:nilnil // nil is valid for optional field
-	}
-
-	recurrencyKind := RecurrencyKindType(*kind)
-	if !recurrencyKind.IsValid() {
-		return nil, fmt.Errorf("recurrencyKind: %w", ErrInvalidValue)
-	}
-
-	return &recurrencyKind, nil
+// ChargingProfileID returns the unique identifier of this profile.
+func (c ChargingProfile) ChargingProfileID() Integer {
+	return c.chargingProfileID
 }
 
-// validateValidFrom validates the optional valid from timestamp.
-func validateValidFrom(validFrom *string) (*DateTime, error) {
-	if validFrom == nil {
-		return nil, nil //nolint:nilnil // nil is valid for optional field
-	}
-
-	vf, err := NewDateTime(*validFrom)
-	if err != nil {
-		return nil, fmt.Errorf("validFrom: %w", err)
-	}
-
-	return &vf, nil
-}
-
-// validateValidTo validates the optional valid to timestamp.
-func validateValidTo(validTo *string) (*DateTime, error) {
-	if validTo == nil {
-		return nil, nil //nolint:nilnil // nil is valid for optional field
-	}
-
-	vt, err := NewDateTime(*validTo)
-	if err != nil {
-		return nil, fmt.Errorf("validTo: %w", err)
-	}
-
-	return &vt, nil
-}
-
-// ChargingProfileId returns the unique identifier of this profile.
-func (c ChargingProfile) ChargingProfileId() Integer {
-	return c.chargingProfileId
-}
-
-// TransactionId returns the transaction ID, or nil if not specified.
-func (c ChargingProfile) TransactionId() *Integer {
-	if c.transactionId == nil {
+// TransactionID returns the transaction ID, or nil if not specified.
+func (c ChargingProfile) TransactionID() *Integer {
+	if c.transactionID == nil {
 		return nil
 	}
 
-	copiedTransactionId := *c.transactionId
+	copiedTransactionID := *c.transactionID
 
-	return &copiedTransactionId
+	return &copiedTransactionID
 }
 
 // StackLevel returns the stack level of this profile.
@@ -306,13 +272,13 @@ func (c ChargingProfile) ChargingSchedule() ChargingSchedule {
 // String implements the fmt.Stringer interface, returning a human-readable
 // representation of the ChargingProfile for debugging purposes.
 func (c ChargingProfile) String() string {
-	result := "ChargingProfile{Id: " + c.chargingProfileId.String()
+	result := "ChargingProfile{Id: " + c.chargingProfileID.String()
 	result += ", Purpose: " + c.chargingProfilePurpose.String()
 	result += ", Kind: " + c.chargingProfileKind.String()
 	result += ", StackLevel: " + c.stackLevel.String()
 
-	if c.transactionId != nil {
-		result += ", TransactionId: " + c.transactionId.String()
+	if c.transactionID != nil {
+		result += ", TransactionId: " + c.transactionID.String()
 	}
 
 	if c.recurrencyKind != nil {
