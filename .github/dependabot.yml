@@ -3,16 +3,16 @@ updates:
   - package-ecosystem: "gomod"
     directory: "/"
     schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 10
+      interval: "cron"
+      cronjob: "0 12 * * 1"
     assignees:
       - "aasanchez"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 10
+      interval: "cron"
+      cronjob: "0 12 * * 1"
     assignees:
       - "aasanchez"
 

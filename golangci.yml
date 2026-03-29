@@ -46,10 +46,6 @@ linters-settings:
     rules:
       - name: exported
         disabled: false
-      - name: var-naming
-        arguments:
-          - []
-          - ["ID"]
 
 formatters:
   enable:
