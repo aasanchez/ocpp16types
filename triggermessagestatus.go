@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = TriggerMessageStatus("")
+
 // TriggerMessageStatus represents the result of a TriggerMessage request.
 type TriggerMessageStatus string
 

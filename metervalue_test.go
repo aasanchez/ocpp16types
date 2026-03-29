@@ -124,21 +124,21 @@ func TestNewMeterValue_Getters(t *testing.T) {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	timestamp := meterVal.Timestamp
+	timestamp := meterVal.Timestamp()
 	if timestamp.String() != testTimestamp {
 		t.Errorf(
 			ErrorMethodMismatch,
-			"MeterValue.Timestamp",
+			"MeterValue.Timestamp()",
 			timestamp.String(),
 			testTimestamp,
 		)
 	}
 
-	samples := meterVal.SampledValue
+	samples := meterVal.SampledValue()
 	if len(samples) != testExpectedSamples {
 		t.Errorf(
 			ErrorMethodMismatch,
-			"len(MeterValue.SampledValue)",
+			"len(MeterValue.SampledValue())",
 			len(samples),
 			testExpectedSamples,
 		)

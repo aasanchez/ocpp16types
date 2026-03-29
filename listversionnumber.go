@@ -6,6 +6,9 @@ import (
 	"strconv"
 )
 
+// Compile-time interface verification.
+var _ fmt.Stringer = (*ListVersionNumber)(nil)
+
 const (
 	// ListVersionUnsupported indicates the Charge Point does not support
 	// Local Authorization Lists.

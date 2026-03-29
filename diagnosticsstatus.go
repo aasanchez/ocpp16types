@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = DiagnosticsStatus("")
+
 // DiagnosticsStatus represents the status of a diagnostics upload
 // as defined in OCPP 1.6.
 type DiagnosticsStatus string

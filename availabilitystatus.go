@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = AvailabilityStatus("")
+
 // AvailabilityStatus represents the result of a ChangeAvailability request
 // as defined in OCPP 1.6.
 type AvailabilityStatus string

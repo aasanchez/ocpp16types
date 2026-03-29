@@ -23,19 +23,19 @@ func TestNewAuthorizationData_ValidNoInfo(t *testing.T) {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if authData.IdTag.String() != testToken123 {
+	if authData.IdTag().String() != testToken123 {
 		t.Errorf(
 			ErrorMethodMismatch,
-			"AuthorizationData.IdTag",
-			authData.IdTag.String(),
+			"AuthorizationData.IdTag()",
+			authData.IdTag().String(),
 			testToken123,
 		)
 	}
 
-	if authData.IdTagInfo != nil {
+	if authData.IdTagInfo() != nil {
 		t.Errorf(
-			"AuthorizationData.IdTagInfo = %v, want nil",
-			authData.IdTagInfo,
+			"AuthorizationData.IdTagInfo() = %v, want nil",
+			authData.IdTagInfo(),
 		)
 	}
 }
@@ -60,24 +60,24 @@ func TestNewAuthorizationData_ValidWithInfo(t *testing.T) {
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if authData.IdTagInfo == nil {
+	if authData.IdTagInfo() == nil {
 		t.Fatalf(ErrorWantNonNil, "IdTagInfo")
 	}
 
-	if authData.IdTagInfo.Status != AuthorizationStatusAccepted {
+	if authData.IdTagInfo().Status() != AuthorizationStatusAccepted {
 		t.Errorf(
 			ErrorMethodMismatch,
-			"IdTagInfo.Status",
-			authData.IdTagInfo.Status,
+			"IdTagInfo().Status()",
+			authData.IdTagInfo().Status(),
 			AuthorizationStatusAccepted,
 		)
 	}
 
-	if authData.IdTagInfo.ExpiryDate == nil {
+	if authData.IdTagInfo().ExpiryDate() == nil {
 		t.Errorf(ErrorWantNonNil, "ExpiryDate")
 	}
 
-	if authData.IdTagInfo.ParentIdTag == nil {
+	if authData.IdTagInfo().ParentIdTag() == nil {
 		t.Errorf(ErrorWantNonNil, "ParentIdTag")
 	}
 }
@@ -136,11 +136,11 @@ func TestNewAuthorizationData_WithExpiryAndParent(
 		t.Fatalf(errUnexpectedFmt, err)
 	}
 
-	if authData.IdTagInfo.ExpiryDate == nil {
+	if authData.IdTagInfo().ExpiryDate() == nil {
 		t.Errorf(ErrorWantNonNil, "ExpiryDate")
 	}
 
-	if authData.IdTagInfo.ParentIdTag == nil {
+	if authData.IdTagInfo().ParentIdTag() == nil {
 		t.Errorf(ErrorWantNonNil, "ParentIdTag")
 	}
 }

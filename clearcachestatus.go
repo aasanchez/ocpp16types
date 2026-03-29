@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = ClearCacheStatus("")
+
 // ClearCacheStatus represents the result of a ClearCache request.
 type ClearCacheStatus string
 

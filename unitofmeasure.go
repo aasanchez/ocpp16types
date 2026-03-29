@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = UnitOfMeasure("")
+
 // UnitOfMeasure represents the unit of a measurement as defined in OCPP 1.6.
 type UnitOfMeasure string
 

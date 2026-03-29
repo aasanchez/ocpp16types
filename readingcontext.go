@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = ReadingContext("")
+
 // ReadingContext represents the context of a meter value reading
 // as defined in OCPP 1.6.
 type ReadingContext string

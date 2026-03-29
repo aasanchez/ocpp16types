@@ -5,6 +5,9 @@ import (
 	"fmt"
 )
 
+// Compile-time interface verification.
+var _ fmt.Stringer = (*KeyValue)(nil)
+
 // KeyValueInput represents the raw input data for creating a KeyValue.
 // The constructor NewKeyValue validates all fields automatically.
 type KeyValueInput struct {
@@ -78,4 +81,20 @@ func (k KeyValue) Value() *CiString500Type {
 	copiedValue := *k.value
 
 	return &copiedValue
+}
+
+// String implements the fmt.Stringer interface, returning a human-readable
+// representation of the KeyValue for debugging purposes.
+func (k KeyValue) String() string {
+	result := "KeyValue{Key: " + k.key.String()
+
+	result += fmt.Sprintf(", Readonly: %t", k.readonly)
+
+	if k.value != nil {
+		result += ", Value: " + k.value.String()
+	}
+
+	result += "}"
+
+	return result
 }

@@ -98,29 +98,29 @@ func FuzzAuthorizationData(f *testing.F) {
 			return
 		}
 
-		if ad.IdTag.String() != idTag {
+		if ad.IdTag().String() != idTag {
 			t.Fatalf(
 				"IdTag = %q, want %q",
-				ad.IdTag.String(), idTag,
+				ad.IdTag().String(), idTag,
 			)
 		}
 
 		if hasInfo {
-			if ad.IdTagInfo == nil {
+			if ad.IdTagInfo() == nil {
 				t.Fatal("IdTagInfo nil")
 			}
 
-			if !ad.IdTagInfo.Status.IsValid() {
+			if !ad.IdTagInfo().Status().IsValid() {
 				t.Fatal("Status invalid")
 			}
 
 			if hasExpiry &&
-				ad.IdTagInfo.ExpiryDate == nil {
+				ad.IdTagInfo().ExpiryDate() == nil {
 				t.Fatal("ExpiryDate nil")
 			}
 
 			if hasParent &&
-				ad.IdTagInfo.ParentIdTag == nil {
+				ad.IdTagInfo().ParentIdTag() == nil {
 				t.Fatal("ParentIdTag nil")
 			}
 		}

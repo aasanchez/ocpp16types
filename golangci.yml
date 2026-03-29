@@ -1,9 +1,18 @@
+version: "2"
+
 linters:
   enable:
-    - revive
-    - staticcheck
+    - errcheck
+    - gocritic
     - gofmt
     - goimports
+    - gosimple
+    - govet
+    - ineffassign
+    - misspell
+    - revive
+    - staticcheck
+    - unused
 
 linters-settings:
   revive:
@@ -14,3 +23,8 @@ linters-settings:
         arguments:
           - allowList:
               - "Id"
+
+formatters:
+  enable:
+    - gofmt
+    - goimports

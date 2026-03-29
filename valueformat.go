@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = ValueFormat("")
+
 // ValueFormat represents the format of a sampled value as defined in OCPP 1.6.
 type ValueFormat string
 

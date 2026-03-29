@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = Measurand("")
+
 // Measurand represents the type of measurement as defined in OCPP 1.6.
 type Measurand string
 

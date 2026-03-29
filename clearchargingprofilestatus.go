@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = ClearChargingProfileStatus("")
+
 // ClearChargingProfileStatus represents the result of a ClearChargingProfile
 // request as defined in OCPP 1.6.
 type ClearChargingProfileStatus string

@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = ChargingRateUnit("")
+
 // ChargingRateUnit represents the unit of measure for charging rate
 // as defined in OCPP 1.6.
 type ChargingRateUnit string

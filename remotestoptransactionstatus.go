@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = RemoteStopTransactionStatus("")
+
 // RemoteStopTransactionStatus represents the result of a
 // RemoteStopTransaction request.
 type RemoteStopTransactionStatus string

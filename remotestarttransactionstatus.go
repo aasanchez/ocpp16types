@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = RemoteStartTransactionStatus("")
+
 // RemoteStartTransactionStatus represents the result of a
 // RemoteStartTransaction request.
 type RemoteStartTransactionStatus string

@@ -20,9 +20,9 @@ func ExampleNewMeterValue() {
 		return
 	}
 
-	fmt.Println(mv.Timestamp.String())
-	fmt.Println(len(mv.SampledValue))
-	fmt.Println(mv.SampledValue[0].Value.Value())
+	fmt.Println(mv.Timestamp().String())
+	fmt.Println(len(mv.SampledValue()))
+	fmt.Println(mv.SampledValue()[0].Value().Value())
 	// Output:
 	// 2026-01-15T10:30:00Z
 	// 2

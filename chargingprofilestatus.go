@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = ChargingProfileStatus("")
+
 // ChargingProfileStatus represents the status returned by the Charge Point
 // in response to a SetChargingProfile.req as defined in OCPP 1.6.
 type ChargingProfileStatus string

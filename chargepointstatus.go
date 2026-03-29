@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = ChargePointStatus("")
+
 // ChargePointStatus represents the status of a connector or the entire Charge
 // Point as defined in OCPP 1.6.
 type ChargePointStatus string

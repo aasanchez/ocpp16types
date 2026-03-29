@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = MessageTrigger("")
+
 // MessageTrigger represents the type of message to trigger from a Charge Point.
 type MessageTrigger string
 

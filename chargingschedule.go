@@ -5,6 +5,9 @@ import (
 	"fmt"
 )
 
+// Compile-time interface verification.
+var _ fmt.Stringer = (*ChargingSchedule)(nil)
+
 const (
 	// minChargingRateZero is the minimum valid charging rate value.
 	minChargingRateZero = 0
@@ -219,4 +222,31 @@ func (c ChargingSchedule) MinChargingRate() *float64 {
 	copiedRate := *c.minChargingRate
 
 	return &copiedRate
+}
+
+// String implements the fmt.Stringer interface, returning a human-readable
+// representation of the ChargingSchedule for debugging purposes.
+func (c ChargingSchedule) String() string {
+	result := "ChargingSchedule{RateUnit: " + c.chargingRateUnit.String()
+
+	result += fmt.Sprintf(
+		", Periods: [%d items]",
+		len(c.chargingSchedulePeriod),
+	)
+
+	if c.duration != nil {
+		result += ", Duration: " + c.duration.String()
+	}
+
+	if c.startSchedule != nil {
+		result += ", StartSchedule: " + c.startSchedule.String()
+	}
+
+	if c.minChargingRate != nil {
+		result += fmt.Sprintf(", MinChargingRate: %g", *c.minChargingRate)
+	}
+
+	result += "}"
+
+	return result
 }

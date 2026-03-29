@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = ResetStatus("")
+
 // ResetStatus represents the result of a Reset request.
 type ResetStatus string
 

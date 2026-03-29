@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = CancelReservationStatus("")
+
 // CancelReservationStatus represents the result of a CancelReservation request.
 type CancelReservationStatus string
 

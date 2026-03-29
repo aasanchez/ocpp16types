@@ -2,6 +2,9 @@ package ocpp16types
 
 import "fmt"
 
+// Compile-time interface verification.
+var _ fmt.Stringer = (*ChargingSchedulePeriod)(nil)
+
 const (
 	// minNumberPhases is the minimum valid number of phases for charging.
 	minNumberPhases = 1
@@ -100,4 +103,20 @@ func (c ChargingSchedulePeriod) NumberPhases() *Integer {
 	copiedNumberPhases := *c.numberPhases
 
 	return &copiedNumberPhases
+}
+
+// String implements the fmt.Stringer interface, returning a human-readable
+// representation of the ChargingSchedulePeriod for debugging purposes.
+func (c ChargingSchedulePeriod) String() string {
+	result := "ChargingSchedulePeriod{StartPeriod: " + c.startPeriod.String()
+
+	result += fmt.Sprintf(", Limit: %g", c.limit)
+
+	if c.numberPhases != nil {
+		result += ", NumberPhases: " + c.numberPhases.String()
+	}
+
+	result += "}"
+
+	return result
 }

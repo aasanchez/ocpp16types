@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = AvailabilityType("")
+
 // AvailabilityType represents the requested availability change for a Charge
 // Point or connector as defined in OCPP 1.6.
 type AvailabilityType string

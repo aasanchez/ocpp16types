@@ -22,8 +22,8 @@ func ExampleNewAuthorizationData() {
 		return
 	}
 
-	fmt.Println(authData.IdTag.Value())
-	fmt.Println(authData.IdTagInfo.Status.String())
+	fmt.Println(authData.IdTag().Value())
+	fmt.Println(authData.IdTagInfo().Status().String())
 	// Output:
 	// TAG001
 	// Accepted
@@ -40,8 +40,8 @@ func ExampleNewAuthorizationData_deleteEntry() {
 		return
 	}
 
-	fmt.Println(authData.IdTag.Value())
-	fmt.Println(authData.IdTagInfo == nil)
+	fmt.Println(authData.IdTag().Value())
+	fmt.Println(authData.IdTagInfo() == nil)
 	// Output:
 	// TAG002
 	// true

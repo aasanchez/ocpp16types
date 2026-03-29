@@ -6,6 +6,9 @@ import (
 	"time"
 )
 
+// Compile-time interface verification.
+var _ fmt.Stringer = (*MeterValue)(nil)
+
 const (
 	// meterValueErrCountZero is the empty error count.
 	meterValueErrCountZero = 0
@@ -22,8 +25,37 @@ type MeterValueInput struct {
 // MeterValue represents a collection of sampled values at a specific timestamp
 // as defined in OCPP 1.6.
 type MeterValue struct {
-	Timestamp    DateTime
-	SampledValue []SampledValue
+	timestamp    DateTime
+	sampledValue []SampledValue
+}
+
+// Timestamp returns the measurement timestamp.
+func (m MeterValue) Timestamp() DateTime {
+	return m.timestamp
+}
+
+// SampledValue returns a defensive copy of the sampled values.
+func (m MeterValue) SampledValue() []SampledValue {
+	if m.sampledValue == nil {
+		return nil
+	}
+
+	copiedValues := make([]SampledValue, len(m.sampledValue))
+	copy(copiedValues, m.sampledValue)
+
+	return copiedValues
+}
+
+// String implements the fmt.Stringer interface, returning a human-readable
+// representation of the MeterValue for debugging purposes.
+func (m MeterValue) String() string {
+	result := "MeterValue{Timestamp: " + m.timestamp.String()
+
+	result += fmt.Sprintf(", SampledValue: [%d items]", len(m.sampledValue))
+
+	result += "}"
+
+	return result
 }
 
 // meterValueValidation holds validated fields during construction.
@@ -43,10 +75,7 @@ func NewMeterValue(input MeterValueInput) (MeterValue, error) {
 		)
 	}
 
-	return MeterValue{
-		Timestamp:    validated.timestamp,
-		SampledValue: validated.sampledValue,
-	}, nil
+	return MeterValue(validated), nil
 }
 
 func validateMeterValueInput(

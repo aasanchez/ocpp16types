@@ -5,6 +5,9 @@ import (
 	"fmt"
 )
 
+// Compile-time interface verification.
+var _ fmt.Stringer = (*SampledValue)(nil)
+
 // SampledValueInput represents the raw input data for creating a SampledValue.
 type SampledValueInput struct {
 	// Required: The measurement value as a string.
@@ -25,13 +28,118 @@ type SampledValueInput struct {
 
 // SampledValue represents a single sampled value as defined in OCPP 1.6.
 type SampledValue struct {
-	Value     CiString500Type
-	Context   *ReadingContext
-	Format    *ValueFormat
-	Measurand *Measurand
-	Phase     *Phase
-	Location  *Location
-	Unit      *UnitOfMeasure
+	value     CiString500Type
+	context   *ReadingContext
+	format    *ValueFormat
+	measurand *Measurand
+	phase     *Phase
+	location  *Location
+	unit      *UnitOfMeasure
+}
+
+// Value returns the measurement value.
+func (s SampledValue) Value() CiString500Type {
+	return s.value
+}
+
+// Context returns a defensive copy of the reading context, or nil if not set.
+func (s SampledValue) Context() *ReadingContext {
+	if s.context == nil {
+		return nil
+	}
+
+	copiedContext := *s.context
+
+	return &copiedContext
+}
+
+// Format returns a defensive copy of the value format, or nil if not set.
+func (s SampledValue) Format() *ValueFormat {
+	if s.format == nil {
+		return nil
+	}
+
+	copiedFormat := *s.format
+
+	return &copiedFormat
+}
+
+// Measurand returns a defensive copy of the measurand, or nil if not set.
+func (s SampledValue) Measurand() *Measurand {
+	if s.measurand == nil {
+		return nil
+	}
+
+	copiedMeasurand := *s.measurand
+
+	return &copiedMeasurand
+}
+
+// Phase returns a defensive copy of the phase, or nil if not set.
+func (s SampledValue) Phase() *Phase {
+	if s.phase == nil {
+		return nil
+	}
+
+	copiedPhase := *s.phase
+
+	return &copiedPhase
+}
+
+// Location returns a defensive copy of the location, or nil if not set.
+func (s SampledValue) Location() *Location {
+	if s.location == nil {
+		return nil
+	}
+
+	copiedLocation := *s.location
+
+	return &copiedLocation
+}
+
+// Unit returns a defensive copy of the unit of measure, or nil if not set.
+func (s SampledValue) Unit() *UnitOfMeasure {
+	if s.unit == nil {
+		return nil
+	}
+
+	copiedUnit := *s.unit
+
+	return &copiedUnit
+}
+
+// String implements the fmt.Stringer interface, returning a human-readable
+// representation of the SampledValue for debugging purposes.
+func (s SampledValue) String() string {
+	result := "SampledValue{Value: " + s.value.String()
+
+	if s.context != nil {
+		result += ", Context: " + s.context.String()
+	}
+
+	if s.format != nil {
+		result += ", Format: " + s.format.String()
+	}
+
+	if s.measurand != nil {
+		result += ", Measurand: " + s.measurand.String()
+	}
+
+	if s.phase != nil {
+		result += ", Phase: " + s.phase.String()
+	}
+
+	if s.location != nil {
+		result += ", Location: " + s.location.String()
+	}
+
+	if s.unit != nil {
+		result += ", Unit: " + s.unit.String()
+	}
+
+	result += "}"
+
+	return result
 }
 
 // sampledValueValidation holds validated fields during construction.
@@ -56,15 +164,7 @@ func NewSampledValue(input SampledValueInput) (SampledValue, error) {
 		)
 	}
 
-	return SampledValue{
-		Value:     validated.value,
-		Context:   validated.context,
-		Format:    validated.format,
-		Measurand: validated.measurand,
-		Phase:     validated.phase,
-		Location:  validated.location,
-		Unit:      validated.unit,
-	}, nil
+	return SampledValue(validated), nil
 }
 
 func validateSampledValueInput(

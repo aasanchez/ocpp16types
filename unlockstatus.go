@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = UnlockStatus("")
+
 // UnlockStatus string constants for use in enumeration values.
 const (
 	unlocked     = "Unlocked"

@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = ResetType("")
+
 // Hard is the reset type value for a hard reset.
 const Hard = "Hard"
 

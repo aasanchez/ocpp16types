@@ -5,6 +5,9 @@ import (
 	"fmt"
 )
 
+// Compile-time interface verification.
+var _ fmt.Stringer = (*ChargingProfile)(nil)
+
 const (
 	// errCountZero is the empty error count.
 	errCountZero = 0
@@ -298,4 +301,33 @@ func (c ChargingProfile) ValidTo() *DateTime {
 // ChargingSchedule returns the charging schedule for this profile.
 func (c ChargingProfile) ChargingSchedule() ChargingSchedule {
 	return c.chargingSchedule
+}
+
+// String implements the fmt.Stringer interface, returning a human-readable
+// representation of the ChargingProfile for debugging purposes.
+func (c ChargingProfile) String() string {
+	result := "ChargingProfile{Id: " + c.chargingProfileId.String()
+	result += ", Purpose: " + c.chargingProfilePurpose.String()
+	result += ", Kind: " + c.chargingProfileKind.String()
+	result += ", StackLevel: " + c.stackLevel.String()
+
+	if c.transactionId != nil {
+		result += ", TransactionId: " + c.transactionId.String()
+	}
+
+	if c.recurrencyKind != nil {
+		result += ", RecurrencyKind: " + c.recurrencyKind.String()
+	}
+
+	if c.validFrom != nil {
+		result += ", ValidFrom: " + c.validFrom.String()
+	}
+
+	if c.validTo != nil {
+		result += ", ValidTo: " + c.validTo.String()
+	}
+
+	result += "}"
+
+	return result
 }

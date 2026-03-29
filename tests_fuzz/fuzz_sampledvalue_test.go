@@ -101,45 +101,45 @@ func FuzzSampledValue(f *testing.F) {
 			return
 		}
 
-		if sv.Value.Value() != value {
+		if sv.Value().Value() != value {
 			t.Fatalf(
 				"Value = %q, want %q",
-				sv.Value.Value(), value,
+				sv.Value().Value(), value,
 			)
 		}
 
-		if hasCtx && sv.Context != nil {
-			if !sv.Context.IsValid() {
+		if hasCtx && sv.Context() != nil {
+			if !sv.Context().IsValid() {
 				t.Fatal("Context invalid")
 			}
 		}
 
-		if hasFmt && sv.Format != nil {
-			if !sv.Format.IsValid() {
+		if hasFmt && sv.Format() != nil {
+			if !sv.Format().IsValid() {
 				t.Fatal("Format invalid")
 			}
 		}
 
-		if hasMeas && sv.Measurand != nil {
-			if !sv.Measurand.IsValid() {
+		if hasMeas && sv.Measurand() != nil {
+			if !sv.Measurand().IsValid() {
 				t.Fatal("Measurand invalid")
 			}
 		}
 
-		if hasPhase && sv.Phase != nil {
-			if !sv.Phase.IsValid() {
+		if hasPhase && sv.Phase() != nil {
+			if !sv.Phase().IsValid() {
 				t.Fatal("Phase invalid")
 			}
 		}
 
-		if hasLoc && sv.Location != nil {
-			if !sv.Location.IsValid() {
+		if hasLoc && sv.Location() != nil {
+			if !sv.Location().IsValid() {
 				t.Fatal("Location invalid")
 			}
 		}
 
-		if hasUnit && sv.Unit != nil {
-			if !sv.Unit.IsValid() {
+		if hasUnit && sv.Unit() != nil {
+			if !sv.Unit().IsValid() {
 				t.Fatal("Unit invalid")
 			}
 		}

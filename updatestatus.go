@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = UpdateStatus("")
+
 // UpdateStatus enumeration values as defined in OCPP 1.6.
 const (
 	// Accepted indicates the local authorization list update was accepted.

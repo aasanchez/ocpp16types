@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = UpdateType("")
+
 // Full is the update type value for a full list replacement.
 const Full = "Full"
 

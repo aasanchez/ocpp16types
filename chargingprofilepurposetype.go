@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = ChargingProfilePurposeType("")
+
 // ChargingProfilePurposeType represents the purpose of a charging profile
 // as defined in OCPP 1.6.
 type ChargingProfilePurposeType string

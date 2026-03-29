@@ -61,9 +61,9 @@ func FuzzIdTagInfo(f *testing.F) {
 			return
 		}
 
-		if !info.Status.IsValid() {
+		if !info.Status().IsValid() {
 			t.Fatalf(
-				"Status.IsValid() = false for %q",
+				"Status().IsValid() = false for %q",
 				status,
 			)
 		}
@@ -72,7 +72,7 @@ func FuzzIdTagInfo(f *testing.F) {
 			dt, dtErr := st.NewDateTime(expiry)
 			if dtErr == nil {
 				info = info.WithExpiryDate(dt)
-				if info.ExpiryDate == nil {
+				if info.ExpiryDate() == nil {
 					t.Fatal(
 						"ExpiryDate nil after set",
 					)
@@ -85,7 +85,7 @@ func FuzzIdTagInfo(f *testing.F) {
 			if csErr == nil {
 				tok := st.NewIdToken(cs)
 				info = info.WithParentIdTag(tok)
-				if info.ParentIdTag == nil {
+				if info.ParentIdTag() == nil {
 					t.Fatal(
 						"ParentIdTag nil after set",
 					)

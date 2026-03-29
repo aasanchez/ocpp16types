@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = ChargePointErrorCode("")
+
 // ChargePointErrorCode represents the error code reported in a
 // StatusNotification as defined in OCPP 1.6.
 type ChargePointErrorCode string

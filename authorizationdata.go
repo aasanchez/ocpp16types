@@ -4,6 +4,9 @@ import (
 	"fmt"
 )
 
+// Compile-time interface verification.
+var _ fmt.Stringer = (*AuthorizationData)(nil)
+
 // AuthorizationDataInput represents the raw input data for creating an
 // AuthorizationData entry in the local authorization li
 type AuthorizationDataInput struct {
@@ -24,10 +27,40 @@ type IdTagInfoInput struct {
 	ParentIdTag *string
 }
 
-// AuthorizationData represents an entry in the local authorization li
+// AuthorizationData represents an entry in the local authorization list.
 type AuthorizationData struct {
-	IdTag     IdToken
-	IdTagInfo *IdTagInfo
+	idTag     IdToken
+	idTagInfo *IdTagInfo
+}
+
+// IdTag returns the identifier token.
+func (a AuthorizationData) IdTag() IdToken {
+	return a.idTag
+}
+
+// IdTagInfo returns a defensive copy of the authorization info, or nil if not set.
+func (a AuthorizationData) IdTagInfo() *IdTagInfo {
+	if a.idTagInfo == nil {
+		return nil
+	}
+
+	copiedIdTagInfo := *a.idTagInfo
+
+	return &copiedIdTagInfo
+}
+
+// String implements the fmt.Stringer interface, returning a human-readable
+// representation of the AuthorizationData for debugging purposes.
+func (a AuthorizationData) String() string {
+	result := "AuthorizationData{IdTag: " + a.idTag.String()
+
+	if a.idTagInfo != nil {
+		result += ", IdTagInfo: " + a.idTagInfo.String()
+	}
+
+	result += "}"
+
+	return result
 }
 
 // NewAuthorizationData creates a new AuthorizationData from the given input.
@@ -50,8 +83,8 @@ func NewAuthorizationData(
 
 	if input.IdTagInfo == nil {
 		return AuthorizationData{
-			IdTag:     idToken,
-			IdTagInfo: nil,
+			idTag:     idToken,
+			idTagInfo: nil,
 		}, nil
 	}
 
@@ -65,8 +98,8 @@ func NewAuthorizationData(
 	}
 
 	return AuthorizationData{
-		IdTag:     idToken,
-		IdTagInfo: &idTagInfo,
+		idTag:     idToken,
+		idTagInfo: &idTagInfo,
 	}, nil
 }
 

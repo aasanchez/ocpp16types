@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = ChargingProfileKindType("")
+
 // ChargingProfileKindType represents the kind of charging profile
 // as defined in OCPP 1.6.
 type ChargingProfileKindType string

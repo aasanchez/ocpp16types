@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = Phase("")
+
 // Phase represents the phase of the electrical measurement as defined in
 // OCPP 1.6.
 type Phase string

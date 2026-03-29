@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = RegistrationStatus("")
+
 // RegistrationStatus represents the result of a BootNotification request.
 type RegistrationStatus string
 

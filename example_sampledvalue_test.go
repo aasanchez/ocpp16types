@@ -25,9 +25,9 @@ func ExampleNewSampledValue() {
 		return
 	}
 
-	fmt.Println(sv.Value.Value())
-	fmt.Println(sv.Measurand.String())
-	fmt.Println(sv.Unit.String())
+	fmt.Println(sv.Value().Value())
+	fmt.Println(sv.Measurand().String())
+	fmt.Println(sv.Unit().String())
 	// Output:
 	// 1234.5
 	// Energy.Active.Import.Register
@@ -44,8 +44,8 @@ func ExampleNewSampledValue_minimal() {
 		return
 	}
 
-	fmt.Println(sv.Value.Value())
-	fmt.Println(sv.Context == nil)
+	fmt.Println(sv.Value().Value())
+	fmt.Println(sv.Context() == nil)
 	// Output:
 	// 42
 	// true

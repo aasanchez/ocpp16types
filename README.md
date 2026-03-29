@@ -1,7 +1,7 @@
 # ocpp16types
 
 [![CI](https://github.com/aasanchez/ocpp16types/actions/workflows/ci.yml/badge.svg)](https://github.com/aasanchez/ocpp16types/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/aasanchez/ocpp16types/branch/main/graph/badge.svg)](https://codecov.io/gh/aasanchez/ocpp16types)
+[![codecov](https://codecov.io/gh/aasanchez/ocpp16types/branch/master/graph/badge.svg)](https://codecov.io/gh/aasanchez/ocpp16types)
 [![Go Reference](https://pkg.go.dev/badge/github.com/aasanchez/ocpp16types.svg)](https://pkg.go.dev/github.com/aasanchez/ocpp16types)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 

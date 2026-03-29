@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = Reason("")
+
 // Reason represents the reason for stopping a transaction as defined in
 // OCPP 1.6 specification. The Charge Point SHALL send the reason if the
 // transaction was not stopped normally (i.e., not stopped via EV driver

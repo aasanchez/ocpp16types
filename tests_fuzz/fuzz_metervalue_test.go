@@ -113,15 +113,15 @@ func FuzzMeterValue(f *testing.F) {
 			return
 		}
 
-		ts := mv.Timestamp.String()
+		ts := mv.Timestamp().String()
 		if len(ts) == 0 {
 			t.Fatal(
-				"Timestamp.String() empty",
+				"Timestamp().String() empty",
 			)
 		}
 
-		if len(mv.SampledValue) == 0 {
-			t.Fatal("SampledValue empty")
+		if len(mv.SampledValue()) == 0 {
+			t.Fatal("SampledValue() empty")
 		}
 	})
 }

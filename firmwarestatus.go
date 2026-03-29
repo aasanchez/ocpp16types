@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = FirmwareStatus("")
+
 // FirmwareStatus represents the status of a firmware download or installation
 // as defined in OCPP 1.6.
 type FirmwareStatus string

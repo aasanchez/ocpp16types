@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = RecurrencyKindType("")
+
 // RecurrencyKindType represents the kind of recurrency for a recurring
 // charging profile as defined in OCPP 1.6.
 type RecurrencyKindType string

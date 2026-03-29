@@ -1,5 +1,10 @@
 package ocpp16types
 
+import "fmt"
+
+// Compile-time interface verification.
+var _ fmt.Stringer = ReservationStatus("")
+
 // ReservationStatus represents the result of a ReserveNow request.
 type ReservationStatus string
 
