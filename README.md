@@ -172,7 +172,7 @@ Coverage is uploaded to [Codecov](https://codecov.io/gh/aasanchez/ocpp16types) o
 
 ## CI Pipeline
 
-GitHub Actions runs on every push and pull request to `main`:
+GitHub Actions runs on every push and pull request to `master`:
 
 1. `go vet`
 2. `staticcheck`
