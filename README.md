@@ -101,12 +101,16 @@ All enumerations expose an `IsValid() bool` method and a `String() string` metho
 
 ## Usage
 
+This package is imported with the `types` alias across the EVCore ecosystem (e.g., in `ocpp16messages`):
+
+```go
+import types "github.com/aasanchez/ocpp16types"
+```
+
 ### Creating a CiString
 
 ```go
-import st "github.com/aasanchez/ocpp16types"
-
-cistr, err := st.NewCiString20Type("ABC123")
+cistr, err := types.NewCiString20Type("ABC123")
 if err != nil {
     log.Fatal(err)
 }
@@ -116,7 +120,7 @@ fmt.Println(cistr.Value()) // "ABC123"
 ### Working with Enumerations
 
 ```go
-status := st.AuthorizationStatusAccepted
+status := types.AuthorizationStatusAccepted
 fmt.Println(status.IsValid()) // true
 fmt.Println(status.String())  // "Accepted"
 ```
@@ -124,10 +128,10 @@ fmt.Println(status.String())  // "Accepted"
 ### Building an IdTagInfo with Optional Fields
 
 ```go
-dt, _ := st.NewDateTime("2026-12-31T23:59:59Z")
-parent, _ := st.NewIdToken("ParentTag001")
+dt, _ := types.NewDateTime("2026-12-31T23:59:59Z")
+parent, _ := types.NewIdToken("ParentTag001")
 
-info, err := st.NewIdTagInfo(st.AuthorizationStatusAccepted)
+info, err := types.NewIdTagInfo(types.AuthorizationStatusAccepted)
 if err != nil {
     log.Fatal(err)
 }
@@ -143,14 +147,101 @@ fmt.Println(info)
 ### Error Handling with Sentinel Errors
 
 ```go
-_, err := st.NewCiString20Type("")
-if errors.Is(err, st.ErrEmptyValue) {
+_, err := types.NewCiString20Type("")
+if errors.Is(err, types.ErrEmptyValue) {
     // handle empty input
 }
 
-_, err = st.NewInteger(-1)
-if errors.Is(err, st.ErrInvalidValue) {
+_, err = types.NewInteger(-1)
+if errors.Is(err, types.ErrInvalidValue) {
     // handle out-of-range value
+}
+```
+
+### Real-World: Authorize.req (from ocpp16messages)
+
+This is how `ocpp16messages/authorize` uses `ocpp16types` to build a validated OCPP message:
+
+```go
+import types "github.com/aasanchez/ocpp16types"
+
+// ReqMessage represents an OCPP 1.6 Authorize.req message.
+type ReqMessage struct {
+    IdTag types.IdToken
+}
+
+func Req(input ReqInput) (ReqMessage, error) {
+    str, err := types.NewCiString20Type(input.IdTag)
+    if err != nil {
+        return ReqMessage{}, fmt.Errorf("idTag: %w", err)
+    }
+
+    idToken := types.NewIdToken(str)
+
+    return ReqMessage{IdTag: idToken}, nil
+}
+```
+
+### Real-World: Authorize.conf (from ocpp16messages)
+
+Building a response with validated status and optional fields:
+
+```go
+import types "github.com/aasanchez/ocpp16types"
+
+// ConfMessage represents an OCPP 1.6 Authorize.conf message.
+type ConfMessage struct {
+    IdTagInfo types.IdTagInfo
+}
+
+func Conf(input ConfInput) (ConfMessage, error) {
+    // Validate status (required)
+    info, err := types.NewIdTagInfo(
+        types.AuthorizationStatus(input.Status),
+    )
+    if err != nil {
+        return ConfMessage{}, fmt.Errorf("status: %w", err)
+    }
+
+    // Apply optional fields
+    if input.ExpiryDate != nil {
+        expiryDate, err := types.NewDateTime(*input.ExpiryDate)
+        if err != nil {
+            return ConfMessage{}, fmt.Errorf("expiryDate: %w", err)
+        }
+        info = info.WithExpiryDate(expiryDate)
+    }
+
+    if input.ParentIdTag != nil {
+        ciStr, err := types.NewCiString20Type(*input.ParentIdTag)
+        if err != nil {
+            return ConfMessage{}, fmt.Errorf("parentIdTag: %w", err)
+        }
+        info = info.WithParentIdTag(types.NewIdToken(ciStr))
+    }
+
+    return ConfMessage{IdTagInfo: info}, nil
+}
+```
+
+### Real-World: BootNotification.req struct (from ocpp16messages)
+
+Shows how types compose into a full OCPP message with required and optional fields:
+
+```go
+import types "github.com/aasanchez/ocpp16types"
+
+// ReqMessage represents an OCPP 1.6 BootNotification.req message.
+type ReqMessage struct {
+    ChargePointVendor       types.CiString20Type
+    ChargePointModel        types.CiString20Type
+    ChargePointSerialNumber *types.CiString25Type  // optional
+    ChargeBoxSerialNumber   *types.CiString25Type  // optional
+    FirmwareVersion         *types.CiString50Type  // optional
+    Iccid                   *types.CiString20Type  // optional
+    Imsi                    *types.CiString20Type  // optional
+    MeterType               *types.CiString25Type  // optional
+    MeterSerialNumber       *types.CiString25Type  // optional
 }
 ```
 
